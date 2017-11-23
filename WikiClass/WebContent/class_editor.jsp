@@ -9,23 +9,23 @@
 <html>
 <head>
 <style type="text/css">
-
 #cke_1_contents{
-
-	height: 1000px !important;
-
+	height: 500px !important;
+}
+img{
+	outline: 0px !important;
 }
 </style>
+		<script src="./ckeditor/ckeditor.js"></script>
 		<title>Generic - Editorial by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="./ckeditor/contents.css" />
 		<link rel="stylesheet" href="class_assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
-
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -41,8 +41,16 @@
 									<header class="main">
 										<h1>노트 편집</h1>
 									</header>
-									<%@include file="editor.jsp" %>
-
+									<form action="class_generic.jsp" method="get">
+										<textarea name="editor1" id="editor1" rows="10" cols="80">
+	    		        		    		편집을 해보세요ㅋㅋㅋㅋ
+	    		        		    		<h1>This is my textarea to be replaced with CKEditor.</h1>    
+	    		        				</textarea>
+										<input type="submit" value="텍스트 전송" />
+										<script>
+											CKEDITOR.replace('editor1');
+										</script>
+									</form>
 								</section>
 
 						</div>
