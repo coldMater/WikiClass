@@ -10,7 +10,7 @@
 	<!-- Header -->
 	<header id="header"> 
 		<a href="class_index.jsp" class="logo">
-			<strong>Editorial</strong> by HTML5 UP
+			<img src="images/logo3.png" alt="" />
 		</a>
 	<ul class="icons">
 		<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>

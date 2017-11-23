@@ -37,7 +37,7 @@
 										</header>
 										<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
 										<ul class="actions">
-											<li><a href="class_generic.jsp" class="button big">Learn More</a></li>
+											<li><a href="class_generic.jsp" class="button big">노트를 누르면??</a></li>
 										</ul>
 									</div>
 									<span class="image object">
@@ -146,11 +146,11 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
+			<script src="class_assets/js/jquery.min.js"></script>
+			<script src="class_assets/js/skel.min.js"></script>
+			<script src="class_assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+			<script src="class_assets/js/main.js"></script>
 
 	</body>
 </html>
