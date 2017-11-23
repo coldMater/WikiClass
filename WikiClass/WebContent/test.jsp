@@ -8,10 +8,7 @@
 </head>
 <body>
 æ»≥Á«œººø‰
-<<<<<<< HEAD
 æ»≥Á«œººø‰
-=======
 π›∞©Ω¿¥œ¥Ÿ
->>>>>>> branch 'master' of https://github.com/coldMater/WikiClass.git
 </body>
 </html>
