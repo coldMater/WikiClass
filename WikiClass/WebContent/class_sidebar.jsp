@@ -20,15 +20,18 @@
 
 			<!-- Menu -->
 			<nav id="menu"> <header class="major">
-			<h2>Menu</h2>
+			<h2>목차</h2>
 			</header>
 			<ul>
-				<li><a href="class_index.jsp">Homepage</a></li>
-				<li><a href="class_generic.jsp">Generic</a></li>
+				<li><a href="main_index.jsp">메인홈페이지</a></li>
+				<li><a href="class_index.jsp">class메인홈페이지</a></li>
+				<li><a href="class_generic.jsp">노트 첫페이지</a></li>
+				<li><a href="class_editor.jsp">에디터 편집페이지</a></li>
 				<li><a href="class_elements.jsp">Elements</a></li>
-				<li><span class="opener">Submenu</span>
+				<li><a href="#">대단원입니다.</a></li>
+				<li><span class="opener">중단원열기</span>
 					<ul>
-						<li><a href="#">Lorem Dolor</a></li>
+						<li><a href="#">중단원입니다.</a></li>
 						<li><a href="#">Ipsum Adipiscing</a></li>
 						<li><a href="#">Tempus Magna</a></li>
 						<li><a href="#">Feugiat Veroeros</a></li>

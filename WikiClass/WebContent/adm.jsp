@@ -25,7 +25,7 @@
 				<!-- Main -->
 					<section id="main">
 						<header>
-							<span class="avatar"><img src="images/logo.jpg" alt="" /></span>
+							<span class="avatar"><img src="images/logo.png" alt="" /></span>
 							<h1>WikiClass</h1>
 						</header>
 						

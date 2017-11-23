@@ -8,7 +8,7 @@
 -->
 <html>
 	<head>
-		<title>Helios by HTML5 UP</title>
+		<title>WikiClass</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -24,9 +24,9 @@
 					<!-- Inner -->
 						<div class="inner">
 							<header>
-								<h1><a href="index.html" id="logo">Helios</a></h1>
+								<h1 style="font-size: 150px"><a href="main_index.jsp" id="logo"><img src="images/logo2.png" alt="" />WikiClass</a></h1>
 								<hr />
-								<p>Another fine freebie by HTML5 UP</p>
+								<p>사용법을 보시려면 Start를 클릭해주세요</p>
 							</header>
 							<footer>
 								<a href="#banner" class="button circled scrolly">Start</a>
@@ -36,7 +36,7 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li><a href="index.html">Home</a></li>
+								<li><a href="main_index.jpg">Home</a></li>
 								<li>
 									<a href="#">Dropdown</a>
 									<ul>
@@ -56,8 +56,8 @@
 									</ul>
 								</li>
 								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Right Sidebar</a></li>
-								<li><a href="no-sidebar.html">No Sidebar</a></li>
+								<li><a href="memberLogin.jsp">로그인</a></li>
+								<li><a href="memberJoin.jsp">회원가입</a></li>
 							</ul>
 						</nav>
 
@@ -184,7 +184,7 @@
 							natoque aenean scelerisque.
 						</p>
 						<footer>
-							<a href="#" class="button">Continue Reading</a>
+							<a href="class_index.jsp" class="button">--> 시작합니다.</a>
 						</footer>
 					</article>
 
