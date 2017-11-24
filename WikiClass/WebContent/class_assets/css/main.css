@@ -2550,7 +2550,9 @@
 		display: inline-block;
 		position: relative;
 	}
-
+	a>img{
+		outline: 0px solid #000000;
+	}
 		.image img {
 			border-radius: 0.375em;
 			display: block;

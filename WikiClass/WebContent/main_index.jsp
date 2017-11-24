@@ -17,6 +17,7 @@
 	</head>
 	<body class="homepage">
 		<div id="page-wrapper">
+		
 
 			<!-- Header -->
 				<div id="header">
@@ -171,22 +172,24 @@
 					<article id="main" class="container special">
 						<a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
 						<header>
-							<h2><a href="#">Sed massa imperdiet magnis</a></h2>
-							<p>
-								Sociis aenean eu aenean mollis mollis facilisis primis ornare penatibus aenean. Cursus ac enim
-								pulvinar curabitur morbi convallis. Lectus malesuada sed fermentum dolore amet.
-							</p>
-						</header>
-						<p>
-							Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan massa
-							posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus
-							sit arcu sociis. Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis aliquam
-							mus lacinia lobortis phasellus suscipit. Fermentum lobortis non tristique ante proin sociis accumsan
-							lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
-							consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue
-							interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia
-							natoque aenean scelerisque.
+							<img alt="" src="images/logo1.png" style="height:339px; width:240px" /><h2><a href="#">당신의 WikiClass</a></h2><br>
+					
+							<h3>
+								Class 멤버들과 함께 만들고 전 세계인과 공유하는 학습노트</h3>
+								
+								
+						<p style="line-height:5em">
+							<h4>
+							<!--  -->
+WikiClass is PlatformService which helps users create note consist of contents organized by every member in Your Class.<br>
+WikiClass는 학습내용을 Class 멤버들과 함께 만들고 다른 사용자들과 공유할 수 있는 플랫폼 서비스입니다.지금 이용해보세요!
+
+
+</h4>
+
 						</p>
+						</header>
+						
 						<footer>
 							<a href="class_index.jsp" class="button">--> 시작합니다.</a>
 						</footer>

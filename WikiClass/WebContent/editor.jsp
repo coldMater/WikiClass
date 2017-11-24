@@ -3,6 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
+    	<style type="text/css">
+    	#cke_1_contents{
+			height: 500px !important;
+		}
+    	</style>
         <meta charset="utf-8">
         <title>A Simple Page with CKEditor</title>
         <!-- Make sure the path to CKEditor is correct. -->
@@ -10,7 +15,7 @@
 		<link rel="stylesheet" href="./ckeditor/contents.css" />
     </head>
     <body>
-        <form action="#" method = "get">
+        <form action="class_generic.jsp" method = "get">
             <textarea name="editor1" id="editor1" rows="10" cols="80">
                 This is my textarea to be replaced with CKEditor.
                 <h1>This is my textarea to be replaced with CKEditor.</h1>    
