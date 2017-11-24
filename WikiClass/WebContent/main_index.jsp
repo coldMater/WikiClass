@@ -23,11 +23,15 @@
 
 					<!-- Inner -->
 						<div class="inner">
-							<header>
-								<h1 style="font-size: 150px"><a href="main_index.jsp" id="logo"><img src="images/logo2.png" alt="" />WikiClass</a></h1>
+						<table style='background-color: rgba( 0, 0, 0, 0.5 );'>
+						<tr><td>
+							<header >
+								<h1 style="font-size: 6em;"><a href="main_index.jsp" id="logo" ><img src="images/logo2.png" alt="" />WikiClass</a></h1>
 								<hr />
 								<p>사용법을 보시려면 Start를 클릭해주세요</p>
 							</header>
+							</td></tr>
+						</table>
 							<footer>
 								<a href="#banner" class="button circled scrolly">Start</a>
 							</footer>
