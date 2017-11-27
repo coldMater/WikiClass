@@ -29,15 +29,15 @@
 							<h1>WikiClass</h1>
 						</header>
 						
-						<form method="post" action="#">
+						<form method="post" action="adminLogin.do">
 							<div class="field">
-								<input type="email" name="email" id="email" placeholder="Email" />
+								<input type="text" name="id" id="id" placeholder="id" />
 							</div>
 							<div class="field">
 								<input type="password" name="Password" id="Password" placeholder="Password" />
 							</div>
 							<ul class="actions">
-								<li><a href="#" class="button">로그인</a></li>
+								<li><input type="submit" value="로그인"></li>
 							</ul>
 						</form>
 						<hr />

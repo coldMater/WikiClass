@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
 	Identity by HTML5 UP
@@ -8,7 +9,7 @@
 -->
 <html>
 	<head>
-		<title>Identity by HTML5 UP</title>
+		<title>WikiClass Join</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
@@ -18,69 +19,51 @@
 		<noscript><link rel="stylesheet" href="adm_assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-loading">
-
+<%
+String uri = request.getParameter("uri");
+System.out.println("회원가입에 접근한 uri = "+uri);
+%>
+		<!--회원가입 실패-->
+		<c:if test="${requestScope.check == 3}">
+			<script type="text/javascript">
+				show()
+				function show(){
+					alert("회원가입에 실패하셨습니다.")
+				}
+			</script>
+		</c:if>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
 				<!-- Main -->
-					<section id="main">
+				1	<section id="main">
 						<header>
-							<span class="avatar"><img src="images/avatar.jpg" alt="" /></span>
-							<h1>Jane Doe</h1>
-							<p>Senior Psychonautics Engineer</p>
+							<span class="avatar"><img src="images/logo.png" alt="" /></span>
+							<h1>WikiClass</h1>
 						</header>
-						<!--
-						<hr />
-						<h2>Extra Stuff!</h2>
-						<form method="post" action="#">
+						
+						<form method="post" action="memberJoin.do">
 							<div class="field">
-								<input type="text" name="name" id="name" placeholder="Name" />
+								<input type="text" name="email" id="email" placeholder="email" required/>
+								<!-- 여기에 중복 확인 -->
 							</div>
 							<div class="field">
-								<input type="email" name="email" id="email" placeholder="Email" />
+								<input type="password" name="Password1" id="Password1" placeholder="Password" required/>
 							</div>
 							<div class="field">
-								<div class="select-wrapper">
-									<select name="department" id="department">
-										<option value="">Department</option>
-										<option value="sales">Sales</option>
-										<option value="tech">Tech Support</option>
-										<option value="null">/dev/null</option>
-									</select>
-								</div>
+								<input type="password" name="Password2" id="Password2" placeholder="Confirm Password " required/>
+								<!-- 여기에 패스워드 일치 확인 -->
 							</div>
 							<div class="field">
-								<textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
+								<input type="text" name="nickname" id="nickname" placeholder="nickname" required/>
 							</div>
-							<div class="field">
-								<input type="checkbox" id="human" name="human" /><label for="human">I'm a human</label>
-							</div>
-							<div class="field">
-								<label>But are you a robot?</label>
-								<input type="radio" id="robot_yes" name="robot" /><label for="robot_yes">Yes</label>
-								<input type="radio" id="robot_no" name="robot" /><label for="robot_no">No</label>
-							</div>
+							<input type="text" name="uri" value="<%=uri %>" style="display: none">
 							<ul class="actions">
-								<li><a href="#" class="button">Get Started</a></li>
+								<li><input type="submit" value="회원가입"></li>
 							</ul>
 						</form>
 						<hr />
-						-->
-						<footer>
-							<ul class="icons">
-								<li><a href="#" class="fa-twitter">Twitter</a></li>
-								<li><a href="#" class="fa-instagram">Instagram</a></li>
-								<li><a href="#" class="fa-facebook">Facebook</a></li>
-							</ul>
-						</footer>
 					</section>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<ul class="copyright">
-							<li>&copy; Jane Doe</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
 
 			</div>
 
