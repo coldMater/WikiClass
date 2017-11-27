@@ -22,7 +22,7 @@
 			<div id="wrapper">
 
 				<!-- Main -->
-					<div id="main">
+					<div id="main" >
 						<div class="inner">
 							<!-- Header -->
 							<%@include file="class_header.jsp" %>
@@ -82,10 +82,10 @@
 									</div>
 								</section>
 
-							<!-- Section -->
+							<!-- 목록 Section -->
 								<section>
 									<header class="major">
-										<h2>Ipsum sed dolor</h2>
+										<h2>목록</h2>
 									</header>
 									<div class="posts">
 										<article>
