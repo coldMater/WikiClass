@@ -17,6 +17,7 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<noscript><link rel="stylesheet" href="adm_assets/css/noscript.css" /></noscript>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body class="is-loading">
 <%
@@ -36,7 +37,7 @@ System.out.println("회원가입에 접근한 uri = "+uri);
 			<div id="wrapper">
 
 				<!-- Main -->
-				1	<section id="main">
+					<section id="main">
 						<header>
 							<span class="avatar"><img src="images/logo.png" alt="" /></span>
 							<h1>WikiClass</h1>
@@ -44,15 +45,15 @@ System.out.println("회원가입에 접근한 uri = "+uri);
 						
 						<form method="post" action="memberJoin.do">
 							<div class="field">
-								<input type="text" name="email" id="email" placeholder="email" required/>
-								<!-- 여기에 중복 확인 -->
+								<input type="text" name="email" id="email" placeholder="email" required onfocusout="emailCheck()"/>
+								<p id="emailText"></p><!-- 여기에 중복 확인 -->
 							</div>
 							<div class="field">
 								<input type="password" name="Password1" id="Password1" placeholder="Password" required/>
 							</div>
 							<div class="field">
-								<input type="password" name="Password2" id="Password2" placeholder="Confirm Password " required/>
-								<!-- 여기에 패스워드 일치 확인 -->
+								<input type="password" name="Password2" id="Password2" placeholder="Confirm Password " required onfocusout="passwordCheck()"/>
+								<p id="passwordText"></p><!-- 여기에 패스워드 일치 확인 -->
 							</div>
 							<div class="field">
 								<input type="text" name="nickname" id="nickname" placeholder="nickname" required/>
@@ -75,6 +76,38 @@ System.out.println("회원가입에 접근한 uri = "+uri);
 					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 				}
 			</script>
+			<script type="text/javascript">
+   				var email = document.getElementById("email")
+     			var emailText = document.getElementById("emailText")
+     			function emailCheck(){
+          			$.ajax({
+          			url:"SerachEmail",
+         			data : "email="+email.value,
+          			success : function(result){
+               			emailText.innerHTML = result
+               				if(result=="존재하지 않는 이메일입니다."){
+               					emailText.style.color = "blue"
+               				}else{
+               					emailText.style.color = "red"
+               				}
+               			}
+         			 });
+    			 }
+   				var password1 = document.getElementById("Password1")
+   				var password2 = document.getElementById("Password2")
+     			var passwordText = document.getElementById("passwordText")
+   				function passwordCheck(){
+          			if(password1.value == password2.value){
+   						passwordText.innerHTML = "비밀번호가 일치합니다."
+   						passwordText.style.color = "blue"
+          			}else{
+          				passwordText.innerHTML = "비밀번호가 일치하지 않습니다."
+   						passwordText.style.color = "red"
+          			}
+    			 }
+   				
+			</script>
+			
 
 	</body>
 </html>

@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.VO.MemberVO;
+
 public class memberDAO {
 	Connection conn = null;
 	PreparedStatement pst = null;
@@ -42,6 +44,8 @@ public class memberDAO {
 			System.out.println("memberDAO connection error");
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	public void close() {
@@ -97,6 +101,32 @@ public class memberDAO {
 		}
 		close();
 		return cnt;
+	}
+
+	public MemberVO emailselect(String email) {
+		getConn();
+		String sql = "select * from member where email=?";
+		MemberVO mvo = null;
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, email);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				int num = rs.getInt(1);
+				String password = rs.getString(3);
+				String nickname = rs.getString(4);
+				mvo = new MemberVO(num,email, password, nickname);
+			}else {
+				return null;
+			}
+		} catch (SQLException e) {
+			System.out.println("memberDAO emailselect error");
+			e.printStackTrace();
+		} 
+		
+		return mvo;
 	}
 	
 	
