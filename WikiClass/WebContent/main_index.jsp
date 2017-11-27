@@ -458,10 +458,9 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 		<!-- Main -->
 		<div class="wrapper style2">
 
-			<article id="main" class="container special"> <a href="#"
-				class="image featured"><img src="images/pic06.jpg" alt="" /></a> <header>
-			<img alt="" src="images/logo1.png"
-				style="height: 339px; width: 240px" />
+			<article id="main" class="container special">  
+			<header>
+			
 			<h2>
 				<a href="#">당신의 WikiClass</a>
 			</h2>
