@@ -382,7 +382,7 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 
 		<!-- 목록 Section Test -->
 		<section style = "background-color: white;"> <header class="major">
-		<h2 style = "margin-top : 1em">
+		<h2 style = "margin-top : 0.3em">
 			<strong>목록</strong>
 		</h2>
 		</header>

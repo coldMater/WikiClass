@@ -22,7 +22,7 @@
 			<div id="wrapper">
 
 				<!-- Main -->
-					<div id="main">
+					<div id="main" >
 						<div class="inner">
 							<!-- Header -->
 							<%@include file="class_header.jsp" %>
