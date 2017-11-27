@@ -10,30 +10,118 @@
 <html>
 <head>
 <style>
+<!--
+모달 이미지  --> /* Style the Image Used to Trigger the Modal */ #myImg {
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s;
+}
 
+#myImg:hover {
+	opacity: 0.7;
+}
 
-/* banner */
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
 
+/* Modal Content (Image) */
+.modal-content {
+	margin: auto;
+	display: block;
+	width: 80%;
+	max-width: 700px;
+}
 
-	
-	
-	/* major */
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+	margin: auto;
+	display: block;
+	width: 80%;
+	max-width: 700px;
+	text-align: center;
+	color: #ccc;
+	padding: 10px 0;
+	height: 150px;
+}
 
-header.major > :last-child {
-		border-bottom: solid 3px #f56a6a;
-		display: inline-block;
-		margin: 0 0 2em 0;
-		padding: 0 0.75em 0.5em 0;
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+	-webkit-animation-name: zoom;
+	-webkit-animation-duration: 0.6s;
+	animation-name: zoom;
+	animation-duration: 0.6s;
+}
+
+@
+-webkit-keyframes zoom {
+	from {-webkit-transform: scale(0)
+}
+
+to {
+	-webkit-transform: scale(1)
+}
+
+}
+@
+keyframes zoom {
+	from {transform: scale(0)
+}
+
+to {
+	transform: scale(1)
+}
+
+}
+
+/* The Close Button */
+.close {
+	position: absolute;
+	top: 15px;
+	right: 35px;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.3s;
+}
+
+.close:hover, .close:focus {
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+	.modal-content {
+		width: 100%;
 	}
+}
 
+<!--
+여기까지 모달 이미지  --> /* major */ header.major>:last-child {
+	border-bottom: solid 3px #f56a6a;
+	display: inline-block;
+	margin: 0 0 2em 0;
+	padding: 0 0.75em 0.5em 0;
+}
 
 .class_list {
-		background: #fff;
+	background: #fff;
+}
 
-	}
-
-
-/* Posts */	
+/* Posts */
 .posts {
 	display: -moz-flex;
 	display: -webkit-flex;
@@ -205,12 +293,12 @@ header.major > :last-child {
 
 
 
-<%
-String uri = request.getRequestURI();
-String path = request.getContextPath();
-String req_uri = uri.substring(path.length()+1);
-System.out.println("main_index에 들어온 uri = "+req_uri);
-%>
+		<%
+			String uri = request.getRequestURI();
+			String path = request.getContextPath();
+			String req_uri = uri.substring(path.length() + 1);
+			System.out.println("main_index에 들어온 uri = " + req_uri);
+		%>
 		<!-- Header -->
 		<div id="header">
 
@@ -235,40 +323,36 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 			<!-- Nav -->
 			<nav id="nav">
 			<ul>
-				
-								<li><a href="main_index.jpg">Home</a></li>
-								<li>
-									<a href="#">Dropdown</a>
-									<ul>
-										<li><a href="#">Lorem ipsum dolor</a></li>
-										<li><a href="#">Magna phasellus</a></li>
-										<li><a href="#">Etiam dolore nisl</a></li>
-										<li>
-											<a href="#">And a submenu &hellip;</a>
-											<ul>
-												<li><a href="#">Lorem ipsum dolor</a></li>
-												<li><a href="#">Phasellus consequat</a></li>
-												<li><a href="#">Magna phasellus</a></li>
-												<li><a href="#">Etiam dolore nisl</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Veroeros feugiat</a></li>
-									</ul>
-								</li>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<c:choose>
-									<c:when test="${empty sessionScope.email }">
-										<li><a href="memberLogin.jsp?uri=<%=req_uri %>">로그인</a></li>
-										<li><a href="memberJoin.jsp?uri=<%=req_uri %>">회원가입</a></li>
-									</c:when>
-									<c:otherwise>
-										<li><a href="#">마이페이지</a></li>
-										<li><a href="logout?uri=<%=req_uri%>">로그아웃</a></li>
-									</c:otherwise>
-								</c:choose>
-							</ul>
-						</nav>
-								
+
+				<li><a href="main_index.jpg">Home</a></li>
+				<li><a href="#">Dropdown</a>
+					<ul>
+						<li><a href="#">Lorem ipsum dolor</a></li>
+						<li><a href="#">Magna phasellus</a></li>
+						<li><a href="#">Etiam dolore nisl</a></li>
+						<li><a href="#">And a submenu &hellip;</a>
+							<ul>
+								<li><a href="#">Lorem ipsum dolor</a></li>
+								<li><a href="#">Phasellus consequat</a></li>
+								<li><a href="#">Magna phasellus</a></li>
+								<li><a href="#">Etiam dolore nisl</a></li>
+							</ul></li>
+						<li><a href="#">Veroeros feugiat</a></li>
+					</ul></li>
+				<li><a href="left-sidebar.html">Left Sidebar</a></li>
+				<c:choose>
+					<c:when test="${empty sessionScope.email }">
+						<li><a href="memberLogin.jsp?uri=<%=req_uri%>">로그인</a></li>
+						<li><a href="memberJoin.jsp?uri=<%=req_uri%>">회원가입</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="#">마이페이지</a></li>
+						<li><a href="logout?uri=<%=req_uri%>">로그아웃</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+			</nav>
+
 
 		</div>
 
@@ -283,8 +367,8 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 						</p> --> </header> </section>
 
 		<!-- Carousel -->
-		<section class="carousel" >
-		<div class="reel" >
+		<section class="carousel">
+		<div class="reel">
 
 			<article> <a href="#" class="image featured"><img
 				src="images/java.png" alt="" /></a> <header>
@@ -381,12 +465,13 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 
 
 		<!-- 목록 Section Test -->
-		<section style = "background-color: white;"> <header class="major">
-		<h2 style = "margin-top : 0.3em">
+		<section style="background-color: white;"> <header
+			class="major">
+		<h2 style="margin-top: 0.3em">
 			<strong>목록</strong>
 		</h2>
 		</header>
-		<div class="posts" >
+		<div class="posts">
 			<article> <a href="#" class="image"><img
 				src="images/java.png" alt="" /></a>
 			<h3>Java Class</h3>
@@ -458,9 +543,10 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 		<!-- Main -->
 		<div class="wrapper style2">
 
-			<article id="main" class="container special">  
-			<header>
-			
+			<article id="main" class="container special"> <header>
+			<br>
+			<br>
+			<br>
 			<h2>
 				<a href="#">당신의 WikiClass</a>
 			</h2>
@@ -481,10 +567,43 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 			</h4>
 
 			</p>
-			</header> <footer> <a href="class_index.jsp" class="button">-->
+			</header> <footer> <a href="class_index.jsp" class="button">→
 				시작합니다.</a> </footer> </article>
-
 		</div>
+	<!--모달 이미지  -->
+	   <div align="center">
+		<!--이미지1-->	
+		<img id="myImg1" src="images/pic01.jpg" alt="세상에서 가장 쉬운 설명서"
+			width="300" height="200">
+		<div id="myModal" class="modal">
+			<span class="close"
+				onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>
+		<!--이미지2-->
+		<img id="myImg1" src="images/pic02.jpg" alt="위키클래스는"
+			width="300" height="200">	
+		<div id="myModal" class="modal">
+			<span class="close"
+				onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>
+		<!--이미지3-->	
+		<img id="myImg2" src="images/pic03.jpg" alt="사용하기 쉽습니다"
+			width="300" height="200">
+		<div id="myModal" class="modal">
+			<span class="close"
+				onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>
+		</div>
+		<!--여기까지 모달 이미지  -->
+	
+
+
 
 		<!-- Features -->
 		<div class="wrapper style1">
@@ -673,6 +792,56 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 	<script src="assets/js/jquery.onvisible.min.js"></script>
 	<script src="assets/js/skel.min.js"></script>
 	<script src="assets/js/util.js"></script>
+
+	<script type="text/javascript">
+	<!--모달이미지1 -->
+		var modal = document.getElementById('myModal');
+		var img = document.getElementById('myImg1');
+		var modalImg = document.getElementById("img01");
+		var captionText = document.getElementById("caption");
+		img.onclick = function() {
+			modal.style.display = "block";
+			modalImg.src = this.src;
+			modalImg.alt = this.alt;
+			captionText.innerHTML = this.alt;
+		}
+		var span = document.getElementsByClassName("close")[0];
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+	<!--모달이미지2 -->
+		var modal = document.getElementById('myModal');
+		var img = document.getElementById('myImg2');
+		var modalImg = document.getElementById("img01");
+		var captionText = document.getElementById("caption");
+		img.onclick = function() {
+			modal.style.display = "block";
+			modalImg.src = this.src;
+			modalImg.alt = this.alt;
+			captionText.innerHTML = this.alt;
+		}
+		var span = document.getElementsByClassName("close")[0];
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+	<!--모달이미지3 -->
+		var modal = document.getElementById('myModal');
+		var img = document.getElementById('myImg3');
+		var modalImg = document.getElementById("img01");
+		var captionText = document.getElementById("caption");
+		img.onclick = function() {
+			modal.style.display = "block";
+			modalImg.src = this.src;
+			modalImg.alt = this.alt;
+			captionText.innerHTML = this.alt;
+		}
+		var span = document.getElementsByClassName("close")[0];
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+	</script>
+	<!--여기까지 모달 이미지  -->
+
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="assets/js/main.js"></script>
 
