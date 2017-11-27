@@ -269,6 +269,38 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 								</c:choose>
 							</ul>
 						</nav>
+								<li><a href="main_index.jpg">Home</a></li>
+								<li>
+									<a href="#">Dropdown</a>
+									<ul>
+										<li><a href="#">Lorem ipsum dolor</a></li>
+										<li><a href="#">Magna phasellus</a></li>
+										<li><a href="#">Etiam dolore nisl</a></li>
+										<li>
+											<a href="#">And a submenu &hellip;</a>
+											<ul>
+												<li><a href="#">Lorem ipsum dolor</a></li>
+												<li><a href="#">Phasellus consequat</a></li>
+												<li><a href="#">Magna phasellus</a></li>
+												<li><a href="#">Etiam dolore nisl</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Veroeros feugiat</a></li>
+									</ul>
+								</li>
+								<li><a href="left-sidebar.html">Left Sidebar</a></li>
+								<c:choose>
+									<c:when test="${empty sessionScope.email }">
+										<li><a href="memberLogin.jsp?uri=<%=req_uri %>">로그인</a></li>
+										<li><a href="memberJoin.jsp?uri=<%=req_uri %>">회원가입</a></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="#">마이페이지</a></li>
+										<li><a href="logout?uri=<%=req_uri%>">로그아웃</a></li>
+									</c:otherwise>
+								</c:choose>
+							</ul>
+						</nav>
 
 		</div>
 
