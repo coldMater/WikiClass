@@ -12,13 +12,28 @@
 <style>
 
 
+/* banner */
+
+
+	
+	
+	/* major */
+
+header.major > :last-child {
+		border-bottom: solid 3px #f56a6a;
+		display: inline-block;
+		margin: 0 0 2em 0;
+		padding: 0 0.75em 0.5em 0;
+	}
+
+
 .class_list {
 		background: #fff;
 
 	}
 
 
-/* Posts */
+/* Posts */	
 .posts {
 	display: -moz-flex;
 	display: -webkit-flex;
@@ -187,6 +202,9 @@
 <body class="homepage">
 	<div id="page-wrapper">
 
+
+
+
 <%
 String uri = request.getRequestURI();
 String path = request.getContextPath();
@@ -265,8 +283,8 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 						</p> --> </header> </section>
 
 		<!-- Carousel -->
-		<section class="carousel">
-		<div class="reel">
+		<section class="carousel" >
+		<div class="reel" >
 
 			<article> <a href="#" class="image featured"><img
 				src="images/java.png" alt="" /></a> <header>
@@ -363,10 +381,12 @@ System.out.println("main_index에 들어온 uri = "+req_uri);
 
 
 		<!-- 목록 Section Test -->
-		<section> <header class="major">
-		<h2>목록</h2>
+		<section style = "background-color: white;"> <header class="major">
+		<h2 style = "margin-top : 1em">
+			<strong>목록</strong>
+		</h2>
 		</header>
-		<div class="posts">
+		<div class="posts" >
 			<article> <a href="#" class="image"><img
 				src="images/java.png" alt="" /></a>
 			<h3>Java Class</h3>
