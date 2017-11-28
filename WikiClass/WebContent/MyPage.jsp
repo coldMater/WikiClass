@@ -29,15 +29,29 @@
 				<%@include file="class_header.jsp"%>
 
 				<!-- Banner -->
-				<section id="banner"> <!-- Section --> <section>
+				<section id="banner"> <!-- Section --> 
+				
+			
+				
+				<section>
+					
+				<h1 style="display: block; margin-bottom : 1.5em">My page</h1>
+				</span>
+				
+				
+				
+				
+				
 				<header class="major">
-				<h2>My page</h2>
+				<h3>관심 분야</h3>
 				</header>
+
 				<div class="features">
 					<article> <span class="icon fa-diamond"></span>
 					<div class="content">
 						<h3>관심 분야</h3>
 						<a href="Interest.jsp">설정하기</a>
+
 						<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
 							dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
 							lorem feugiat tempus aliquam.</p>
@@ -45,7 +59,8 @@
 					</article>
 					<article> <span class="icon fa-paper-plane"></span>
 					<div class="content">
-						<h3>Sapien veroeros</h3>
+						<h3>소속</h3>
+						<a href="Interest.jsp">설정하기</a>
 						<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
 							dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
 							lorem feugiat tempus aliquam.</p>
@@ -53,7 +68,8 @@
 					</article>
 					<article> <span class="icon fa-rocket"></span>
 					<div class="content">
-						<h3>Quam lorem ipsum</h3>
+						<h3>나이</h3>
+						<a href="Interest.jsp">설정하기</a>
 						<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
 							dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
 							lorem feugiat tempus aliquam.</p>
@@ -61,7 +77,8 @@
 					</article>
 					<article> <span class="icon fa-signal"></span>
 					<div class="content">
-						<h3>Sed magna finibus</h3>
+						<h3>성별</h3>
+						<a href="Interest.jsp">설정하기</a>
 						<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
 							dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
 							lorem feugiat tempus aliquam.</p>
@@ -71,34 +88,35 @@
 				</section> <!-- my페이지 구성을위한 Sample Section 추가 --> </section>
 
 
-				<section>
-				<h3>Table</h3>
+				<section> <header class="major">
+				<h3>나의 정보</h3>
+				</header>
 
-				<h4>Default</h4>
-				<div class="table-wrapper">
+
+				
 					<table style="width: 50%;">
 						<thead>
 							<tr>
 								<th>Name</th>
 								<th>Description</th>
-								<th>Price</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>닉네임</td>
 								<td>Ante turpis integer aliquet porttitor.</td>
-								<td>29.99</td>
+								<td><button>수정</button></td>
 							</tr>
 							<tr>
 								<td>나이</td>
 								<td>Vis ac commodo adipiscing arcu aliquet.</td>
-								<td>19.99</td>
+								<td><button>수정</button></td>
 							</tr>
 							<tr>
 								<td>성별</td>
 								<td>Morbi faucibus arcu accumsan lorem.</td>
-								<td>29.99</td>
+								<td><button>수정</button></td>
 							</tr>
 
 						</tbody>
@@ -109,6 +127,64 @@
 							</tr>
 						</tfoot>
 					</table>
+					
+					
+					
+					
+					
+					
+					<header class="major">
+				<h3>나의 정보</h3>
+				</header>
+
+
+				
+					<table style="width: 50%;">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>닉네임</td>
+								<td>Ante turpis integer aliquet porttitor.</td>
+								<td><button>수정</button></td>
+							</tr>
+							<tr>
+								<td>나이</td>
+								<td>Vis ac commodo adipiscing arcu aliquet.</td>
+								<td><button>수정</button></td>
+							</tr>
+							<tr>
+								<td>성별</td>
+								<td>Morbi faucibus arcu accumsan lorem.</td>
+								<td><button>수정</button></td>
+							</tr>
+
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="2"></td>
+								<td>100.00</td>
+							</tr>
+						</tfoot>
+					</table>
+					
+					
+					
+					
+					
+					
+					
 				</section>
+				
+				
+				
+				
+				
+				
 </body>
 </html>
