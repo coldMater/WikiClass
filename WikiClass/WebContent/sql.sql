@@ -11,6 +11,7 @@ nickname varchar2(20)
 
 insert into admin values('admin','qwer1234!@#$','관리자');
 
+
 //회원테이블
 create table member(
 num number primary key,
@@ -18,6 +19,8 @@ email varchar2(20) unique,
 password varchar2(12),
 nickname varchar2(10) unique
 )
+//회원테이블에 date생성
+alter table member add(senddate date)
 
 //마이페이지 테이블
 create table member_info(
