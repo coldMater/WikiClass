@@ -288,6 +288,22 @@ to {
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
 <body class="homepage">
+
+<!--방문자 카운트세기  -->
+<%
+	if(application.getAttribute("num")==null){
+		application.setAttribute("num", 1);
+		
+	}else{
+		int num = (Integer)application.getAttribute("num");
+		num+= 1;
+		application.setAttribute("num", num);
+	
+	}
+	
+	%>
+
+
 	<div id="page-wrapper">
 
 

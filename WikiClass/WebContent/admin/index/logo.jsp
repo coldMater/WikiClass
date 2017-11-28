@@ -15,7 +15,7 @@
 		%>
 	</c:if>
 	<div class="logo">
-		<img src="../../images/logo3.png" style="width: 70%">
+		<img src="../../images/logo3.png" style="width: 70%" onclick="location='dashboard.jsp'">
 	</div>
 </body>
 </html>
