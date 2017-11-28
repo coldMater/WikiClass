@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.Service.adminLogin;
 import com.Service.command;
+import com.Service.groupInsert;
 import com.Service.memberJoin;
 import com.Service.memberLogin;
 
@@ -24,12 +25,15 @@ public class Controller extends HttpServlet {
 		map.put("adminLogin.do", new adminLogin());
 		map.put("memberLogin.do", new memberLogin());
 		map.put("memberJoin.do", new memberJoin());
+		map.put("groupInsert.do", new groupInsert());
 		
 	}
 	
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("euc-kr");
+		
 		String uri = request.getRequestURI();
 		System.out.println("¿¬°áµÈ uri --> "+uri);
 		String path = request.getContextPath();

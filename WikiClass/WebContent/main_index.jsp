@@ -11,28 +11,17 @@
 <head>
 <style>
 
-
 /* banner */
-
-
-	
-	
 	/* major */
-
 header.major > :last-child {
 		border-bottom: solid 3px #f56a6a;
 		display: inline-block;
 		margin: 0 0 2em 0;
 		padding: 0 0.75em 0.5em 0;
 	}
-
-
 .class_list {
 		background: #fff;
-
 	}
-
-
 /* Posts */	
 .posts {
 	display: -moz-flex;

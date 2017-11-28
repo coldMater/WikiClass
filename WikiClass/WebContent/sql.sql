@@ -16,8 +16,14 @@ create table member(
 num number primary key,
 email varchar2(20) unique,
 password varchar2(12),
-nickname varchar2(10) unique
+nickname varchar2(10) unique,
+senddate date
 );
+alter table member add(senddate date)
+
+create sequence member_num
+start with 1
+increment by 1
 
 //마이페이지 테이블
 create table member_info(
@@ -29,12 +35,58 @@ gender number,
 foreign key(num) references member(num)
 );
 
+create sequence member_info_num
+start with 1
+increment by 1;
+
+//로그인횟수 확인 테이블
+create table visit_info(
+num number,
+senddate date
+);
+
+create sequence visit_info_num
+start with 1
+increment by 1;
+
+//그룹테이블
+create table wikigroup(
+num number primary key,
+name varchar2(50) unique
+content varchar2(1000)
+);
+
+create sequence wikigroup_num
+start with 1
+increment by 1;
+
+//그룹에 추가된 사람 테이블
+create table group_person(
+group_num number REFERENCES wikigroup(num),
+nickname varchar(20)
+)
+
 //클래스 테이블
 create table wikiclass(
+group_num number REFERENCES wikigroup(num),
+mem_num number REFERENCES member(num),
 num number primary key,
 name varchar2(50),
-favorite varchar2(30)
+favorite varchar2(30),
+imgPath varchar2(200),
+classPath varchar2(200),
+senddate date
 );
+
+create sequence wikiclass_num
+start with 1
+increment by 1;
+
+//권한 테이블
+create table class_grant(
+class_num number REFERENCES wikiclass(num),
+mem_num number REFERENCES member(num)
+)
 
 //노트 테이블(클래스번호, 번호, 이름, 경로, 작성자, 작성날짜)
 create table note(
@@ -46,38 +98,13 @@ author varchar2(20),
 senddate date
 );
 
-
-//방문자 확인 테이블
-create table visit_info(
-num number,
-senddate date 
-);
-
-create sequence member_num
-start with 1
-increment by 1
-
-create sequence member_info_num
-start with 1
-increment by 1;
-
-create sequence wikiclass_num
-start with 1
-increment by 1;
-
 create sequence note_num
 start with 1
 increment by 1;
 
-create sequence visit_info_num
-start with 1
-increment by 1;
+select * from member
+select * from wikigroup
+select * from group_person
 
-
-
-
-
-select * from member;
-delete from member;
-
-
+delete from wikigroup;
+delete from group_person;

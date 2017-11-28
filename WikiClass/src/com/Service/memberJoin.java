@@ -1,6 +1,7 @@
 package com.Service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,12 @@ public class memberJoin implements command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("EUC-KR");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String email = request.getParameter("email");
 		String password = request.getParameter("Password1");
 		String nickname = request.getParameter("nickname");

@@ -10,7 +10,7 @@
 <html>
 	<head>
 		<title>WikiClass Join</title>
-		<meta charset="utf-8" />
+		<meta charset="EUC-KR" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="adm_assets/css/main.css" />
@@ -23,6 +23,7 @@
 <%
 String uri = request.getParameter("uri");
 System.out.println("회원가입에 접근한 uri = "+uri);
+request.setCharacterEncoding("EUC-KR");
 %>
 		<!--회원가입 실패-->
 		<c:if test="${requestScope.check == 3}">

@@ -22,7 +22,11 @@ public class memberLogin implements command{
 		System.out.println("memberLogin.java uri = "+uri);
 		memberDAO mdao = new memberDAO();
 		int cnt = mdao.login(email,password);
-
+		
+		//로그인 횟수 카운트(미구현)
+		//mdao.logincount();
+		
+		
 		try {
 			if (cnt == 1) {// 1이면 로그인 성공
 				HttpSession session = request.getSession();

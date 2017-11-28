@@ -86,7 +86,7 @@ public class memberDAO {
 
 	public int join(String email, String password, String nickname) {
 		getConn();
-		String sql = "insert into member values(member_num.nextval,?,?,?)";
+		String sql = "insert into member values(member_num.nextval,?,?,?,to_char(sysdate,'YYYY-MM-DD'))";
 		int cnt = -1;
 		try {
 			pst = conn.prepareStatement(sql);
@@ -117,7 +117,8 @@ public class memberDAO {
 				int num = rs.getInt(1);
 				String password = rs.getString(3);
 				String nickname = rs.getString(4);
-				mvo = new MemberVO(num,email, password, nickname);
+				String senddate = rs.getString(5);
+				mvo = new MemberVO(num,email, password, nickname,senddate);
 			}else {
 				return null;
 			}
@@ -125,7 +126,49 @@ public class memberDAO {
 			System.out.println("memberDAO emailselect error");
 			e.printStackTrace();
 		} 
+		close();
+		return mvo;
+	}
+
+	//방문자 카운트(처음들어올땐 insert, 2번째부터는 count되게) (미구현)
+	public void logincount() {
+		getConn();
+		String sql = "insert into visit_info values(visit_info_num.nextval,to_char(sysdate,'YYYY-MM-DD'))";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("memberDAO emailselect error");
+			e.printStackTrace();
+		} 
+		close();
+	}
+
+	public MemberVO emailselectOne(String nickname) {
+		getConn();
+		String sql = "select * from member where nickname=?";
+		MemberVO mvo = null;
 		
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, nickname);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				int num = rs.getInt(1);
+				String email = rs.getString(2);
+				String password = rs.getString(3);
+				String senddate = rs.getString(5);
+				mvo = new MemberVO(num,email, password, nickname,senddate);
+			}else {
+				return null;
+			}
+		} catch (SQLException e) {
+			System.out.println("memberDAO emailselectOne error");
+			e.printStackTrace();
+		} 
+		close();
 		return mvo;
 	}
 	
