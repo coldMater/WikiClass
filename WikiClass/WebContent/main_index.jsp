@@ -316,7 +316,7 @@ to {
 							</header></td>
 					</tr>
 				</table>
-				<footer> <a href="#banner" class="button circled scrolly">Start</a>
+				<footer> <a href="class_index.jsp" class="button circled scrolly">Start</a>
 				</footer>
 			</div>
 

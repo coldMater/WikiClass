@@ -45,6 +45,59 @@
 									</span>
 								</section>
 
+
+		
+							<!-- my페이지 구성을위한 Sample Section 추가 -->
+							<section>
+							<h3>Table</h3>
+
+													<h4>Default</h4>
+													<div class="table-wrapper">
+														<table style = "width: 50%;">
+															<thead>
+																<tr>
+																	<th>Name</th>
+																	<th>Description</th>
+																	<th>Price</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Item1</td>
+																	<td>Ante turpis integer aliquet porttitor.</td>
+																	<td>29.99</td>
+																</tr>
+																<tr>
+																	<td>Item2</td>
+																	<td>Vis ac commodo adipiscing arcu aliquet.</td>
+																	<td>19.99</td>
+																</tr>
+																<tr>
+																	<td>Item3</td>
+																	<td> Morbi faucibus arcu accumsan lorem.</td>
+																	<td>29.99</td>
+																</tr>
+																<tr>
+																	<td>Item4</td>
+																	<td>Vitae integer tempus condimentum.</td>
+																	<td>19.99</td>
+																</tr>
+																<tr>
+																	<td>Item5</td>
+																	<td>Ante turpis integer aliquet porttitor.</td>
+																	<td>29.99</td>
+																</tr>
+															</tbody>
+															<tfoot>
+																<tr>
+																	<td colspan="2"></td>
+																	<td>100.00</td>
+																</tr>
+															</tfoot>
+														</table>
+														
+														</section>
+
 							<!-- Section -->
 								<section>
 									<header class="major">
@@ -54,14 +107,14 @@
 										<article>
 											<span class="icon fa-diamond"></span>
 											<div class="content">
-												<h3>Portitor ullamcorper</h3>
+												<h3>관심 분야</h3>
 												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
 											</div>
 										</article>
 										<article>
 											<span class="icon fa-paper-plane"></span>
 											<div class="content">
-												<h3>Sapien veroeros</h3>
+												<h3></h3>
 												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
 											</div>
 										</article>
