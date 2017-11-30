@@ -1,5 +1,4 @@
 package com.example;
-
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -51,3 +50,4 @@ public class Controller extends HttpServlet {
 		command.execute(request, response);
 	}
 }
+
