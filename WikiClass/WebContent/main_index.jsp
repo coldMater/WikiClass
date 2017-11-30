@@ -61,10 +61,17 @@ background-color:  !important;
 </head>
 <body class="homepage">
 	<div id="page-wrapper">
-
-
-
-		<%
+		<%//방문자 카운트 세기
+		  if(application.getAttribute("num")==null){
+		      application.setAttribute("num", 1);
+		      
+		   }else{
+		      int num = (Integer)application.getAttribute("num");
+		      num+= 1;
+		      application.setAttribute("num", num);
+		   
+		   }
+		/////////////////////////////////////////////////////////////
 			String uri = request.getRequestURI();
 			String path = request.getContextPath();
 			String req_uri = uri.substring(path.length() + 1);

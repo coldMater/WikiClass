@@ -16,7 +16,8 @@ public class adminLogin implements command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("id");
 		String Password = request.getParameter("Password");
-
+			
+		System.out.println("adminLogin에 들어온 아이디와 비밀번호 : "+id+"/"+Password);
 		adminDAO adao = new adminDAO();
 		int cnt = adao.login(id,Password);
 
@@ -27,6 +28,7 @@ public class adminLogin implements command{
 				RequestDispatcher dis = request.getRequestDispatcher("admin/index/dashboard.jsp");
 				dis.forward(request, response);
 				*/
+				System.out.println("adminLogin에 들어온 아이디 : "+id);
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
 				response.sendRedirect("admin/index/dashboard.jsp");
