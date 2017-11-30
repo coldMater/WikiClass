@@ -105,6 +105,7 @@ padding:  0 0.75em 0.2em 0 ;
 												MemberVO mvo = mdao.emailselect((String)session.getAttribute("email"));
 											%>
 											<input type="hidden" name="person" value="<%=mvo.getNickname()%>">
+											<!-- ajax로 클래스가 속한 그룹의 일원중에 1명인지 파악 안되면 경고창띄우고 안넘어가게 만든다. -->
 											<input type="text" name="person" id="person" value="" placeholder="사람 추가(닉네임)" onfocusout="personCheck()"/>
 												<p id="personText" style="display: none"></p>
 											</td>

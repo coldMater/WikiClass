@@ -139,23 +139,24 @@ public class ClassDAO {
 		return cnt;
 	}
 	
-	public classVO selectNameOne(String name) {
+	public classVO selectNameOne(int num) {
 		getConn();
 		classVO cvo = null;
-		String sql = "select wikigroup.name, member.nickname, wikiclass.num,wikiclass.name,wikiclass.favorite, wikiclass.imgPath, wikiclass.classPath, wikiclass.senddate from wikigroup,member,wikiclass where wikigroup.num=(select group_num from wikiclass where name=?) and member.num=(select mem_num from wikiclass where name=?)  and wikiclass.name=?"; 
+		//클래스 번호로, 그룹이름, 닉네임, 클래스 번호, 클래스이름, 클래스 분야, 클래스 이미지, 클래스 내용, 클래스 데이트
+		String sql = "select wikigroup.name, member.nickname, wikiclass.num,wikiclass.name,wikiclass.favorite, wikiclass.imgPath, wikiclass.classPath, wikiclass.senddate from wikigroup,member,wikiclass where wikigroup.num=(select group_num from wikiclass where num=?) and member.num=(select mem_num from wikiclass where num=?)  and wikiclass.num=?"; 
 			
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, name);
-			pst.setString(2, name);
-			pst.setString(3, name);
+			pst.setInt(1, num);
+			pst.setInt(2, num);
+			pst.setInt(3, num);
 			rs = pst.executeQuery();
 			System.out.println("rs.next 안들어옴");
 			if(rs.next()) {
 				System.out.println("rs.next 들어옴");
 				String group_name = rs.getString(1); 
 				String mem_name = rs.getString(2);
-				int num = rs.getInt(3); 
+				String name = rs.getString(4);
 				String favorite = rs.getString(5); 
 				String imgPath = rs.getString(6); 
 				String classPath = rs.getString(7); 
@@ -316,7 +317,10 @@ public class ClassDAO {
 		}
 		close();
 		return list;
-		
-		
 	}
+	
+	/*public int selectGrantOne(String email, int classNum) {
+		//회원 이메일과 클래스 번호로 class_grant테이블에서 조회 있으면 1
+		
+	}*/
 }

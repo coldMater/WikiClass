@@ -241,7 +241,7 @@ public class adminDAO {
 			while(rs.next()) {
 				infoList.add(new memberInfoVO( rs.getInt(1),rs.getString(2),
 						rs.getString(4),rs.getString(5),rs.getString(7),
-						rs.getString(8),rs.getInt(9),rs.getInt(10) ));
+						rs.getInt(8),rs.getInt(9)));
 				
 			}
 		} catch (SQLException e) {

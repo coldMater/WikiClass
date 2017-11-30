@@ -50,10 +50,10 @@ request.setCharacterEncoding("EUC-KR");
 								<p id="emailText"></p><!-- 여기에 중복 확인 -->
 							</div>
 							<div class="field">
-								<input type="password" name="Password1" id="Password1" placeholder="Password" required style="text-transform:none;"/>
+								<input type="password" name="Password1" id="Password1" placeholder="Password" maxlength="12" required style="text-transform:none;"/>
 							</div>
 							<div class="field">
-								<input type="password" name="Password2" id="Password2" placeholder="Confirm Password " required onfocusout="passwordCheck()" style="text-transform:none;"/>
+								<input type="password" name="Password2" id="Password2" placeholder="Confirm Password " maxlength="12" required onkeyup="passwordCheck()" style="text-transform:none;"/>
 								<p id="passwordText"></p><!-- 여기에 패스워드 일치 확인 -->
 							</div>
 							<div class="field">

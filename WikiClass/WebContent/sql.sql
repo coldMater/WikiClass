@@ -14,7 +14,7 @@ insert into admin values('admin','qwer1234!@#$','관리자');
 //회원테이블
 create table member(
 num number primary key,
-email varchar2(20) unique,
+email varchar2(50) unique,
 password varchar2(12),
 nickname varchar2(10) unique,
 senddate date
@@ -56,7 +56,7 @@ increment by 1;
 //그룹테이블
 create table wikigroup(
 num number primary key,
-name varchar2(50) unique
+name varchar2(50) unique,
 content varchar2(1000)
 );
 

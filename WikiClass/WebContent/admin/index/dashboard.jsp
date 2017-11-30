@@ -35,7 +35,12 @@
     <script src="../assets/js/Chart.min.js"></script>
     <script src="../assets/js/Chart.StackedBar.js"></script>
     <script src="../assets/js/Chart.LlineBar.js"></script>
+<style type="text/css">
+#canvas2{
+	color:white !important; 
+}
 
+</style>
 </head>
 
 <body>

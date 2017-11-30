@@ -36,10 +36,10 @@ h4{
 <%
 	//name : 클래스명
 	/* String name = (String)request.getAttribute("className"); */
-	String name = request.getParameter("className");
-	System.out.println("class_print에 넘어온 클래스 이름 : "+name);
+	int num = Integer.parseInt(request.getParameter("classNum"));
+	System.out.println("class_print에 넘어온 클래스 번호 : "+num);
 	ClassDAO cdao = new ClassDAO();
-	classVO cvo = cdao.selectNameOne(name);
+	classVO cvo = cdao.selectNameOne(num);
 	System.out.println("cvo : "+cvo);
 	System.out.println("cvo 클래스 이름 : "+cvo.getName());
 	System.out.println("cvo 클래스 번호 : "+cvo.getNum());
@@ -61,6 +61,7 @@ h4{
 									<!-- 그룹에 권한이 있는 사람이 들어올 때만 편집과 노트 추가 가능 -->
 									<%
 										//class_grant테이블에 클래스번호와 로그인한 멤버번호를 넣고 있으면 버튼 생성
+										/* int cnt = cdao.selectGrantOne((String)session.getAttribute("email"),cvo.getNum()); */
 									%>
 										<p style="text-align: right;float: right;"> <a href="#" class="button">편집 </a>&nbsp;<a href="class_note.jsp?classNum=<%=cvo.getNum() %>&groupName=<%=cvo.getGroup_name() %>&className=<%=cvo.getName() %>&nickname=<%=cvo.getMem_name() %>" class="button">노트 추가</a></p>
 										<h1><%=cvo.getName() %></h1>

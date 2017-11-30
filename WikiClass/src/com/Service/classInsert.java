@@ -58,8 +58,12 @@ public class classInsert implements command {
 			String img = multi.getFilesystemName("img");
 			String editor1 = multi.getParameter("editor1");
 			
-			//권한 추가
+			//권한 추가(권한 추가 가능한 사람들만 넘어옴
+			//class_grant테이블에 클래스번호와 회원번호 추가
 			String[] person = multi.getParameterValues("person");
+			for (int i = 0; i < person.length; i++) {
+				System.out.println("class_grant에 넘어갈 회원 닉네임 "+person[i]);
+			}
 			
 			System.out.println("classInsert에서 className :" +className);
 			int cnt=0;
@@ -68,10 +72,13 @@ public class classInsert implements command {
 				System.out.println(img+"파일 저장 완료");
 				String encoded = URLEncoder.encode(className);
 				
+				//그룹이름과 클래스 이름은 겹치는게 없으므로 클래스 번호를 가지고온다.
+				int classNum = fdao.selectClassNumOne(groupName,className);
+				System.out.println("classInsert에서 받은 classNum값 :"+classNum);
 				cnt = fdao.classGrantInsert(person,className);
 				if(cnt>0) {
 					System.out.println("class Insert에서 권한 넣기 성공");
-					response.sendRedirect("class_print.jsp?className="+encoded);
+					response.sendRedirect("class_print.jsp?classNum="+classNum);
 				}
 				
 			}else {

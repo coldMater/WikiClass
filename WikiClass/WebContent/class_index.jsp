@@ -90,7 +90,7 @@ ul.actions {
 												/* request.setAttribute("className", list.get(0).getName()); */
 											%>
 											<div style="width: 50%;float: left;">
-											<a href="class_print.jsp?className=<%=list.get(i).getName() %>" class="image"><img src="classImage/<%=list.get(i).getImgPath() %>" align="left" /></a>
+											<a href="class_print.jsp?classNum=<%=list.get(i).getNum() %>" class="image"><img src="classImage/<%=list.get(i).getImgPath() %>" align="left" /></a>
 											</div>
 											<div style="width: 50%;float: left;">
 											<br>
@@ -104,111 +104,7 @@ ul.actions {
 											</div>	
 										</article>
 										<%} }%>
-											<!-- <article>
-											<div style="width: 50%;float: left;">
-											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
-											</div>
-											<div style="width: 50%;float: left;">
-											<br>
-											<h2>Java</h2>
-											<p>관리자 : 이명호<br><br>
-											생성일:17.11.27<br><br>
-											그룹:빅데이터 분석반</p>
-											<ul class="actions">
-												<li><a href="#" class="button"><p>More</p></a></li>
-											</ul>
-											</div>	
-										</article>
-																				<article>
-											<div style="width: 50%;float: left;">
-											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
-											</div>
-											<div style="width: 50%;float: left;">
-											<br>
-											<h2>Java</h2>
-											<p>관리자 : 이명호<br><br>
-											생성일:17.11.27<br><br>
-											그룹:빅데이터 분석반</p>
-											<ul class="actions">
-												<li><a href="#" class="button"><p>More</p></a></li>
-											</ul>
-											</div>	
-										</article>
-																				<article>
-											<div style="width: 50%;float: left;">
-											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
-											</div>
-											<div style="width: 50%;float: left;">
-											<br>
-											<h2>Java</h2>
-											<p>관리자 : 이명호<br><br>
-											생성일:17.11.27<br><br>
-											그룹:빅데이터 분석반</p>
-											<ul class="actions">
-												<li><a href="#" class="button"><p>More</p></a></li>
-											</ul>
-											</div>	
-										</article>
-																				<article>
-											<div style="width: 50%;float: left;">
-											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
-											</div>
-											<div style="width: 50%;float: left;">
-											<br>
-											<h2>Java</h2>
-											<p>관리자 : 이명호<br><br>
-											생성일:17.11.27<br><br>
-											그룹:빅데이터 분석반</p>
-											<ul class="actions">
-												<li><a href="#" class="button"><p>More</p></a></li>
-											</ul>
-											</div>	
-										</article>
-																				<article>
-											<div style="width: 50%;float: left;">
-											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
-											</div>
-											<div style="width: 50%;float: left;">
-											<br>
-											<h2>Java</h2>
-											<p>관리자 : 이명호<br><br>
-											생성일:17.11.27<br><br>
-											그룹:빅데이터 분석반</p>
-											<ul class="actions">
-												<li><a href="#" class="button"><p>More</p></a></li>
-											</ul>
-											</div>	
-										</article>
-																				<article>
-											<div style="width: 50%;float: left;">
-											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
-											</div>
-											<div style="width: 50%;float: left;">
-											<br>
-											<h2>Java</h2>
-											<p>관리자 : 이명호<br><br>
-											생성일:17.11.27<br><br>
-											그룹:빅데이터 분석반</p>
-											<ul class="actions">
-												<li><a href="#" class="button"><p>More</p></a></li>
-											</ul>
-											</div>	
-										</article>
-																				<article>
-											<div style="width: 50%;float: left;">
-											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
-											</div>
-											<div style="width: 50%;float: left;">
-											<br>
-											<h2>Java</h2>
-											<p>관리자 : 이명호<br><br>
-											생성일:17.11.27<br><br>
-											그룹:빅데이터 분석반</p>
-											<ul class="actions">
-												<li><a href="#" class="button"><p>More</p></a></li>
-											</ul>
-											</div>	
-										</article> -->
+											
 									</div>
 								</section>
 
