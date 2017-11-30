@@ -62,6 +62,8 @@ name varchar2(50) unique
 content varchar2(1000)
 );
 
+
+
 create sequence wikigroup_num
 start with 1
 increment by 1;

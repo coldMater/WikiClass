@@ -298,7 +298,7 @@ public class ClassDAO {
 			if(rs.next()) {
 				mem_num = rs.getInt(1);
 			}
-			////
+			//// 	
 			sql = "";
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1,mem_num);
