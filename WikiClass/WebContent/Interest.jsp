@@ -41,8 +41,8 @@ table tbody tr{
 	<form action="mypageInsert.do">
 		<table id="favortieTable">
 			<tr>
-				<td>
-					<select name="favortie" id="favortie">
+				<td style="width: 300px;">
+					<select name="favortie" id="favortie" style="width: 300px;">
 						<option>-분야-</option>
 						<option>게임</option>
 						<option>그래픽/디자인/멀티/미디어</option>
@@ -56,17 +56,16 @@ table tbody tr{
 						<option>컴퓨터 수험서</option>
 						<option>컴퓨터 입문/활용</option>
 						<option>프로그래밍 언어</option>
-						<option>OS/데이터베이스</option>
+						<option>OS/데이터베이스</option>.
 					</select>
 				</td>
 				<td>
 					<input type="button" onclick="insertFavortie()" id="insertfavortie" value="항목추가">
 				</td>
 			</tr>
-				
-				
 		</table>	
-		<input type="submit" value="저장"> 	
+		<input type="hidden" value="${sessionScope.email }" name="email" id="email">
+		<input type="submit" value="저장">
 	</form>
 				<p>관심 분야 설정 가능하며, 이를 토대로 실시간 추천을 위한 favortie그룹이 지정됩니다.</p>
 

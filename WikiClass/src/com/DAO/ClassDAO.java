@@ -204,7 +204,6 @@ public class ClassDAO {
 			rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				System.out.println("classSelectAll 몇번 들어올까??");
 				int group_num = rs.getInt(1);
 				int mem_num = rs.getInt(2);
 				int num = rs.getInt(3); 
@@ -289,31 +288,32 @@ public class ClassDAO {
 		getConn();
 		ArrayList<String> list = new ArrayList<String>();
 		String sql ="";
+		System.out.println("selectNameGroup에 넘어온 email : "+email);
 		try {
-			int mem_num=0;
-			sql = "select * from member where email=?";
+			int group_num=0;
+			//이메일로 그룹 번호를 받아온다.
+			sql = "select group_num from group_person where nickname=(select nickname from member where email=?)";
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, email);
 			rs = pst.executeQuery();
-			if(rs.next()) {
-				mem_num = rs.getInt(1);
-			}
-			//// 	
-			sql = "";
-			pst = conn.prepareStatement(sql);
-			pst.setInt(1,mem_num);
-			ResultSet rs1 = pst.executeQuery();
 			
-			if(rs1.next()) {
-				//nickname = rs1.getString(4);
-			}
+			while(rs.next()) {
+				group_num = rs.getInt(1);
+				//받아온 그룹번호로 그룹이름 가지고와서 ArrayList에 담는다.
+				sql = "select name from wikigroup where num=?";
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, group_num);
+				ResultSet rs1 = pst.executeQuery();
+				
+				if(rs1.next()) {
+					list.add(rs1.getString(1));
+				}
 			
+			}
 		}catch (SQLException e) {
 			System.out.println("ClassDAO selectNameGroup error");
 			e.printStackTrace();
 		}
-		
-		
 		close();
 		return list;
 		
