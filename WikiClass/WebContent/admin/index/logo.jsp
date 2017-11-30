@@ -8,11 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${id != 'admin' }">
+<%System.out.println(session.getAttribute("id")); %>
+	<c:if test="${sessionScope.id != 'admin' }">
 		<!-- main_index.jsp·Î Àü¼Û -->
-		<%
-			response.sendRedirect("../../main_index.jsp");
-		%>
+		<script type="text/javascript">
+		location.href="../../main_index.jsp"; 
+ 		</script>
 	</c:if>
 	<div class="logo">
 		<img src="../../images/logo3.png" style="width: 70%" onclick="location='dashboard.jsp'">

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -20,6 +22,8 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+
 </head>
 
 <body>
@@ -30,20 +34,22 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
+    
+    	
            <%@include file="logo.jsp" %>
             <div class="sidebar-wrapper">
                <ul class="nav">
 					<li><a href="dashboard.jsp"> <i class="material-icons">assessment</i>
 							<p>통계분석</p>
 					</a></li>
-					<li class="active"><a href="./member.jsp"> <i class="material-icons">assignment_ind</i>
+					<li class="active"><a href="../../memberInfo"> <i class="material-icons">assignment_ind</i>
 							<p>회원관리</p>
 					</a></li>
-					<li><a href="./group.jsp"> <i class="material-icons">group</i>
+					<li><a href="../../groupInfo"> <i class="material-icons">group</i>
 							<p>그룹관리</p>
 					</a></li>
-					<li><a href="./document.jsp"> <i class="material-icons">work</i>
-							<p>문서관리</p>
+					<li><a href="../../noteInfo"> <i class="material-icons">work</i>
+							<p>문서분석</p>
 					</a></li>
 				</ul>
             </div>
@@ -71,125 +77,49 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header" data-background-color="purple">
-                                    <h4 class="title">Simple Table</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
+                                    <h4  class="title">회원관리</h4>
+                                    <p class="category">회원정보 삭제/수정/개인 메세지보내기/전체 메세지 보내기</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table">
+                                    <h5 align="center"><a onclick="prompt('입력된 내용을 전체회원에게 공지합니다')" href="#">회원전체에게 메세지보내기</a></h5>
                                         <thead class="text-primary">
-                                            <th>Name</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                            <th>Salary</th>
+                                            <th>번호</th>
+                                            <th>이메일</th>
+                                            <th>닉네임</th>
+                                            <th>나이</th>
+                                            <th>성별</th>
+                                            <th>가입날짜</th>
+                                            <th>소속</th>
+                                            <th>관심분야</th>
+                                            <th>메세지</th>
+                                            <th>삭제</th>
+                                           
+                                            
+                                            
+                                            
                                         </thead>
                                         <tbody>
+                                        <c:forEach items="${memberInfo}" var="i">
                                             <tr>
-                                                <td>Dakota Rice</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td class="text-primary">$36,738</td>
+                                                <td>${i.getNum()}</td>
+                                                <td>${i.getEmail()}</td>
+                                                <td>${i.getNickname()}</td>
+                                                <td>${i.getAge()}</td>
+                                                <td>${i.getGender()}</td>
+                                                <td>${i.getSenddate()}</td>
+                                                <td>${i.getCompany()}</td>
+                                                <td>${i.getFavorite()}</td>
+                                                <td class="text-primary"><a onclick="prompt('선택한 회원에게 메세지를 보냅니다. 메세지를 입력해주세요.')" href="#">메세지보내기</a></td>
+                                                <td class="text-primary"><a onclick="confirm('회원을 삭제하시겠습니까?')" href="#">삭제</a></td>
                                             </tr>
-                                            <tr>
-                                                <td>Minerva Hooper</td>
-                                                <td>Curaao</td>
-                                                <td>Sinaai-Waas</td>
-                                                <td class="text-primary">$23,789</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sage Rodriguez</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                                <td class="text-primary">$56,142</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Philip Chaney</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                                <td class="text-primary">$38,735</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Doris Greene</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Krnten</td>
-                                                <td class="text-primary">$63,542</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mason Porter</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                                <td class="text-primary">$78,615</td>
-                                            </tr>
+                                          </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="card card-plain">
-                                <div class="card-header" data-background-color="purple">
-                                    <h4 class="title">Table on Plain Background</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
-                                </div>
-                                <div class="card-content table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaao</td>
-                                                <td>Sinaai-Waas</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                                <td>$38,735</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Doris Greene</td>
-                                                <td>$63,542</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Krnten</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Mason Porter</td>
-                                                <td>$78,615</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                       
             <footer class="footer">
                 <div class="container-fluid">
                     <nav class="pull-left">

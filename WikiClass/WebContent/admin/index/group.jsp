@@ -36,14 +36,14 @@
 					<li><a href="dashboard.jsp"> <i class="material-icons">assessment</i>
 							<p>통계분석</p>
 					</a></li>
-					<li><a href="./member.jsp"> <i class="material-icons">assignment_ind</i>
+					<li><a href="../../memberInfo"> <i class="material-icons">assignment_ind</i>
 							<p>회원관리</p>
 					</a></li>
-					<li class="active"><a href="./group.jsp"> <i class="material-icons">group</i>
+					<li class="active"><a href="../../groupInfo"> <i class="material-icons">group</i>
 							<p>그룹관리</p>
 					</a></li>
-					<li><a href="./document.jsp"> <i class="material-icons">work</i>
-							<p>문서관리</p>
+					<li><a href="../../noteInfo"> <i class="material-icons">work</i>
+							<p>문서분석</p>
 					</a></li>
 				</ul>
             </div>
@@ -71,117 +71,73 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">Simple Table</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
+                                    <h4 class="title">그룹관리</h4>
+                                    <p class="category">그룹검색후 삭제버튼를 누르면 관리자 권한으로 그룹및 문서를 삭제합니다</p>
+                                    <form action="../../groupSearch">
+                                    <input type="text" name="search" style="color : black"> <input type="submit" value="그룹검색" style="color : black" >
+                                    </form>
                                 </div>
+                                
+                                <form action="">
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-primary">
-                                            <th>Name</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                            <th>Salary</th>
+                                            <th>그룹번호</th>
+                                            <th>그룹이름</th>
+                                            <th>그룹소개</th>
+                                            <th>그룹에 속한 클래스</th>
+                                            <th>그룹삭제</th>
                                         </thead>
                                         <tbody>
+                                        
+                                        <c:forEach items="${groupInfo}" var="i">
                                             <tr>
-                                                <td>Dakota Rice</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td class="text-primary">$36,738</td>
+                                                <td>${i.num}</td>
+                                                <td>${i.name }</td>
+                                                <td>${i.content}</td>
+                                                <td class="text-primary"><a href="../../ClassSearch?num=${i.num}" >클래스보기</a></td>
+                                                <td class="text-primary"><a onclick="confirm('그룹을 삭제하시겠습니까? 그룹에 속한 클래스도 함께 삭제 됩니다')">그룹삭제</a></td>
                                             </tr>
-                                            <tr>
-                                                <td>Minerva Hooper</td>
-                                                <td>Curaao</td>
-                                                <td>Sinaai-Waas</td>
-                                                <td class="text-primary">$23,789</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sage Rodriguez</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                                <td class="text-primary">$56,142</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Philip Chaney</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                                <td class="text-primary">$38,735</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Doris Greene</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Krnten</td>
-                                                <td class="text-primary">$63,542</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mason Porter</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                                <td class="text-primary">$78,615</td>
-                                            </tr>
+                                          </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
+                                </form>
                             </div>
                         </div>
+                        
                         <div class="col-md-12">
                             <div class="card card-plain">
                                 <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">Table on Plain Background</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
+                                    <h4 class="title">그룹에 속한 클래스</h4>
+                                    <p class="category">선택한 그룹의 클래스를 수정하거나 삭제할 수 있습니다</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table table-hover">
                                         <thead>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                            <th>City</th>
+                                            <th>그룹번호</th>
+                                            <th>멤버 수</th>
+                                            <th>문서번호</th>
+                                            <th>문서이름</th>
+                                            <th>분야</th>
+                                            <th>이미지저장위치</th>
+                                            <th>문서저장위치</th>
+                                            <th>최종수정날짜</th>
                                         </thead>
                                         <tbody>
+                                           <c:forEach items="${ClassSearch}" var="i">
                                             <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
+                                                <td>${i.group_num}</td>
+                                                <td>${i.mem_num}</td>
+                                                <td>${i.num}</td>
+                                                <td>${i.name}</td>
+                                                <td>${i.favorite}</td>
+                                                <td>${i.imagepath}</td>
+                                                <td>${i.classpath}</td>
+                                                <td class="text-primary">편집하기</td>
+                                                <td class="text-primary"><a onclick="confirm('그룹을 삭제하시겠습니까? 그룹에 속한 클래스도 함께 삭제 됩니다')">문서삭제</a></td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaao</td>
-                                                <td>Sinaai-Waas</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                                <td>$38,735</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Doris Greene</td>
-                                                <td>$63,542</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Krnten</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Mason Porter</td>
-                                                <td>$78,615</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                            </tr>
+                                          </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -228,6 +184,8 @@
         </div>
     </div>
 </body>
+
+</script>
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>

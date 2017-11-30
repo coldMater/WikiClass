@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -36,14 +38,14 @@
 					<li><a href="dashboard.jsp"> <i class="material-icons">assessment</i>
 							<p>통계분석</p>
 					</a></li>
-					<li><a href="./member.jsp"> <i class="material-icons">assignment_ind</i>
+					<li><a href="../../memberInfo"> <i class="material-icons">assignment_ind</i>
 							<p>회원관리</p>
 					</a></li>
-					<li><a href="./group.jsp"> <i class="material-icons">group</i>
+					<li><a href="../../groupInfo"> <i class="material-icons">group</i>
 							<p>그룹관리</p>
 					</a></li>
-					<li class="active"><a href="./document.jsp"> <i class="material-icons">work</i>
-							<p>문서관리</p>
+					<li class="active"><a href="../../noteInfo"> <i class="material-icons">work</i>
+							<p>문서분석</p>
 					</a></li>
 				</ul>
             </div>
@@ -71,54 +73,35 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header" data-background-color="blue">
-                                    <h4 class="title">Simple Table</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
+                                    <h4 class="title">문서 워드클라우딩</h4>
+                                    <p class="category">문서를 검색하여 선택하면 R로 분석한 워드클라우드 이미지를 보여줍니다</p>
+                                     <form action="../../noteSearch">
+                                    <input type="text" name ="search" style="color : black"> <input type="submit" value="문서검색" style="color : black" >
+                                     </form>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-primary">
-                                            <th>Name</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                            <th>Salary</th>
+                                            <thead>
+                                            <th>클래스번호</th>
+                                            <th>노트이름</th>
+                                            <th>작성자</th>
+                                            <th>저장경로</th>
+                                            <th>작성날짜</th>
+                                            <th >데이터분석</th>
                                         </thead>
                                         <tbody>
+                                        
+                                        <c:forEach items="${noteInfo}" var="i">
                                             <tr>
-                                                <td>Dakota Rice</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td class="text-primary">$36,738</td>
+                                                <td>${i.classnum}</td>
+                                                <td>${i.notename }</td>
+                                                <td>${i.author}</td>
+                                                <td>${i.senddate}</td>
+                                                <td>${i.path}</td>
+                                                <td class="text-primary">워드클라우딩보기</td>
                                             </tr>
-                                            <tr>
-                                                <td>Minerva Hooper</td>
-                                                <td>Curaao</td>
-                                                <td>Sinaai-Waas</td>
-                                                <td class="text-primary">$23,789</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sage Rodriguez</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                                <td class="text-primary">$56,142</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Philip Chaney</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                                <td class="text-primary">$38,735</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Doris Greene</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Krnten</td>
-                                                <td class="text-primary">$63,542</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mason Porter</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                                <td class="text-primary">$78,615</td>
-                                            </tr>
+                                          </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
