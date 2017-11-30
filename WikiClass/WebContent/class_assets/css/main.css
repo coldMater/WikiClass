@@ -2256,7 +2256,7 @@
 		}
 
 	hr {
-		border: 0;
+		border: 1;
 		border-bottom: solid 1px rgba(210, 215, 217, 0.75);
 		margin: 2em 0;
 	}

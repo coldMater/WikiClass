@@ -19,6 +19,11 @@ td{
 table tbody tr{
 	border:0px solid black !important;
 }
+h2{
+margin: 0 0 1em 0 !important;
+padding:  0 0.75em 0.2em 0 ;
+}
+
 </style>
 		<title>class 만들기</title>
 		<meta charset="EUC-KR" />
@@ -76,7 +81,7 @@ table tbody tr{
 												<select name="favortie" >
 												<option>-분야-</option>
        											<option>게임</option>
-       											<option>그래픽/디자인/멀티/미디어</option>
+       											<option>그래픽/디자인</option>
        											<option>네트워크/해킹/보안</option>
        											<option>모바일 프로그래밍</option>
        											<option>모바일/태블릿/SNS</option>
@@ -128,13 +133,22 @@ table tbody tr{
 
 			<!-- Menu -->
 			<nav id="menu"> <header class="major">
-			<h2>클래스 설명</h2>
+			<h2>클래스란?</h2>
 			</header>
-			그룹에 대한 설명이 간략하게 필요합니다.<br>
-			어떤 태그가 어떻게 이루어지는지 설명
-			
-			<br><br>
-			모든 조건이 만족했을 때 클래스를 만들 수 있는 버튼이 활성화 됩니다.
+			- 클래스 페이지에 오신 걸 환영합니다!<br>
+			- 이 페이지에서는 당신의 그룹 구성원들과<br>&nbsp; &nbsp;공유할 수 있는 클래스를 만들 수 있습니다.<br>
+			- 클래스는 특정한 범주가 있는 카테고리입<br>&nbsp; &nbsp;니다. 만약 당신의 그룹이 하나의 반이라면,<br>&nbsp; &nbsp;클래스는 당신이 배우는 과목을 뜻합니다.<br>
+			<hr>
+			<h3>클래스 만들기</h3>
+			- 클래스 이름, 설명, 그룹을 설정해주면 <br>&nbsp; &nbsp;클래스가 생성됩니다.
+			<hr style="border:1;">
+			<h3>목차 기능</h3>
+			- 클래스에서는 목차 기능을 지원합니다.<br>&nbsp;목차에서는 노트  추가 및 목차 설정이<br>&nbsp;가능합니다
+			<hr>
+			<h3>주의사항</h3>
+			- 클래스의 첫 페이지는 해당 클래스에 대한<br>&nbsp; &nbsp;소개로 작성해주시길 바랍니다.<br>
+			- 세부적인 수정이 아닌, 큰 규모의 수정이거나 <br>&nbsp; &nbsp;목차 수정은 해당 클래스 관리자와 이야기 후<br>&nbsp; &nbsp;수정하시길 바랍니다.<br>
+			- 무분별한 목차,노트 수정은 그룹원들에게<br>&nbsp; &nbsp;혼란을 가중시킬 수 있습니다.<br>
 			</nav>
 
 		</div>

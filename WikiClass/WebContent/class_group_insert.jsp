@@ -92,10 +92,21 @@ request.setCharacterEncoding("EUC-KR");
 
 			<!-- Menu -->
 			<nav id="menu"> <header class="major">
-			<h2>그룹 설명</h2>
+			<h2>그룹이란?</h2>
 			</header>
-			그룹에 대한 설명이 간략하게 필요합니다.<br>
-			어떤 태그가 어떻게 이루어지는지 설명
+			- 그룹 페이지에 오신 걸 환영합니다!<br>
+			- 그룹 기능을 통해 여러분과 친구들을<br>&nbsp; &nbsp;하나로 묶어주세요!<br>
+			<hr>
+			<h3>그룹 만들기</h3>
+			- 그룹의 이름과 설명을 쓰신 후<br>&nbsp; &nbsp;그룹 만들기 버튼을  클릭하면 &nbsp; &nbsp;<br>&nbsp; &nbsp;그룹이 생성됩니다.
+			<hr style="border:1;">
+			<h3>그룹원 초대하기</h3>
+			- 초대하고자 하는 사람의 ID를 입력하면<br>&nbsp;&nbsp;그 사람이 구성원에 추가됩니다.
+			<hr>
+			<h3>유의사항</h3>
+			- 모든 클래스는 구성원들과 공유됩니다.<br>
+			- 본인의 그룹을 확인하고 싶다면 <br>&nbsp;&nbsp;My page에서 확인하세요.<br>
+			- 무분별한 목차,노트 수정은 그룹원들에게<br>&nbsp; 혼란을 가중시킬 수 있습니다.<br>
 			</nav>
 
 		</div>
