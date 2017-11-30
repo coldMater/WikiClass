@@ -5,12 +5,14 @@ public class MemberVO {
 	private String email;
 	private String password;
 	private String nickname;
-	public MemberVO(int num, String email, String password, String nickname) {
+	private String senddate;
+	public MemberVO(int num, String email, String password, String nickname, String senddate) {
 		super();
 		this.num = num;
 		this.email = email;
 		this.password = password;
 		this.nickname = nickname;
+		this.senddate = senddate;
 	}
 	public int getNum() {
 		return num;
@@ -23,6 +25,9 @@ public class MemberVO {
 	}
 	public String getNickname() {
 		return nickname;
+	}
+	public String getSenddate() {
+		return senddate;
 	}
 	
 	

@@ -10,7 +10,7 @@
 <head>
 <style type="text/css">
 #cke_1_contents{
-	height: 500px !important;
+	height: 800px !important;
 }
 img{
 	outline: 0px !important;
