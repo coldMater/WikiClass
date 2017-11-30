@@ -46,7 +46,8 @@ ul.actions {
 	<body>
 <%
 	ClassDAO cdao = new ClassDAO();
-	ArrayList<classVO> list = cdao.classSelectAll();
+	ArrayList<classVO> list = new ArrayList<classVO>(); 
+	list = cdao.classSelectAll();
 %>
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -65,100 +66,6 @@ ul.actions {
 									</div>
 									</span>
 								</section>
-
-<<<<<<< HEAD
-
-		
-							<!-- my페이지 구성을위한 Sample Section 추가 -->
-							<section>
-							<h3>Table</h3>
-
-													<h4>Default</h4>
-													<div class="table-wrapper">
-														<table style = "width: 50%;">
-															<thead>
-																<tr>
-																	<th>Name</th>
-																	<th>Description</th>
-																	<th>Price</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>Item1</td>
-																	<td>Ante turpis integer aliquet porttitor.</td>
-																	<td>29.99</td>
-																</tr>
-																<tr>
-																	<td>Item2</td>
-																	<td>Vis ac commodo adipiscing arcu aliquet.</td>
-																	<td>19.99</td>
-																</tr>
-																<tr>
-																	<td>Item3</td>
-																	<td> Morbi faucibus arcu accumsan lorem.</td>
-																	<td>29.99</td>
-																</tr>
-																<tr>
-																	<td>Item4</td>
-																	<td>Vitae integer tempus condimentum.</td>
-																	<td>19.99</td>
-																</tr>
-																<tr>
-																	<td>Item5</td>
-																	<td>Ante turpis integer aliquet porttitor.</td>
-																	<td>29.99</td>
-																</tr>
-															</tbody>
-															<tfoot>
-																<tr>
-																	<td colspan="2"></td>
-																	<td>100.00</td>
-																</tr>
-															</tfoot>
-														</table>
-														
-														</section>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Erat lacinia</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon fa-diamond"></span>
-											<div class="content">
-												<h3>관심 분야</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon fa-paper-plane"></span>
-											<div class="content">
-												<h3></h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon fa-rocket"></span>
-											<div class="content">
-												<h3>Quam lorem ipsum</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon fa-signal"></span>
-											<div class="content">
-												<h3>Sed magna finibus</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-									</div>
-								</section>
-=======
->>>>>>> branch 'master' of https://github.com/coldMater/WikiClass.git
-
 		
 								<!-- 목록 Section -->
 								<section>
@@ -175,6 +82,7 @@ ul.actions {
 										</article>
 									</c:if>
 									<%
+									if(list!=null){
 									System.out.println(list.size());
 									for(int i=0 ; i<list.size() ; i++){ %>
 										<article>
@@ -195,7 +103,7 @@ ul.actions {
 											</ul>
 											</div>	
 										</article>
-										<%} %>
+										<%} }%>
 											<!-- <article>
 											<div style="width: 50%;float: left;">
 											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>

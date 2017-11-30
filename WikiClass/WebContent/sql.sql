@@ -19,11 +19,10 @@ password varchar2(12),
 nickname varchar2(10) unique,
 senddate date
 );
-alter table member add(senddate date)
 
 create sequence member_num
 start with 1
-increment by 1
+increment by 1;
 
 //마이페이지 테이블(회원번호)
 create table member_info(
@@ -69,7 +68,7 @@ increment by 1;
 create table group_person(
 group_num number REFERENCES wikigroup(num),
 nickname varchar(20)
-)
+);
 
 //클래스 테이블(소속그룹번호, 작성자번호, 시퀀스, 클래스이름, 분야, 이미지 경로, 클래스 내용, 작성날짜)
 create table wikiclass(
@@ -83,9 +82,6 @@ classPath varchar2(4000),
 senddate date
 );
 
-
-select * from wikiclass;
-
 create sequence wikiclass_num
 start with 1
 increment by 1;
@@ -94,7 +90,7 @@ increment by 1;
 create table class_grant(
 class_num number REFERENCES wikiclass(num),
 mem_num number REFERENCES member(num)
-)
+);
 
 //노트 테이블(클래스번호, 번호, 이름, 경로, 작성자, 작성날짜)
 create table note(
@@ -113,23 +109,3 @@ increment by 1;
 //관리자 메모 추가
 create table admin_memo(memo_1 number, memo_2 number, memo_3 number, content varchar(300));
 
-
-
-select * from member
-select * from wikigroup
-select * from group_person
-select * from wikiclass
-
-delete from wikigroup;
-delete from group_person;
-delete from wikiclass;
-
-alter table wikiclass modify(classPath varchar2(4000));
-alter table member_info modify(favorite varchar2(300));
-
-select wikigroup.name, member.nickname, wikiclass.num,wikiclass.name,wikiclass.favorite, wikiclass.imgPath, wikiclass.classPath, wikiclass.senddate 
-from wikigroup,member,wikiclass 
-where wikigroup.num=(select group_num from wikiclass where name='111') and member.num=(select mem_num from wikiclass where name='111')  and wikiclass.name='111';
-select * from wikiclass where name='명호1' and group_num=(select num from wikigroup where name='123');
-
-select group_num from group_person where nickname=(select nickname from member where email='smart@naver.com');
