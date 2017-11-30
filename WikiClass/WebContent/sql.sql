@@ -56,7 +56,7 @@ increment by 1;
 //그룹테이블
 create table wikigroup(
 num number primary key,
-name varchar2(50) unique
+name varchar2(50) unique,
 content varchar2(1000)
 );
 
@@ -95,14 +95,24 @@ mem_num number REFERENCES member(num)
 );
 
 //노트 테이블(클래스번호, 번호, 이름, 경로, 작성자, 작성날짜)
+
 create table note(
-class_num number not null REFERENCES wikiclass (num),
 num number primary key,
 name varchar2(50),
 path varchar2(200),
-author varchar2(20),
-senddate date
-);	
+senddate date,
+author number
+);
+
+/* 노트의 노드 정보(노트들 간의 관계 정의) */
+create table class_tree_info(
+note_id number primary key,
+parent_id number,
+sibling_id number,
+class_id number
+);
+
+
 
 create sequence note_num
 start with 1
