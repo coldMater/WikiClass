@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.Service.adminLogin;
+import com.Service.classInsert;
 import com.Service.command;
 import com.Service.groupInsert;
 import com.Service.memberJoin;
 import com.Service.memberLogin;
+import com.Service.mypageInsert;
+import com.Service.noteInsert;
 
 @WebServlet("*.do")
 public class Controller extends HttpServlet {
@@ -22,11 +25,12 @@ public class Controller extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		map.put("adminLogin.do", new adminLogin());
 		map.put("memberLogin.do", new memberLogin());
 		map.put("memberJoin.do", new memberJoin());
 		map.put("groupInsert.do", new groupInsert());
-		
+		map.put("classInsert.do", new classInsert());
+		map.put("noteInsert.do", new noteInsert());
+		map.put("mypageInsert.do", new mypageInsert());
 	}
 	
 	

@@ -1,3 +1,5 @@
+<%@page import="com.VO.MemberVO"%>
+<%@page import="com.DAO.memberDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -28,7 +30,7 @@ table tbody tr{
 	</head>
 	<body>
 <%
-request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("EUC-KR");
 %>
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -64,12 +66,16 @@ request.setCharacterEncoding("UTF-8");
 											</tr>
 											<tr>
 												<td>
+												<%
+													memberDAO mdao = new memberDAO();
+													MemberVO mvo = mdao.emailselect((String)session.getAttribute("email"));
+												%>
+													<input type="hidden" name="person" value="<%=mvo.getNickname()%>">
 													<input type="text" name="person" id="person" value="" placeholder="사람 추가(닉네임)" onfocusout="personCheck()"/>
 													<p id="personText"></p>
 												</td>
 												<td>
 													<input type="button" onclick="insertPerson()" id="personInsert" value="추가">
-													<!-- <input type="button" id="personInsert" value="추가"> -->
 												</td>
 											</tr>
 										</table>

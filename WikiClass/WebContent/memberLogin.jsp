@@ -9,6 +9,13 @@
 -->
 <html>
 	<head>
+	<style type="text/css">
+	input{
+	text-transform:lowercase;
+	
+	}
+	
+	</style>
 		<title>WikiClass Login</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,6 +24,7 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<noscript><link rel="stylesheet" href="adm_assets/css/noscript.css" /></noscript>
+		
 	</head>
 	<body class="is-loading">
 <%
@@ -56,10 +64,10 @@ System.out.println("로그인에 접근한 uri = "+uri);
 						
 						<form method="post" action="memberLogin.do">
 							<div class="field">
-								<input type="text" name="email" id="email" placeholder="email" required/>
+								<input type="text" name="email" id="email" placeholder="email" required style="text-transform:none; "/>
 							</div>
 							<div class="field">
-								<input type="password" name="Password" id="Password" placeholder="Password" required/>
+								<input type="password" name="Password" id="Password" placeholder="Password" required style="text-transform:none;">
 							</div>
 							<input type="text" name="uri" value="<%=uri %>" style="display: none">
 							<ul class="actions">

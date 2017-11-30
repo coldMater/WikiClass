@@ -1,3 +1,6 @@
+<%@page import="com.VO.classVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.DAO.ClassDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,9 +18,36 @@
 		<link rel="stylesheet" href="class_assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+<style type="text/css">
+div#main > div.inner >  section{
+}
+a.image{
+width: 50%;
+}
+.posts article .image {
+    display: inline;
+}
+h2{
+  margin: 0.5em 0.7em 0.5em;
+}
+div > p {
+    margin: 0.5em 0.7em 1em 1.3em;
+}
+ul {
+   margin: 0 2em 0 1.3em;
+}
+ul.actions {
+    cursor: default;
+    list-style: none;
+    /* padding-left: inherit; */
+}
+</style>		
 	</head>
 	<body>
-
+<%
+	ClassDAO cdao = new ClassDAO();
+	ArrayList<classVO> list = cdao.classSelectAll();
+%>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -25,117 +55,160 @@
 					<div id="main" >
 						<div class="inner">
 							<!-- Header -->
-							<%@include file="class_header.jsp" %>
-							
+							<%@include file="class_header.jsp" %> <!--  로그인/로그아웃 버튼 -->
 							<!-- Banner -->
 								<section id="banner">
 									<div class="content">
 										<header>
-											<h1>Hi, I’m Editorial<br />
-											by HTML5 UP</h1>
-											<p>A free and fully responsive site template</p>
+										<h1>Find your Class,<br/>Join your Group</h1>
 										</header>
-										<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
-										<ul class="actions">
-											<li><a href="class_generic.jsp" class="button big">노트를 누르면??</a></li>
-										</ul>
 									</div>
-									<span class="image object">
-										<img src="images/pic10.jpg" alt="" />
 									</span>
 								</section>
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Erat lacinia</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon fa-diamond"></span>
-											<div class="content">
-												<h3>Portitor ullamcorper</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon fa-paper-plane"></span>
-											<div class="content">
-												<h3>Sapien veroeros</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon fa-rocket"></span>
-											<div class="content">
-												<h3>Quam lorem ipsum</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon fa-signal"></span>
-											<div class="content">
-												<h3>Sed magna finibus</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-									</div>
-								</section>
 
-							<!-- 목록 Section -->
+		
+								<!-- 목록 Section -->
 								<section>
-									<header class="major">
-										<h2>목록</h2>
-									</header>
 									<div class="posts">
+									<c:if test="${not empty sessionScope.email }">
 										<article>
-											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-											<h3>Interdum aenean</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
+											<div style="width: 50%;float: left;">
+											<a href="class_class_insert.jsp" class="image"><img src="images/class_example.jpg" align="left" /></a>
+											</div>
+											<div style="width: 50%;float: left;">
+											<br>
+											<h2>클래스만들기</h2>
+											</div>	
 										</article>
+									</c:if>
+									<%
+									System.out.println(list.size());
+									for(int i=0 ; i<list.size() ; i++){ %>
 										<article>
-											<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-											<h3>Nulla amet dolore</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<%
+												/* request.setAttribute("className", list.get(0).getName()); */
+											%>
+											<div style="width: 50%;float: left;">
+											<a href="class_print.jsp?className=<%=list.get(i).getName() %>" class="image"><img src="classImage/<%=list.get(i).getImgPath() %>" align="left" /></a>
+											</div>
+											<div style="width: 50%;float: left;">
+											<br>
+											<h2><%=list.get(i).getName() %></h2>
+											<p>관리자 : <%=list.get(i).getMem_name() %><br><br>
+											생성일:<%=list.get(i).getSenddate() %><br><br>
+											그룹:<%=list.get(i).getGroup_name() %></p>
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="class_print.jsp?className=<%=list.get(i).getName() %>" class="button"><p>More</p></a></li>
 											</ul>
+											</div>	
 										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
-											<h3>Tempus ullamcorper</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+										<%} %>
+											<!-- <article>
+											<div style="width: 50%;float: left;">
+											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
+											</div>
+											<div style="width: 50%;float: left;">
+											<br>
+											<h2>Java</h2>
+											<p>관리자 : 이명호<br><br>
+											생성일:17.11.27<br><br>
+											그룹:빅데이터 분석반</p>
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="#" class="button"><p>More</p></a></li>
 											</ul>
+											</div>	
 										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-											<h3>Sed etiam facilis</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+																				<article>
+											<div style="width: 50%;float: left;">
+											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
+											</div>
+											<div style="width: 50%;float: left;">
+											<br>
+											<h2>Java</h2>
+											<p>관리자 : 이명호<br><br>
+											생성일:17.11.27<br><br>
+											그룹:빅데이터 분석반</p>
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="#" class="button"><p>More</p></a></li>
 											</ul>
+											</div>	
 										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-											<h3>Feugiat lorem aenean</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+																				<article>
+											<div style="width: 50%;float: left;">
+											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
+											</div>
+											<div style="width: 50%;float: left;">
+											<br>
+											<h2>Java</h2>
+											<p>관리자 : 이명호<br><br>
+											생성일:17.11.27<br><br>
+											그룹:빅데이터 분석반</p>
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="#" class="button"><p>More</p></a></li>
 											</ul>
+											</div>	
 										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-											<h3>Amet varius aliquam</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+																				<article>
+											<div style="width: 50%;float: left;">
+											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
+											</div>
+											<div style="width: 50%;float: left;">
+											<br>
+											<h2>Java</h2>
+											<p>관리자 : 이명호<br><br>
+											생성일:17.11.27<br><br>
+											그룹:빅데이터 분석반</p>
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="#" class="button"><p>More</p></a></li>
 											</ul>
+											</div>	
 										</article>
+																				<article>
+											<div style="width: 50%;float: left;">
+											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
+											</div>
+											<div style="width: 50%;float: left;">
+											<br>
+											<h2>Java</h2>
+											<p>관리자 : 이명호<br><br>
+											생성일:17.11.27<br><br>
+											그룹:빅데이터 분석반</p>
+											<ul class="actions">
+												<li><a href="#" class="button"><p>More</p></a></li>
+											</ul>
+											</div>	
+										</article>
+																				<article>
+											<div style="width: 50%;float: left;">
+											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
+											</div>
+											<div style="width: 50%;float: left;">
+											<br>
+											<h2>Java</h2>
+											<p>관리자 : 이명호<br><br>
+											생성일:17.11.27<br><br>
+											그룹:빅데이터 분석반</p>
+											<ul class="actions">
+												<li><a href="#" class="button"><p>More</p></a></li>
+											</ul>
+											</div>	
+										</article>
+																				<article>
+											<div style="width: 50%;float: left;">
+											<a href="#" class="image"><img src="images/class_example.jpg" align="left" /></a>
+											</div>
+											<div style="width: 50%;float: left;">
+											<br>
+											<h2>Java</h2>
+											<p>관리자 : 이명호<br><br>
+											생성일:17.11.27<br><br>
+											그룹:빅데이터 분석반</p>
+											<ul class="actions">
+												<li><a href="#" class="button"><p>More</p></a></li>
+											</ul>
+											</div>	
+										</article> -->
 									</div>
 								</section>
 

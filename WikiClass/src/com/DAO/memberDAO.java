@@ -84,6 +84,7 @@ public class memberDAO {
 		return 0;
 	}
 
+	//회원가입
 	public int join(String email, String password, String nickname) {
 		getConn();
 		String sql = "insert into member values(member_num.nextval,?,?,?,to_char(sysdate,'YYYY-MM-DD'))";
@@ -103,6 +104,7 @@ public class memberDAO {
 		return cnt;
 	}
 
+	//이메일로 개인정보 가져오기
 	public MemberVO emailselect(String email) {
 		getConn();
 		String sql = "select * from member where email=?";

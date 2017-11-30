@@ -46,20 +46,20 @@ request.setCharacterEncoding("EUC-KR");
 						
 						<form method="post" action="memberJoin.do">
 							<div class="field">
-								<input type="text" name="email" id="email" placeholder="email" required onfocusout="emailCheck()"/>
+								<input type="text" name="email" id="email" placeholder="email" required onfocusout="emailCheck()" style="text-transform:none;"/>
 								<p id="emailText"></p><!-- 여기에 중복 확인 -->
 							</div>
 							<div class="field">
-								<input type="password" name="Password1" id="Password1" placeholder="Password" required/>
+								<input type="password" name="Password1" id="Password1" placeholder="Password" required style="text-transform:none;"/>
 							</div>
 							<div class="field">
-								<input type="password" name="Password2" id="Password2" placeholder="Confirm Password " required onfocusout="passwordCheck()"/>
+								<input type="password" name="Password2" id="Password2" placeholder="Confirm Password " required onfocusout="passwordCheck()" style="text-transform:none;"/>
 								<p id="passwordText"></p><!-- 여기에 패스워드 일치 확인 -->
 							</div>
 							<div class="field">
-								<input type="text" name="nickname" id="nickname" placeholder="nickname" required/>
+								<input type="text" name="nickname" id="nickname" placeholder="nickname" required style="text-transform:none;"/>
 							</div>
-							<input type="text" name="uri" value="<%=uri %>" style="display: none">
+							<input type="text" name="uri" value="<%=uri %>" style="display: none; text-transform:none;">
 							<ul class="actions">
 								<li><input type="submit" value="회원가입"></li>
 							</ul>
