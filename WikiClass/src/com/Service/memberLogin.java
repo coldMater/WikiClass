@@ -22,7 +22,7 @@ public class memberLogin implements command{
 		System.out.println("memberLogin.java uri = "+uri);
 		memberDAO mdao = new memberDAO();
 		int cnt = mdao.login(email,password);
-		
+		String userNum = mdao.emailselect(email).getNum()+"";
 		//로그인 횟수 카운트(미구현)
 		//mdao.logincount();
 		
@@ -31,6 +31,7 @@ public class memberLogin implements command{
 			if (cnt == 1) {// 1이면 로그인 성공
 				HttpSession session = request.getSession();
 				session.setAttribute("email", email);
+				session.setAttribute("userNum", userNum);
 				
 				//접근한 곳에 따라 로그인 후 띄어주는 창이 다르다.
 				if(uri.equals("main_index.jsp")) {

@@ -3,11 +3,18 @@ create user wcadmin identified by wcadmin;
 grant connect, resource to wcadmin;
 
 
+
+create sequence test_seq;
+select test_seq.nextval from dual;
+select test_seq.currval from dual;
+
 create table admin(
 id varchar2(20),
 password varchar2(20),
 nickname varchar2(20)
 );
+
+select * from note;
 
 insert into admin values('admin','qwer1234!@#$','°ü¸®ÀÚ');
 

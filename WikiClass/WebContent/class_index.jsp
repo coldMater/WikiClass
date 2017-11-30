@@ -90,7 +90,7 @@ ul.actions {
 												/* request.setAttribute("className", list.get(0).getName()); */
 											%>
 											<div style="width: 50%;float: left;">
-											<a href="class_print.jsp?classNum=<%=list.get(i).getNum() %>" class="image"><img src="classImage/<%=list.get(i).getImgPath() %>" align="left" /></a>
+											<a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="image"><img src="classImage/<%=list.get(i).getImgPath() %>" align="left" /></a>
 											</div>
 											<div style="width: 50%;float: left;">
 											<br>
@@ -99,7 +99,7 @@ ul.actions {
 											생성일:<%=list.get(i).getSenddate() %><br><br>
 											그룹:<%=list.get(i).getGroup_name() %></p>
 											<ul class="actions">
-												<li><a href="class_print.jsp?className=<%=list.get(i).getName() %>" class="button"><p>More</p></a></li>
+												<li><a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="button"><p>More</p></a></li>
 											</ul>
 											</div>	
 										</article>
