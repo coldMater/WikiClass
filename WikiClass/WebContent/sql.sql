@@ -9,7 +9,7 @@ password varchar2(20),
 nickname varchar2(20)
 );
 
-insert into admin values('admin','qwer1234!@#$','관리자');
+insert into admin values('ADMIN','QWER1234!@#$','관리자');
 
 //회원테이블
 create table member(
@@ -19,7 +19,7 @@ password varchar2(12),
 nickname varchar2(10) unique,
 senddate date
 );
-
+alter table member modify(email varchar2(50));
 create sequence member_num
 start with 1
 increment by 1;
@@ -59,6 +59,8 @@ num number primary key,
 name varchar2(50) unique
 content varchar2(1000)
 );
+
+select * from wikigroup
 
 create sequence wikigroup_num
 start with 1
@@ -100,7 +102,7 @@ name varchar2(50),
 path varchar2(200),
 author varchar2(20),
 senddate date
-);
+);	
 
 create sequence note_num
 start with 1

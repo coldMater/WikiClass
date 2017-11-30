@@ -31,6 +31,8 @@ public class Controller extends HttpServlet {
 		map.put("classInsert.do", new classInsert());
 		map.put("noteInsert.do", new noteInsert());
 		map.put("mypageInsert.do", new mypageInsert());
+		map.put("adminLogin.do", new adminLogin());
+		
 	}
 	
 	
