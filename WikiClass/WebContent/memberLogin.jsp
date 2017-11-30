@@ -58,7 +58,7 @@ System.out.println("로그인에 접근한 uri = "+uri);
 				<!-- Main -->
 					<section id="main">
 						<header>
-							<span class="avatar"><img src="images/logo.png" alt="" /></span>
+							<span class="avatar"><a href="<%=uri%>"><img src="images/logo.png" alt="" /></a></span>
 							<h1>WikiClass</h1>
 						</header>
 						

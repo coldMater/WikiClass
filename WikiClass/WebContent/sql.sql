@@ -25,10 +25,9 @@ create sequence member_num
 start with 1
 increment by 1
 
-//마이페이지 테이블
+//마이페이지 테이블(회원번호)
 create table member_info(
 num number,
-company varchar2(20),
 favorite varchar2(300),
 age number,
 gender number,
@@ -133,4 +132,4 @@ from wikigroup,member,wikiclass
 where wikigroup.num=(select group_num from wikiclass where name='111') and member.num=(select mem_num from wikiclass where name='111')  and wikiclass.name='111';
 select * from wikiclass where name='명호1' and group_num=(select num from wikigroup where name='123');
 
-
+select group_num from group_person where nickname=(select nickname from member where email='smart@naver.com');

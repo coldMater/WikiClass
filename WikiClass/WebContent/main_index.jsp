@@ -92,7 +92,7 @@ background-color:  !important;
 			<nav id="nav">
 			<ul>
 
-				<li><a href="main_index.jpg"><span>Home</span></a></li>
+				<li><a href="main_index.jsp"><span>Home</span></a></li>
 				<c:choose>
 					<c:when test="${empty sessionScope.email }">
 						<li><a href="memberLogin.jsp?uri=<%=req_uri%>"><span>·Î±×ÀÎ</span></a></li>
