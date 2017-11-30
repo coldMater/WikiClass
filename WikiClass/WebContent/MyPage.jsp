@@ -31,7 +31,7 @@
 	//그룹테이블에서 멤버 번호가 있는 그룹 가지고오기
 	ClassDAO cdao = new ClassDAO();
 	ArrayList<String> list = new ArrayList<String>();
-	//list = cdao.selectNameGroup(email);
+	list = cdao.selectNameGroup(email);
 %>
 
 	<!-- Wrapper -->
