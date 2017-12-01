@@ -98,7 +98,7 @@ padding:  0 0.75em 0.2em 0 ;
 											<td></td>
 										</tr>
 										<tr>
-											<td>
+											<td id="pe">
 											<h3>권한 주기</h3>
 											<%
 												memberDAO mdao = new memberDAO();
@@ -106,12 +106,12 @@ padding:  0 0.75em 0.2em 0 ;
 											%>
 											<input type="hidden" name="person" value="<%=mvo.getNickname()%>">
 											<!-- ajax로 클래스가 속한 그룹의 일원중에 1명인지 파악 안되면 경고창띄우고 안넘어가게 만든다. -->
-											<input type="text" name="person" id="person" value="" placeholder="사람 추가(닉네임)" onfocusout="personCheck()"/>
-												<p id="personText" style="display: none"></p>
+											<input type="text" name="person" id="person0" placeholder="사람 추가(닉네임)" onfocusout="personCheck(0)" >
+											<p id="personText0" style="height: 4px;"></p>
 											</td>
 											<td>
 												<h3>&nbsp;</h3>
-												<input type="button" onclick="insertPerson()" id="personInsert" value="추가">
+												<input type="button" id="personInsert" value="추가">
 											</td>
 										</tr>
 									</table>
@@ -166,17 +166,20 @@ padding:  0 0.75em 0.2em 0 ;
 			<script type="text/javascript">
 			var groupbool = false;
 			var classbool = false;
+			var boo = false;
 			var createClass = document.getElementById("createClass");
 			var createClass2 = document.getElementById("createClass2");
 			createClass.style.display="none"
 			
 			function createC(){
-				if(groupbool && classbool){
+				if(groupbool && classbool && boo){
 				}else{
 					if(!(groupbool)){
 						alert("그룹을 확인해주세요")	
 					}else if(!(classbool)){
 						alert("클래스를 확인해주세요")	
+					}else{
+						alert("사용자를 확인해주세요")	
 					}
 				}
 			}
@@ -206,7 +209,7 @@ padding:  0 0.75em 0.2em 0 ;
                					new_groupp.appendChild(new_a)
                					groupbool = false;
                				}
-          				if(groupbool && classbool){
+          				if(groupbool && classbool && boo){
         					createClass.style.display="inline"	
         					createClass2.style.display="none"
         				}else{
@@ -236,7 +239,7 @@ padding:  0 0.75em 0.2em 0 ;
                					new_classp.style.color = "red"
                					classbool = false;
                				}
-          				if(groupbool && classbool){
+          				if(groupbool && classbool && boo){
         					createClass.style.display="inline"	
         					createClass2.style.display="none"
         				}else{
@@ -247,11 +250,8 @@ padding:  0 0.75em 0.2em 0 ;
          			 });
 			}
 			
-			var tableTag = document.getElementById("classtable")
-			var new_p = document.getElementById("personText")
-			var new_input = document.getElementById("person")
-			var buttonTag = document.getElementById("personInsert")
 			
+/* 			
 			function insertPerson(){
 				var new_td1 = document.createElement("td")
 				var new_td2 = document.createElement("td")
@@ -271,7 +271,67 @@ padding:  0 0.75em 0.2em 0 ;
 				new_tr.appendChild(new_td1)
 				new_tr.appendChild(new_td2)
 				tableTag.appendChild(new_tr)
-			}
+			} */
+			var num = 1;
+			
+			$(document).ready(function(){
+				$("#personInsert").click(function(){
+					$("#pe").append("<input type='text' placeholder='사람추가(닉네임)' name='person' id='person"+num+"' onfocusout='personCheck("+num+")'>");
+					$("#pe").append("<p id='personText"+num+"' style='height: 4px;'></p>");
+					num+=1
+				})
+			})
+			
+			function personCheck(number){
+					var new_p = document.getElementById("personText"+number)
+					var new_input = document.getElementById("person"+number)
+					var new_groupInput = document.getElementById("groupInput");
+					
+					//그룹이름를 알 수 있다.
+					var new_groupInput = document.getElementById("groupName");
+					
+					//사람추가 부분 전부다 확인
+  					boo = true;
+					$.ajax({
+	          			url:"SerachClassPerson",
+	          			data : "nickname="+new_input.value+"&groupname="+new_groupInput.value,
+	          			success : function(result){
+	          					new_p.innerHTML = result
+	               				if(result=="비어있습니다."){
+	               					new_p.innerHTML = ""
+	               				}else if(result=="그룹에 존재하지 않는 사용자입니다."){
+	               					new_p.style.color = "red"
+	               				}else{
+	               					new_p.style.color = "blue"
+	               				} 
+	          					
+	          					
+	          					for(var i=0 ; i<num ; i++){
+	          						//input태그에 값이 있는지 확인
+	          						var new_chickInput = document.getElementById("person"+i)
+	          						var new_chickP = document.getElementById("personText"+i)
+	          						//값이 있는것 중에서만 확인 후에 전부다 가능한 사람일 경우만 버튼 체인지
+	          						if(new_chickInput.value!=""){
+	          							if(new_chickP.style.color=="red"){
+	          								boo = false;
+	          							}
+	          						}
+	          					}
+	          					
+	          					
+	          					
+	          					if(!(boo)){
+	          						createClass.style.display="none"
+	          						createClass2.style.display="inline-block"
+          						}else{
+          							createClass.style.display="inline-block"
+          							createClass2.style.display="none"
+          						}
+	          					
+	               			}	
+	         		 });
+				}
+			
 			</script>
 
 	</body>
