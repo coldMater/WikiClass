@@ -53,10 +53,10 @@ table tbody tr{
 						<option>웹사이트</option>
 						<option>인터넷 비즈니스</option>
 						<option>컴퓨터 공학</option>
-						<option>컴퓨터 수험서</option>
+						<option>OS/데이터베이스</option>
 						<option>컴퓨터 입문/활용</option>
 						<option>프로그래밍 언어</option>
-						<option>OS/데이터베이스</option>.
+						<option>기타</option>
 					</select>
 				</td>
 				<td>
@@ -131,7 +131,7 @@ table tbody tr{
 			new_option.text="컴퓨터 공학"
 			new_select.appendChild(new_option)
 			new_option = document.createElement("option")
-			new_option.text="컴퓨터 수험서"
+			new_option.text="OS/데이터베이스"
 			new_select.appendChild(new_option)
 			new_option = document.createElement("option")
 			new_option.text="컴퓨터 입문/활용"
@@ -140,7 +140,7 @@ table tbody tr{
 			new_option.text="프로그래밍 언어"
 			new_select.appendChild(new_option)
 			new_option = document.createElement("option")
-			new_option.text="OS/데이터베이스"
+			new_option.text="기타"
 			new_select.appendChild(new_option)
 						
 			new_td1.appendChild(new_select)

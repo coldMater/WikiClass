@@ -64,7 +64,7 @@ System.out.println("로그인에 접근한 uri = "+uri);
 						
 						<form method="post" action="memberLogin.do">
 							<div class="field">
-								<input type="text" name="email" id="email" placeholder="email" required style="text-transform:none; "/>
+								<input type="text" name="email" id="email" placeholder="email" maxlength="25" required style="text-transform:none; "/>
 							</div>
 							<div class="field">
 								<input type="password" name="Password" id="Password" placeholder="Password" maxlength="12" required style="text-transform:none;">

@@ -188,7 +188,7 @@
 
 					<article id="fa5"> <span class="icon fa-book"></span>
 					<div class="content">
-						<h3 id="co5">컴퓨터 수험서</h3>
+						<h3 id="co5">기타</h3>
 						<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
 							dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
 							lorem feugiat tempus aliquam.</p>

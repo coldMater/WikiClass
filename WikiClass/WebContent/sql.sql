@@ -80,6 +80,8 @@ classPath varchar2(4000),
 senddate date
 );
 
+alter table 
+
 create sequence wikiclass_num
 start with 1
 increment by 1;
