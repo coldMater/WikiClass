@@ -73,7 +73,7 @@ padding:  0 0.75em 0.2em 0 ;
 												<p id="classText" style="display: none"></p>
 											</td>
 											<td><!-- 그룹과 클래스명이 같이 중복되지 않으면 된다. -->
-												<input type="button" onclick="groupclassSelectOne()"  id="selectGroup" value="중복확인">
+												<input type="button" onclick="groupclassSelectOne();personCheck(0)"  id="selectGroup" value="중복확인">
 											</td>
 										</tr>
 										<tr>
@@ -88,11 +88,11 @@ padding:  0 0.75em 0.2em 0 ;
        											<option>오피스 활용</option>
        											<option>웹사이트</option>
        											<option>인터넷 비즈니스</option>
-       											<option>컴퓨터 공학</option>
+       											<option>OS/데이터베이스</option>
        											<option>컴퓨터 수험서</option>
        											<option>컴퓨터 입문/활용</option>
        											<option>프로그래밍 언어</option>
-       											<option>OS/데이터베이스</option>
+       											<option>기타</option>
        											</select>
 											</td>
 											<td></td>
@@ -120,8 +120,8 @@ padding:  0 0.75em 0.2em 0 ;
 									<script>
 										CKEDITOR.replace('editor1');
 									</script>
-									<input type="submit" value="클래스만들기" id="createClass"/>
-									<input type="button" onclick="createC()" id="createClass2" value="클래스추가">
+									<input type="submit" value="클래스생성" id="createClass"/>
+									<input type="button" onclick="createC()" id="createClass2" value="클래스생성">
 								</form>	
 								</section>
 
@@ -178,7 +178,7 @@ padding:  0 0.75em 0.2em 0 ;
 						alert("그룹을 확인해주세요")	
 					}else if(!(classbool)){
 						alert("클래스를 확인해주세요")	
-					}else{
+					}else if(!(boo)){
 						alert("사용자를 확인해주세요")	
 					}
 				}

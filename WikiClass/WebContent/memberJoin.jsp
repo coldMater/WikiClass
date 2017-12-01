@@ -46,7 +46,7 @@ request.setCharacterEncoding("EUC-KR");
 						
 						<form method="post" action="memberJoin.do">
 							<div class="field">
-								<input type="text" name="email" id="email" placeholder="email" required onfocusout="emailCheck()" style="text-transform:none;"/>
+								<input type="text" name="email" id="email" placeholder="email" maxlength="25" required onfocusout="emailCheck()" style="text-transform:none;"/>
 								<p id="emailText"></p><!-- 여기에 중복 확인 -->
 							</div>
 							<div class="field">
@@ -57,7 +57,7 @@ request.setCharacterEncoding("EUC-KR");
 								<p id="passwordText"></p><!-- 여기에 패스워드 일치 확인 -->
 							</div>
 							<div class="field">
-								<input type="text" name="nickname" id="nickname" placeholder="nickname" required style="text-transform:none;"/>
+								<input type="text" name="nickname" id="nickname" placeholder="nickname" maxlength="9" required style="text-transform:none;"/>
 							</div>
 							<input type="text" name="uri" value="<%=uri %>" style="display: none; text-transform:none;">
 							<ul class="actions">
