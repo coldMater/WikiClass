@@ -6,13 +6,15 @@ String title;
 String path;
 String date;
 String author;
-public NoteVO(String num, String title, String path, String date, String author) {
+String content;
+public NoteVO(String num, String title, String path, String date, String author, String content) {
 	super();
 	this.num = num;
 	this.title = title;
 	this.path = path;
 	this.date = date;
 	this.author = author;
+	this.content = content;
 }
 public String getNum() {
 	return num;
@@ -43,6 +45,12 @@ public String getAuthor() {
 }
 public void setAuthor(String author) {
 	this.author = author;
+}
+public String getContent() {
+	return content;
+}
+public void setContent(String content) {
+	this.content = content;
 }
 
 

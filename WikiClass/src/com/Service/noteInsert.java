@@ -23,6 +23,7 @@ public class noteInsert implements command{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		//클래스번호, 노트번호, 노트제목, 노트경로, 작성자, 작성날짜
+		System.out.println("Start @@ com.Service/noteInsert.java");
 		ClassDAO cdao = new ClassDAO();
 		String classID = request.getParameter("classNum");
 		String noteName = request.getParameter("noteName");
@@ -66,10 +67,12 @@ public class noteInsert implements command{
 		System.out.println("=====insertNote.java=====");
 		try {
 			
+			System.out.println("Final @@ com.Service/noteInsert.java");
 			request.setAttribute("classIDnow", classID);
 			request.setAttribute("noteID", noteID);
 			RequestDispatcher dis = request.getRequestDispatcher("NoteLoadingService");
 			dis.forward(request, response);
+			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

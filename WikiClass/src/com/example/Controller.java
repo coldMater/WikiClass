@@ -20,7 +20,7 @@ import com.Service.noteInsert;
 @WebServlet("*.do")
 public class Controller extends HttpServlet {
 	HashMap<String, command> map = new HashMap<String, command>();
-	
+
 	@Override
 	public void init() throws ServletException {
 		super.init();
@@ -35,7 +35,7 @@ public class Controller extends HttpServlet {
 	
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println("Start @@ com.example/Controllder.java");
 		request.setCharacterEncoding("euc-kr");
 		
 		String uri = request.getRequestURI();
@@ -47,7 +47,9 @@ public class Controller extends HttpServlet {
 		
 		command command = null;
 		command = map.get(req_uri);
+		System.out.println("Final @@ com.example/Controllder.java");
 		command.execute(request, response);
+		
 	}
 }
 

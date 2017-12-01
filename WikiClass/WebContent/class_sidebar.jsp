@@ -1,3 +1,7 @@
+<%@page import="com.VO.classVO"%>
+<%@page import="com.DAO.ClassDAO"%>
+<%@page import="com.VO.NoteVO"%>
+<%@page import="com.DAO.NoteDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,13 +23,26 @@
 			</section>
 
 			<!-- Menu -->
-			<nav id="menu"> <header class="major">
-			<h2>목차</h2>
-			</header>
+			<nav id="menu"> 
+			<header class="major">
 			<% String list = (String) request.getAttribute("list"); %>
 			<% String classNum = (String) request.getAttribute("classID"); %>
+<%-- 			<% ClassDAO dao = new ClassDAO(); %> --%>
+<%-- 			<% classVO vo = dao.getClass(classNum); %> --%>
+<%-- 			<h2><%= vo.getName()%></h2> --%>
+			</header>
+
 			<%= list %>
 			</nav>
+			<section>
+			<header class="major">
+			<h2>노트 생성하기</h2>
+			</header>
+			<p style="text-align: right;float: right;">
+			<a href="class_note.jsp?classNum=41&amp;groupName=smhrd&amp;className=github&amp;nickname=coldamter" class="button">노트 추가</a>
+			</p>
+			</section>
+			
 			<section>
 			<header class="major">
 			<h2>노트 이동(부모를 지정하세요)</h2>

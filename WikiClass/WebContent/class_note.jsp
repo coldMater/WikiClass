@@ -56,7 +56,7 @@ h3,h2{
 										<h3><%=groupName %></h3><h2>그룹</h2>&nbsp;<h3><%=className %></h3>
 										<h1>노트 추가</h1>
 									</header>
-								<form action="noteInsert.do" mothod = "post">
+								<form action="noteInsert.do" method = "post">
 									<input type="text" name="noteName" placeholder="노트 제목">
 									<br><br><h2>노트의 내용을 적어주세요</h2>
 									<input type="text" name="classNum" value="<%=classNum %>" style="display: none;">
