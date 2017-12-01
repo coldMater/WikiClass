@@ -5,20 +5,18 @@ int num;
 String email;
 String nickname;
 String senddate;
-String company;
 String favorite;
 int age;
 int gender;
 
 
-public memberInfoVO(int num, String email, String nickname, String senddate, String company, String favorite, int age,
+public memberInfoVO(int num, String email, String nickname, String senddate, String favorite, int age,
 		int gender) {
 	super();
 	this.num = num;
 	this.email = email;
 	this.nickname = nickname;
 	this.senddate = senddate;
-	this.company = company;
 	this.favorite = favorite;
 	this.age = age;
 	this.gender = gender;
@@ -64,15 +62,6 @@ public void setSenddate(String senddate) {
 	this.senddate = senddate;
 }
 
-
-public String getCompany() {
-	return company;
-}
-
-
-public void setCompany(String company) {
-	this.company = company;
-}
 
 
 public String getFavorite() {

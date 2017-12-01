@@ -26,7 +26,6 @@ public class memberInfo extends HttpServlet {
 		
 		
 		for (memberInfoVO vo : list) {
-			vo.getCompany();
 			vo.getEmail();
 			vo.getFavorite();
 			vo.getGender();
