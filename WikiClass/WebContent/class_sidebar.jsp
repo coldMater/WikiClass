@@ -27,9 +27,9 @@
 			<header class="major">
 			<% String list = (String) request.getAttribute("list"); %>
 			<% String classNum = (String) request.getAttribute("classID"); %>
-			<% ClassDAO dao = new ClassDAO(); %>
-			<% classVO vo = dao.getClass(classNum); %>
-			<h2><%= vo.getName()%></h2>
+<%-- 			<% ClassDAO dao = new ClassDAO(); %> --%>
+<%-- 			<% classVO vo = dao.getClass(classNum); %> --%>
+<%-- 			<h2><%= vo.getName()%></h2> --%>
 			</header>
 
 			<%= list %>
