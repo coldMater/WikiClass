@@ -28,11 +28,25 @@
 
 							<!-- Content -->
 								<section>
+									
 									<% String noteNum = request.getParameter("noteID"); %>
+									<% if(noteNum == null){noteNum = (String)request.getAttribute("noteID");} %>
+									<% System.out.println(noteNum+"³ª¿À³ª?"); %>
 									<% NoteDAO dao = new NoteDAO();  %>
 									<% NoteVO vo = dao.getNote(noteNum);%>
-									<%= vo.getPath() %>
+									<%= vo.getContent() %>
+									<input type="hidden" id = "content_note" value = "<%= vo.getPath() %>"/>
+								
 								</section>
+								<iframe src="<%= vo.getPath() %>" frameborder="0" style = "display:block;"></iframe>
+								<section id = "content_area">
+								
+								</section>
+								<script>
+									var contentHTML = document.getElementById("");
+										
+									document.write(fileName.value);
+ 								</script>
 
 						</div>
 					</div>

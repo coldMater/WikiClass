@@ -226,6 +226,40 @@ public class ClassDAO {
 		close();
 		return list;
 	}
+	
+	public classVO getClass(String num) {
+		getConn();
+		classVO tempVO = null;
+		try {
+			pst = conn.prepareStatement("select * from wikiclass where num = ?");
+			pst.setString(1, num);
+			
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				tempVO = new classVO(rs.getString(1),
+											 rs.getString(2),
+											 Integer.parseInt(rs.getString(3)),
+											 rs.getString(4),
+											 rs.getString(5),
+											 rs.getString(6),
+											 rs.getString(7),
+											 rs.getString(8));
+			}
+//			private String group_name; //그룹 번호
+//			private String mem_name; //회원 번호
+//			private int num; //클래스 번호
+//			private String name; //클래스 명
+//			private String favorite; //분야
+//			private String imgPath; //이미지 경로
+//			private String classPath; //클래스 내용-->경로로 수정
+//			private String senddate; //작성 날짜
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tempVO;
+	}
 
 	private String mNumNickname(int mem_num) {
 		String sql = "select * from member where num=?"; 

@@ -27,6 +27,8 @@ public class NoteLoadingService extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		System.out.println("Start @@ com.Service/NoteLoadingService.java");
 		response.setContentType("text/html;charset=euc-kr");
 		
 		classID = (String)request.getAttribute("classIDnow");
@@ -101,14 +103,17 @@ public class NoteLoadingService extends HttpServlet {
 		request.setAttribute("list", menuList);
 		request.setAttribute("classID", classID);
 		request.setAttribute("noteID", noteID);
-		System.out.println("여기서 noteID 는 ? "+noteID);
+		
+		System.out.println("Final @@ com.Service/NoteLoadingService.java");
+		RequestDispatcher dispatcher = null;
+
 		if(noteID==null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("class_print.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("class_print.jsp");
 		} else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("class_generic.jsp");
-	        dispatcher.forward(request, response);	
+			dispatcher = request.getRequestDispatcher("class_generic.jsp");
 		}
+		
+		dispatcher.forward(request, response);
 		
 		tag = "";
 	}
