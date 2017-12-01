@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.VO.NoteVO;
@@ -123,5 +124,34 @@ public class NoteDAO {
 		};
 		
 		return tempVO;
+	}
+	
+	public ArrayList<NoteVO> selectNotesByClassID(String classID){
+		ArrayList<NoteVO> tempArr= new ArrayList<NoteVO>();
+		NoteVO tempVO = null;
+		getConn();
+		
+		try {//** select 문으로 리턴된 결과 row들을 또다시 select 에서 사용할 때에는 in 을 사용해주어야 한다. 
+			pst = conn.prepareStatement("select * from note where num in (select note_id from class_tree_info where class_id = ?)");
+			pst.setString(1, classID);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				tempVO = new NoteVO(rs.getString(1),
+									rs.getString(2),
+									rs.getString(3),
+									rs.getString(4),
+									rs.getString(5),"");
+				tempArr.add(tempVO);
+				
+			}
+			
+			pst.close();
+			rs.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tempArr;
 	}
 }

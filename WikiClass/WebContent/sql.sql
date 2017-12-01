@@ -3,6 +3,12 @@ create user wcadmin identified by wcadmin;
 grant connect, resource to wcadmin;
 
 
+select note_id from class_tree_info where class_id = '41';
+
+
+select * from note where num = (select note_id from class_tree_info where class_id = '41');
+
+
 create table admin(
 id varchar2(20),
 password varchar2(20),

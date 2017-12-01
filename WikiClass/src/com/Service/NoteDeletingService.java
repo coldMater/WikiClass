@@ -9,14 +9,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.DAO.NodeDAO;
+import com.DAO.NoteDAO;
+import com.DAO.NoteHistoryDAO;
 import com.VO.NodeVO;
+import com.VO.NoteVO;
 
 
 @WebServlet("/NoteDeletingService")
 public class NoteDeletingService extends HttpServlet {
 	ArrayList<NodeVO> nodeList;
+	ArrayList<NoteVO> noteList;
 	ArrayList<NodeVO> offsprings;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,13 +35,24 @@ public class NoteDeletingService extends HttpServlet {
 					//다음 sibling 이 없을 때는 이 과정이 생략된다.
 					//다음 sibling 의 sibling 값을 삭제될 노드가 갖고 있던 sibling 값으로 대체한다.(##UPDATE##) 
 			//해당 노드의 parent 값을 -1 로 바꿔준다. (##UPDATE##)
-
+		HttpSession session = request.getSession();
+		String userID = (String)session.getAttribute("userNum");
 		
 		String classID = request.getParameter("classID");
-		String nodeID = request.getParameter("nodeID"); //This node Will be deleted.
+		if(classID == null) {
+			classID = (String) request.getAttribute("classID");
+		}
+		String nodeID = request.getParameter("noteID"); //This node Will be deleted.
+		if(nodeID == null) {
+			nodeID = (String) request.getAttribute("nodeID"); //This node Will be deleted.
+		}
 
+		System.out.println("삭제기능 가능할지? : "+ classID +" "+nodeID);
+		
 		NodeDAO nodeDAO = new NodeDAO();
+		NoteDAO noteDAO = new NoteDAO();
 		nodeList = nodeDAO.select(classID);
+		noteList = noteDAO.selectNotesByClassID(classID);
 		
 		NodeVO nextSibling = getNodeBySibling(nodeID); // nodeID 를 sibling 값으로 갖는 node 를 검색하여 반환한다. 
 		NodeVO nodeVO = getNodeByID(nodeID);
@@ -55,6 +71,7 @@ public class NoteDeletingService extends HttpServlet {
 				System.out.println("next Sibling 인 노드의 P, S를 변경한다.");
 				System.out.println("SQL : next Sibling인 "+nextSiblingID+"의 P : "+tempPID+" S : "+tempSID+"로 변경");
 				nodeDAO.updateNode(nextSiblingID,tempPID,tempSID);
+
 				//SQL = update class_tree_info set parent_id ='tempPID', sibling_id = 'tempSID' where =  note_id='nextSiblingID';
 			} else {
 				System.out.println("다음 노트가 없으므로 다음 노트의 S를 바꾸지 않는다.");
@@ -63,10 +80,17 @@ public class NoteDeletingService extends HttpServlet {
 			System.out.println("ID : "+ nodeID +"인 노드의 삭제를 진행한다.");
 			//노드 빼내기(삭제) : 해당 노드의 pid 변경
 			System.out.println("SQL : "+nodeID+"의 P : -1, S : -1 값을 입력");
-			nodeDAO.updateNode(nodeID,"-1","-1");	
+			int result = nodeDAO.updateNode(nodeID,"-1","-1");
+			if(result >0) {
+				//결과값을 히스토리에 추가
+				NoteHistoryDAO hisDAO = new NoteHistoryDAO();
+				hisDAO.insertHistory(userID, nodeID, classID, "0", noteDAO.getNote(nodeID).getTitle(), noteDAO.getNote(nodeID).getTitle()); //분류(등록:0, 조회 : 1, 수정:2,삭제:3)
+			}
+			
 		}
 		
 		System.out.println("=====NoteDeletingService.java/Servlet=====");
+		
 		request.setAttribute("classIDnow",classID);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("NoteLoadingService");
 		dispatcher.forward(request, response);

@@ -7,6 +7,7 @@ String path;
 String date;
 String author;
 String content;
+
 public NoteVO(String num, String title, String path, String date, String author, String content) {
 	super();
 	this.num = num;

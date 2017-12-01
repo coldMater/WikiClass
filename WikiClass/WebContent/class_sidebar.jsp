@@ -34,6 +34,7 @@
 
 			<%= list %>
 			</nav>
+			
 			<section>
 			<header class="major">
 			<h2>노트 생성하기</h2>
@@ -52,9 +53,22 @@
 			<input type="text" name = "noteID" style="width:30%;display:inline;"/><b> →</b>
 			<input type="text" name = "parentID" style="width:30%;display:inline;"/>
 			<input type="hidden" name = "classID" value="<%=classNum%>"/>
-			<input type="submit" value = "이동"/>
+			<input type="submit" value = "이동" style="text-align: right;float: right;"/>
 			</form>
-			</section>			
+			</section>
+			
+			<section>
+			<header class="major">
+			<h2>노트 삭제하기</h2>
+			</header>
+			
+			<form action="NoteDeletingService">
+			<input type="text" name = "noteID" style="width:30%;display:inline;"/>
+			<input type="hidden" name = "classID" value="<%=classNum%>"/>
+			<input type="submit" value = "삭제" style="text-align: right;float: right;"/>
+			</form>
+			</section>
+						
 			<!-- Section -->
 			<section> <header class="major">
 			

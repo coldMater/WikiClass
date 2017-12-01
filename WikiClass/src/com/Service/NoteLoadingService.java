@@ -15,12 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.DAO.NodeDAO;
+import com.DAO.NoteDAO;
 import com.VO.NodeVO;
+import com.VO.NoteVO;
 
 @WebServlet("/NoteLoadingService")
 public class NoteLoadingService extends HttpServlet {
-	NodeDAO noteDAO = new NodeDAO();
+	NodeDAO nodeDAO = new NodeDAO();
+	NoteDAO noteDAO = new NoteDAO();
 	ArrayList<NodeVO> nodeList; // 전달되는 인자는 클래스의 번호
+	ArrayList<NoteVO> noteList;
 	NodeVO nodeCursor;
 	HashMap<String, ArrayList<NodeVO>> groupHash;
 	String classID;
@@ -32,6 +36,7 @@ public class NoteLoadingService extends HttpServlet {
 		response.setContentType("text/html;charset=euc-kr");
 		
 		classID = (String)request.getAttribute("classIDnow");
+		System.out.println("여기는 로딩서비스, 아이디가 나오는지 : "+classID);
 		if(request.getAttribute("classIDnow")==null) {
 			classID = request.getParameter("classNum");
 		}
@@ -39,8 +44,10 @@ public class NoteLoadingService extends HttpServlet {
 			classID = request.getParameter("classID");
 		}
 
+		
 		System.out.println("현재의 classID: "+classID);
-		nodeList = noteDAO.select(classID);
+		nodeList = nodeDAO.select(classID);
+		noteList = noteDAO.selectNotesByClassID(classID);
 		
 		HashSet<String> parentIDList = new HashSet<String>();
 		groupHash = new HashMap<String, ArrayList<NodeVO>>();
@@ -122,21 +129,24 @@ public class NoteLoadingService extends HttpServlet {
 	String tag = "";
 
 	public String getNextGroup(ArrayList<NodeVO> groupBefore) {
+		//아래 부분에서 실제 목차의 HTML 구조가 만들어진다. 
+		
 
+		
 		for (int i = 0; i < groupBefore.size(); i++) {
 			NodeVO node =  groupBefore.get(i);
 			String id = node.getNoteID();
 			String pid = node.getParentID();
 			String sid = node.getSiblingID();
 			
-			tag += "<li>";
+			tag += "<li id = "+id+" value = "+"{'NID'="+id+",'PID'="+pid+",'SID'="+sid+",'depth'="+depth+"}"+">";
 			if(depth==0) {
 				tag+="<span class = 'opener'>";
 			}
 			
-
+			getNoteVO(id);
 			tag += "<a href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"'>";
-			tag += id + "([P:"+pid+" |S:"+sid+" |D:" + depth + ")";
+			tag += getNoteVO(id).getTitle() + ("{'NID'="+id+",'PID'="+pid+",'SID'="+sid+",'depth'="+depth+"}");
 			tag += "</a>";
 			if(depth==0) {
 				tag+="</span>";
@@ -158,6 +168,14 @@ public class NoteLoadingService extends HttpServlet {
 		}
 
 		return tag;
+	}
+
+	private NoteVO getNoteVO(String id) {
+		NoteVO tempVO=null;
+		for (int i = 0; i < noteList.size(); i++) {
+			tempVO = noteList.get(i);
+		}
+		return tempVO;
 	}
 
 	public NodeVO getNodeBySibling(String siblingID) {
