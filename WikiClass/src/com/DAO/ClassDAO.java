@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.VO.classVO;
+import com.VO.groupSearchVO;
 
 public class ClassDAO {
 	Connection conn = null;
@@ -357,4 +358,29 @@ public class ClassDAO {
 		//회원 이메일과 클래스 번호로 class_grant테이블에서 조회 있으면 1
 		
 	}*/
+	
+	//전체그룹 가져오기
+	public ArrayList<groupSearchVO> groupSelectAll() {
+		getConn();
+		String sql = "select * from wikigroup"; 
+		ArrayList<groupSearchVO> list = new ArrayList<groupSearchVO>();	
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				int group_num = rs.getInt(1);
+				String group_name =rs.getString(2);
+				String content = rs.getString(3);
+				groupSearchVO gvo = new groupSearchVO(group_num, group_name, content);
+				list.add(gvo);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("ClassDAO groupSelectAll error");
+			e.printStackTrace();
+		}
+		close();
+		return list;
+	}
 }

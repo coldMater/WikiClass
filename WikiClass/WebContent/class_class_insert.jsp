@@ -53,8 +53,8 @@ padding:  0 0.75em 0.2em 0 ;
 										<h1>Class 추가</h1>
 									</header>
 								<form action="classInsert.do" method="post" enctype="multipart/form-data">
-									<span class="image main" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그룹 이미지 선택
-										<br><img src="images/pic11.jpg" alt="" style="width: 17%; height: 300px" /><input type="file" name="img"></span>
+									<span class="image main" >
+										<img src="images/classInsert.png" alt="" style="width: 23%; height: 300px"/><input type="file" name="img"  style="margin-left:31px;"></span>
 									<table id="classtable">
 										<tr>
 											<!-- 권한 부여된 사람들 출력 -->
@@ -120,8 +120,8 @@ padding:  0 0.75em 0.2em 0 ;
 									<script>
 										CKEDITOR.replace('editor1');
 									</script>
-									<input type="submit" value="클래스만들기" id="createClass"/>
-									<input type="button" onclick="createC()" id="createClass2" value="클래스추가">
+									<input type="submit" value="클래스생성" id="createClass"/>
+									<input type="button" onclick="createC()" id="createClass2" value="클래스생성">
 								</form>	
 								</section>
 
@@ -335,4 +335,5 @@ padding:  0 0.75em 0.2em 0 ;
 			</script>
 
 	</body>
+
 </html>

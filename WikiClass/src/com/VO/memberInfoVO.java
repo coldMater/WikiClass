@@ -8,6 +8,7 @@ String senddate;
 String favorite;
 int age;
 int gender;
+
 public memberInfoVO(int num, String email, String nickname, String senddate, String favorite, int age, int gender) {
 	super();
 	this.num = num;
