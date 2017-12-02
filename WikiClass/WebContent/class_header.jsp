@@ -19,15 +19,15 @@ System.out.println("class_index에 들어온 uri = "+req_uri);
 		<a href="class_index.jsp" class="logo">
 			<img src="images/logo3.png" alt="" style="float:left;"/>
 		</a>
-	<ul class="icons">
+	<ul class="icons" style="margin-top: auto;">
 		<c:choose>
 			<c:when test="${empty sessionScope.email }">
-				<li><a href="memberLogin.jsp?uri=<%=req_uri %>" class="icon">로그인</a></li>
-				<li><a href="memberJoin.jsp?uri=<%=req_uri %>" class="icon">회원가입</a></li>
+				<li><a href="memberLogin.jsp?uri=<%=req_uri %>" style="border:0px;color:#444444;font-size: 1.5rem">로그인</a></li>
+				<li><a href="memberJoin.jsp?uri=<%=req_uri %>" style="border:0px;color:#444444;font-size: 1.5rem">회원가입</a></li>
 			</c:when>
 			<c:otherwise>
-				<li><a href="MyPage.jsp" class="icon">MyPage</a></li>
-				<li><a href="logout?uri=<%=req_uri%>" class="icon">로그아웃</a></li>
+				<li><a href="MyPage.jsp" style="border:0px;color:#444444;font-size: 1.5rem">MyPage</a></li>
+				<li><a href="logout?uri=<%=req_uri%>"  style="border:0px;color:#444444;font-size: 1.5rem">로그아웃</a></li>
 			</c:otherwise>
 		</c:choose>
 	</ul>

@@ -119,7 +119,7 @@ ul.actions {
     text-decoration: underline;
 }
 
-#span {
+.icon {
 	flex-shrink: 0;
     line-height: 10em;
     text-align: center;
@@ -135,7 +135,7 @@ ul.actions {
     text-transform: none !important;
     border-bottom: solid 2px rgba(210, 215, 217, 0.75) !important;
 }
-#span:before {
+.icon:before {
     -webkit-font-smoothing: antialiased;
     font-family: FontAwesome;
     font-style: normal;
@@ -144,7 +144,7 @@ ul.actions {
     font-size: 2.7rem;
 }
 
-#span:after{
+.icon:after{
 transform: rotate(45deg);
     border-radius: 0.25rem;
     border: solid 2px rgba(210, 215, 217, 0.75);
