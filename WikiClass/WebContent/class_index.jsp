@@ -119,8 +119,43 @@ ul.actions {
     text-decoration: underline;
 }
 
+.icon {
+	flex-shrink: 0;
+    line-height: 10em;
+    text-align: center;
+	padding: 0;
+    font: inherit;
+    vertical-align: baseline;    
+    box-sizing: border-box;  
+	color: #f56a6a;
+    font-size: 0.05rem;
+	font-family: FontAwesome;    
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none !important;
+    border-bottom: solid 2px rgba(210, 215, 217, 0.75) !important;
+}
+.icon:before {
+    -webkit-font-smoothing: antialiased;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none !important;
+    font-size: 2.7rem;
 }
 
+.icon:after{
+transform: rotate(45deg);
+    border-radius: 0.25rem;
+    border: solid 2px rgba(210, 215, 217, 0.75);
+    content: '';
+    display: block;
+    height: 7em;
+    left: 50%;
+    top: 50%;
+    width: 7em;  
+    margin: -6.8em 0 0 -1.4em;
+}
 </style>		
 	</head>
 	<body>
@@ -287,23 +322,15 @@ ul.actions {
 											<article>
 												<%
 												System.out.println("√‚∑¬µ«¥¬ class i∞™ : "+i);
-													/* request.setAttribute("className", list.get(0).getName()); */
-													
-													//±◊∑Ïø°º≠ π´æ˘¿ª ∫∏ø©¡Ÿ¡ˆ √ﬂ∞°
 												%>
-												<div style="width: 50%;float: left;">
-													<h2><%=list2.get(i).getName() %></h2>
-													<ul class="actions">
-														<li><a href="group_print.jsp" class="button"><p>More</p></a></li>
-													</ul>	
+												<br>
+												<div style="width: 20%; float: left; height: 97px">
+													<span id="span1" class="icon fa-book"></span>
 												</div>
-												<div style="width: 50%;float: left;">
-													<%
-														
-													%>
-													<br><p><%=list2.get(i).getContent()%></p>
-													<br><p>¿œ¿ÃªÔªÁø¿¿∞ƒ•∆»±∏Ω ¿œ¿ÃªÔªÁø¿¿∞ƒ•∆»±∏Ω ¿œ¿ÃªÔªÁø¿¿∞ƒ•∆»±∏Ω ¿œ¿ÃªÔªÁø¿¿∞ƒ•∆»±∏Ω ¿œ¿ÃªÔªÁø¿¿∞ƒ•∆»±∏Ω ¿œ¿ÃªÔªÁø¿¿∞ƒ•∆»±∏Ω ¿œ¿ÃªÔªÁø¿¿∞ƒ•∆»±∏Ω </p>
-												</div>	
+												<div style="width: 100%; height: 97px;">
+													<a href="#"><h2><%=list2.get(i).getName() %></h2></a>
+												</div>
+													<%=list2.get(i).getContent()%>
 											</article>
 										<%} 
 									}%>

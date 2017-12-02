@@ -13,7 +13,7 @@
 -->
 <html>
 <head>
-<title>Editorial by HTML5 UP</title>
+<title>MyPage</title>
 <meta charset="euc-kr" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -37,20 +37,12 @@
 	MemberVO mvo = mdao.emailselect(email);
 	request.setAttribute("mvo", mvo);
 	
-	//그룹테이블에서 멤버 번호가 있는 그룹 가지고오기
-	ClassDAO cdao = new ClassDAO();
-	ArrayList<String> list = new ArrayList<String>();
-	list = cdao.selectNameGroup(email);
-	request.setAttribute("list", list);
 			
 	//관심 분야 가져오기
 	String selectFavorite = mdao.selectFavoriteOnt(email);
 	String[] favorite = null;
 	if(mvo == null){
 		System.out.println("MyPage.jsp에서  mvo가 null 입니다.");
-		response.sendRedirect("main_index.jsp");
-	}else if(list == null){
-		System.out.println("MyPage.jsp에서  list가 null 입니다.");
 		response.sendRedirect("main_index.jsp");
 	}else if(selectFavorite != null){
 		favorite = selectFavorite.split("_");
@@ -108,19 +100,11 @@
 					</table>
 					</article>
 
-					<article style="display : inline;"> <header class="major">
-					<h3>내가 속한 그룹</h3>
-					</header>
-					<h3>Lists</h3>
-					<div class="row">
-						<div class="6u 12u$(small)">
-							<ul>
-								<c:forEach items="${list }" var="i">								
-									<h4><li>${i }</li></h4>
-								</c:forEach>
-							</ul>
-						</div>
-					</div>
+					<article style="display : inline;"> 
+						<header class="major">
+							<h3>내가 속한 그룹</h3>
+						</header>
+						<iframe scrolling="auto" src="MyPage_groupList.jsp" style="height: 300px; width: 100%"></iframe>
 					</article>
 				</div>
 				</section> 
