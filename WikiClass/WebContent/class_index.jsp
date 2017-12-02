@@ -69,6 +69,8 @@ ul.actions {
     list-style: none;
 }
 
+
+
 #selTep li{
 	float: left;
     margin-bottom: -1px;

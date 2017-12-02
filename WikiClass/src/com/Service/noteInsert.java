@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.DAO.ClassDAO;
 import com.DAO.NodeDAO;
 import com.DAO.NoteDAO;
+import com.DAO.NoteHistoryDAO;
 import com.VO.NodeVO;
 
 import sun.rmi.server.Dispatcher;
@@ -31,7 +32,6 @@ public class noteInsert implements command{
 		String editor1 = request.getParameter("editor1");
 		System.out.println("세션에서 가져온 Num 값 : "+request.getSession().getAttribute("userNum"));
 		String userNum = (String)request.getSession().getAttribute("userNum");
-		
 		System.out.println("클래스 번호 : "+classID);
 		System.out.println("노트 제목 : "+noteName);
 		System.out.println("작성자 : "+nickname);
@@ -51,6 +51,12 @@ public class noteInsert implements command{
 			lastSiblingID = getLastSibling().getNoteID();
 		} 
 		String noteID = noteDao.insertNote(noteName, saveDir, lastSiblingID, classID, userNum);
+				
+		if(noteID!=null) {
+			//결과값을 히스토리에 추가
+			NoteHistoryDAO hisDAO = new NoteHistoryDAO();
+			hisDAO.insertHistory(userNum, noteID, classID, "0", noteName, editor1); //분류(등록:0, 조회 : 1, 수정:2, 삭제:3)
+		}
 		
 		String fileName = saveDir+"\\"+noteID+".txt";
 		
@@ -70,6 +76,7 @@ public class noteInsert implements command{
 			System.out.println("Final @@ com.Service/noteInsert.java");
 			request.setAttribute("classIDnow", classID);
 			request.setAttribute("noteID", noteID);
+
 			RequestDispatcher dis = request.getRequestDispatcher("NoteLoadingService");
 			dis.forward(request, response);
 			

@@ -40,7 +40,7 @@
 			<h2>노트 생성하기</h2>
 			</header>
 			<p style="text-align: right;float: right;">
-			<a href="class_note.jsp?classNum=41&amp;groupName=smhrd&amp;className=github&amp;nickname=coldamter" class="button">노트 추가</a>
+			<a href="class_note.jsp?classNum=<%=classNum%>&amp;groupName=smhrd&amp;className=github&amp;nickname=coldamter" class="button">노트 추가</a>
 			</p>
 			</section>
 			

@@ -37,7 +37,7 @@ public class NoteDeletingService extends HttpServlet {
 			//해당 노드의 parent 값을 -1 로 바꿔준다. (##UPDATE##)
 		HttpSession session = request.getSession();
 		String userID = (String)session.getAttribute("userNum");
-		
+		System.out.println("세션값 확인 : " + userID);
 		String classID = request.getParameter("classID");
 		if(classID == null) {
 			classID = (String) request.getAttribute("classID");
@@ -84,7 +84,9 @@ public class NoteDeletingService extends HttpServlet {
 			if(result >0) {
 				//결과값을 히스토리에 추가
 				NoteHistoryDAO hisDAO = new NoteHistoryDAO();
-				hisDAO.insertHistory(userID, nodeID, classID, "0", noteDAO.getNote(nodeID).getTitle(), noteDAO.getNote(nodeID).getTitle()); //분류(등록:0, 조회 : 1, 수정:2,삭제:3)
+				
+				hisDAO.insertHistory(userID, nodeID, classID, "3", noteDAO.getNote(nodeID).getTitle(), noteDAO.getNote(nodeID).getTitle()); //분류(등록:0, 조회 : 1, 수정:2,삭제:3)
+				
 			}
 			
 		}

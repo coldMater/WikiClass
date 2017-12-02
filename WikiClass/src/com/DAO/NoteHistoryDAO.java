@@ -52,10 +52,12 @@ public class NoteHistoryDAO {
 		//classification : 분류(등록:0, 조회 : 1, 수정:2,삭제:3)
 		//title_before_action : 과정이 수행되기 전의 제목 저장
 		//content_before_action : 과정이 수행되기 전의 내용 저장
+		System.out.println("@@@@@@@@@@@@@@@생성시 내용 확인 : "+classID);
 		getConn();
 		int cnt =0;
 		try {
-			pst = conn.prepareStatement("insert into note_history values(?,?,?,?,sysdatetime,?,?)");
+			System.out.println("오서 : " + author);
+			pst = conn.prepareStatement("insert into note_history values(?,?,?,?,sysdate,?,?)");
 			pst.setString(1, author);
 			pst.setString(2, noteID);
 			pst.setString(3, classID);

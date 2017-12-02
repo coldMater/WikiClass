@@ -19,8 +19,12 @@ td{
 table tbody tr{
 	border:0px !important;
 }
+header#header{
+
+padding-top: 2em !important;
+}
 </style>
-		<title>Group 만들기</title>
+		<title>class 만들기</title>
 		<meta charset="EUC-KR" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="class_assets/css/main.css" />
@@ -51,7 +55,7 @@ request.setCharacterEncoding("EUC-KR");
 										<table style="border:0px; background-color: white;" id="grouptable">
 											<tr>
 												<td>
-													<input type="text" name="groupName" id="groupName" maxlength="40" placeholder="그룹 이름" /><br>
+													<input type="text" name="groupName" id="groupName" placeholder="그룹 이름" /><br>
 													<p id="groupText"></p>
 												</td>
 												<td>

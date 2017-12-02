@@ -7,6 +7,10 @@
 <html>
 	<head>
 <style type="text/css">
+header#header{
+
+padding-top: 2em !important;
+}
 #cke_1_contents{
 	height: 400px !important;
 }
@@ -317,9 +321,6 @@ padding:  0 0.75em 0.2em 0 ;
 	          							}
 	          						}
 	          					}
-	          					
-	          					
-	          					
 	          					if(!(boo)){
 	          						createClass.style.display="none"
 	          						createClass2.style.display="inline-block"

@@ -74,6 +74,7 @@ public class NoteDAO {
 			rs = pst3.executeQuery();
 			if (rs.next()) {
 				sequenceNow = rs.getString(1);
+				
 			}
 
 			System.out.println(cnt);
