@@ -19,6 +19,10 @@ td{
 table tbody tr{
 	border:0px !important;
 }
+header#header{
+
+padding-top: 2em !important;
+}
 </style>
 		<title>class 만들기</title>
 		<meta charset="EUC-KR" />

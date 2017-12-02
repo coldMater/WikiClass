@@ -20,6 +20,14 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style type="text/css">
+
+
+
+header#header{
+
+padding-top: 2em !important;
+}
+
 div#main > div.inner >  section{
 }
 a.image{
@@ -60,6 +68,8 @@ ul.actions {
     padding-left: 0;
     list-style: none;
 }
+
+
 
 #selTep li{
 	float: left;
