@@ -87,7 +87,7 @@ classPath varchar2(4000),
 senddate date
 );
 
-alter table 
+select * from wikiclass where group_num=85;
 
 create sequence wikiclass_num
 start with 1
@@ -129,3 +129,6 @@ increment by 1;
 /*관리자 메모 추가*/
 create table admin_memo(memo_1 number, memo_2 number, memo_3 number, content varchar(300));
 
+select * from member;
+
+select * from group_person where nickname=(select nickname from member where email='1')

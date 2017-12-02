@@ -1,3 +1,5 @@
+<%@page import="com.VO.groupSearchVO"%>
+<%@page import="com.DAO.ClassDAO"%>
 <%@page import="com.VO.MemberVO"%>
 <%@page import="com.DAO.memberDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -19,10 +21,6 @@ td{
 table tbody tr{
 	border:0px !important;
 }
-header#header{
-
-padding-top: 2em !important;
-}
 </style>
 		<title>class 만들기</title>
 		<meta charset="EUC-KR" />
@@ -35,6 +33,11 @@ padding-top: 2em !important;
 	<body>
 <%
 request.setCharacterEncoding("EUC-KR");
+
+int groupNum = Integer.parseInt(request.getParameter("groupNum"));
+ClassDAO cdao = new ClassDAO();
+groupSearchVO gvo = cdao.selectGroupNameOne(groupNum);
+
 %>
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -49,23 +52,14 @@ request.setCharacterEncoding("EUC-KR");
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h1>그룹 만들기</h1>
+										<h1><%=gvo.getName() %>Group편집</h1>
 									</header>
-									<form action="groupInsert.do" method="post"><!-- groupInsert -->
+									<form action="groupUpdate.do" method="post"><!-- groupInsert -->
 										<table style="border:0px; background-color: white;" id="grouptable">
-											<tr>
-												<td>
-													<input type="text" name="groupName" id="groupName" placeholder="그룹 이름" /><br>
-													<p id="groupText"></p>
-												</td>
-												<td>
-													<input type="button" onclick="groupSelectOne();personCheck(0);" id="selectGroup" value="중복확인">
-												</td>
-											</tr>
 											<tr>
 												<td colspan="2">
 													<h3>그룹에 대한 간략히 설명해주세요</h3>
-													<textarea name="groupContent" id="groupContent" rows="10" cols="80"></textarea>
+													<textarea name="groupContent" id="groupContent" rows="10" cols="80"><%=gvo.getContent() %></textarea>
 												</td>
 											</tr>
 											<tr>
@@ -77,6 +71,8 @@ request.setCharacterEncoding("EUC-KR");
 														response.sendRedirect("main_index.jsp");
 													}
 												%>
+													<input type="hidden" name="groupName" value="<%=gvo.getName() %>">
+													<input type="hidden" name="groupNum" value="<%=gvo.getNum() %>">
 													<input type="hidden" name="person" value="<%=mvo.getNickname()%>">
 													<input type="text" name="person" id="person0" value="" placeholder="사람 추가(닉네임)" onfocusout="personCheck(0)"/>
 													<p id="personText0" style="height: 4px;"></p>
@@ -104,12 +100,9 @@ request.setCharacterEncoding("EUC-KR");
 			</header>
 			- 그룹 페이지에 오신 걸 환영합니다!<br>
 			- 그룹 기능을 통해 여러분과 친구들을<br>&nbsp; &nbsp;하나로 묶어주세요!<br>
-			<hr>
-			<h3>그룹 만들기</h3>
-			- 그룹의 이름과 설명을 쓰신 후<br>&nbsp; &nbsp;그룹 만들기 버튼을  클릭하면 &nbsp; &nbsp;<br>&nbsp; &nbsp;그룹이 생성됩니다.
 			<hr style="border:1;">
-			<h3>그룹원 초대하기</h3>
-			- 초대하고자 하는 사람의 닉네임를 입력하면<br>&nbsp;&nbsp;그 사람이 구성원에 추가됩니다.
+			<h3>그룹원 추가하기</h3>
+			- 추가하고자 하는 사람의 닉네임를 입력하면<br>&nbsp;&nbsp;그 사람이 구성원에 추가됩니다.
 			<hr>
 			<h3>유의사항</h3>
 			- 모든 클래스는 구성원들과 공유됩니다.<br>
@@ -139,32 +132,8 @@ request.setCharacterEncoding("EUC-KR");
 				var num = 1;
 				
 				var new_groupInput = document.getElementById("groupInput")
-				new_groupInput.style.display="none"
 				var new_groupInputB = document.getElementById("groupInputB");
-				
-				
-				/* function insertPerson(){
-					var new_td1 = document.getElementById("pe2")
-					var new_td2 = document.createElement("td")
-					var new_tr = document.createElement("tr")
-					new_input = document.createElement("input")
-					new_p = document.createElement("p")
-					
-					new_p.id = "personText"
-					new_input.type = "text"
-					new_input.placeholder = "사람추가(닉네임)"
-					new_input.name="person"
-					new_input.id="person"
-					new_input.onfocusout="personCheck()";
-					new_input.addEventListener("focusout",personCheck())
-			
-					new_td1.appendChild(new_input)
-					new_td1.appendChild(new_p)
-					new_td1.appendChild(buttonTag)
-					new_tr.appendChild(new_td1)
-					new_tr.appendChild(new_td1)
-					tableTag.appendChild(new_tr)
-				} */
+				new_groupInputB.style.display="none"
 				
 				$(document).ready(function(){
 					$("#personInsert").click(function(){
@@ -217,26 +186,6 @@ request.setCharacterEncoding("EUC-KR");
 	          					
 	               			}	
 	         		 });
-				}
-				
-				function groupSelectOne(){
-					var new_groupInput = document.getElementById("groupName");
-					var new_groupp = document.getElementById("groupText");
-					
-					$.ajax({
-	          			url:"SerachGroup",
-	          			data : "name="+new_groupInput.value,
-	          			success : function(result){
-	          					new_groupp.innerHTML = result
-	               				if(result=="그룹이 존재합니다."){
-	               					new_groupp.style.color = "red"
-	    
-	               				}else{
-	               					new_groupp.style.color = "blue"
-	               				} 
-	               			}
-	         			 });
-					
 				}
 				
 			</script>

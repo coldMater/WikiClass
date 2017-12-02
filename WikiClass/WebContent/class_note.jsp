@@ -5,6 +5,10 @@
 <html>
 	<head>
 <style type="text/css">
+header#header{
+
+padding-top: 2em !important;
+}
 #cke_1_contents{
 	height: 800px !important;
 }
@@ -53,7 +57,7 @@ h3,h2{
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h3><%=groupName %></h3><h2>그룹</h2>&nbsp;<h3><%=className %></h3>
+										<h3><%=groupName %></h3><h2>Group</h2>&nbsp;<h3><%=className %></h3><h2>Class</h2>
 										<h1>노트 추가</h1>
 									</header>
 								<form action="noteInsert.do" method = "post">

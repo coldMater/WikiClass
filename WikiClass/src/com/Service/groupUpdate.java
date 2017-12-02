@@ -2,7 +2,6 @@ package com.Service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.DAO.ClassDAO;
 
-public class groupInsert implements command {
+public class groupUpdate implements command{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html; charset=euc-kr");
 
-		// 그룹이름, 그룹에대한 설명 데이터베이스에 추가
+		// 그룹이름, 그룹에대한 설명 데이터베이스에 업데이트
 		// 사람들 그룹 번호에 맞는 추가
 		String name = request.getParameter("groupName");
+		int num = Integer.parseInt(request.getParameter("groupNum"));
 		String content = request.getParameter("groupContent");
 		String[] person = request.getParameterValues("person");
 		
 		
-		System.out.println("그룹 명 : " + name);
+		System.out.println("그룹 번호: " + num);
 		System.out.println("그룹 설명 : " + content);
 		System.out.print("추가된 사람 :");
 		for (int i = 0; i < person.length; i++) {
@@ -32,7 +32,7 @@ public class groupInsert implements command {
 		}
 
 		ClassDAO cdao = new ClassDAO();
-		int cnt = cdao.groupInsert(name, content);
+		int cnt = cdao.groupUpdate(num, content);
 
 		try {
 			PrintWriter out = response.getWriter();
@@ -43,17 +43,17 @@ public class groupInsert implements command {
 				cnt = cdao.personInsert(groupnum, person);
 
 				if (cnt > 0) {
-					request.setAttribute("groupInsert", 1);
-					RequestDispatcher dis = request.getRequestDispatcher("class_index.jsp");
+					request.setAttribute("groupUpdate", 1);
+					RequestDispatcher dis = request.getRequestDispatcher("group_print.jsp");
 					dis.forward(request, response);
 				} else {
-					request.setAttribute("groupInsert", 2);
-					RequestDispatcher dis = request.getRequestDispatcher("class_index.jsp");
+					request.setAttribute("groupUpdate", 2);
+					RequestDispatcher dis = request.getRequestDispatcher("group_print.jsp");
 					dis.forward(request, response);
 				}
 			} else {
-				request.setAttribute("groupInsert", 2);
-				RequestDispatcher dis = request.getRequestDispatcher("class_index.jsp");
+				request.setAttribute("groupUpdate", 2);
+				RequestDispatcher dis = request.getRequestDispatcher("group_print.jsp");
 				dis.forward(request, response);
 			}
 		} catch (IOException e) {
@@ -62,6 +62,7 @@ public class groupInsert implements command {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }

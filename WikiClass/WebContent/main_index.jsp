@@ -114,7 +114,7 @@ background-color:  !important;
 			</nav>
 
 
-		
+	<!-- <img alt="" src="images/main_index_Img.png"> -->					
 		<!-- Footer -->
       <div id="footer">
          <div class="container">

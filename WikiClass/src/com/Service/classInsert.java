@@ -83,7 +83,9 @@ public class classInsert implements command {
 				
 			}else {
 				System.out.println(img+"파일 저장 실패");
-				response.sendRedirect("class_class_insert.jsp");
+				request.setAttribute("classInsert", 2);
+				RequestDispatcher dis = request.getRequestDispatcher("class_class_insert.jsp");
+				dis.forward(request, response);
 			}
 			
 		}else {
@@ -93,6 +95,9 @@ public class classInsert implements command {
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	
 	}

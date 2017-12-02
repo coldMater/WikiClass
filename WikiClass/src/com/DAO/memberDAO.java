@@ -134,6 +134,7 @@ public class memberDAO {
 				String senddate = rs.getString(5);
 				mvo = new MemberVO(num,email, password, nickname,senddate);
 			}else {
+				System.out.println("memberDAO의 emailselect 이게 뜨면 안되요");
 				return null;
 			}
 		} catch (SQLException e) {

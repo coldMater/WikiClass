@@ -4,6 +4,7 @@
 <%@page import="com.DAO.ClassDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
 	Editorial by HTML5 UP
@@ -20,6 +21,14 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style type="text/css">
+
+
+
+header#header{
+
+padding-top: 2em !important;
+}
+
 div#main > div.inner >  section{
 }
 a.image{
@@ -61,6 +70,8 @@ ul.actions {
     list-style: none;
 }
 
+
+
 #selTep li{
 	float: left;
     margin-bottom: -1px;
@@ -88,6 +99,7 @@ ul.actions {
 
 #selTep li a{
 	color: #337ab7;
+	/* color: #20C0FF; */
     text-decoration: none;
     position: relative;
     display: block;
@@ -127,7 +139,8 @@ ul.actions {
     font: inherit;
     vertical-align: baseline;    
     box-sizing: border-box;  
-	color: #f56a6a;
+	/* color: #f56a6a; */
+	color: #20C0FF;
     font-size: 0.05rem;
 	font-family: FontAwesome;    
     font-style: normal;
@@ -159,6 +172,23 @@ transform: rotate(45deg);
 </style>		
 	</head>
 	<body>
+		<c:if test="${requestScope.groupInsert==1 }">
+			<script type="text/javascript">
+				show()
+				function show(){
+					alert("Group생성 완료")
+				}
+			</script>
+		</c:if>
+		<c:if test="${requestScope.groupInsert==2 }">
+			<script type="text/javascript">
+				show()
+				function show(){
+					alert("Group생성 실패")
+				}
+			</script>
+		</c:if>
+	
 <%
 	ClassDAO cdao = new ClassDAO();
 	ArrayList<classVO> list = new ArrayList<classVO>(); 
@@ -182,14 +212,12 @@ transform: rotate(45deg);
 									</div>
 									</span>
 								</section>
-		
-								
 								
 									<ul type="disc" id="selTep" style="border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;">
-										<li class="sel1"><a onclick="classSel(1)">클래스</a></li>
-										<li class="sel2"><a onclick="classSel(2)">그룹</a></li>
+										<li class="sel1"><a onclick="classSel(1)"><b style="color: #337ab7;">Class</b></a></li>
+										<li class="sel2"><a onclick="classSel(2)"><b style="color: #337ab7;">Group</b></a></li>
 										<c:if test="${not empty sessionScope.email }">
-											<li class="sel3"><a onclick="classSel(3)">생성하기</a></li>
+											<li class="sel3"><a onclick="classSel(3)"><b style="color: #337ab7;">생성하기</b></a></li>
 										</c:if>
 									</ul>
 								
@@ -201,7 +229,6 @@ transform: rotate(45deg);
 									if(request.getParameter("count")!=null){
 										count = Integer.parseInt(request.getParameter("count"));
 									}
-									
 									
 									int pageCount6 = list.size()%54==0 ? list.size()/54-1 : list.size()/54;
 									int pageCount6Temp = 0;
@@ -325,10 +352,10 @@ transform: rotate(45deg);
 												%>
 												<br>
 												<div style="width: 20%; float: left; height: 97px">
-													<span id="span1" class="icon fa-book"></span>
+													<span id="span1" class="icon fa-users"></span>
 												</div>
 												<div style="width: 100%; height: 97px;">
-													<a href="#"><h2><%=list2.get(i).getName() %></h2></a>
+													<a href="group_print.jsp?groupNum=<%=list2.get(i).getNum()%>"><h2><%=list2.get(i).getName() %></h2></a>
 												</div>
 													<%=list2.get(i).getContent()%>
 											</article>

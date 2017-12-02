@@ -14,7 +14,19 @@
 	text-transform:lowercase;
 	
 	}
+	#main {
 	
+	opacity: 0.85 !important;
+	}
+	
+	#bgimage{
+	position:fixed !important;
+	width:100% !important;
+	height:100% !important;
+	
+
+	
+	}
 	</style>
 		<title>WikiClass Login</title>
 		<meta charset="utf-8" />
@@ -26,7 +38,9 @@
 		<noscript><link rel="stylesheet" href="adm_assets/css/noscript.css" /></noscript>
 		
 	</head>
-	<body class="is-loading">
+	<body class="is-loading" >
+	<div id="bgimage"><img alt="이미지" src="images/whitebg.jpg" width=100% height=100%></div>
+
 <%
 String uri = request.getParameter("uri");
 System.out.println("로그인에 접근한 uri = "+uri);

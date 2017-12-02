@@ -9,6 +9,10 @@
 <html>
 <head>
 <style type="text/css">
+header#header{
+
+padding-top: 2em !important;
+}
 #cke_1_contents{
 	height: 800px !important;
 }
@@ -26,7 +30,6 @@ img{
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
-
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -44,7 +47,8 @@ img{
 									</header>
 									<form action="class_generic.jsp" method="get">
 										<textarea name="editor1" id="editor1" rows="10" cols="80">
-
+	    		        		    		편집을 해보세요ㅋㅋㅋㅋ
+	    		        		    		<h1>This is my textarea to be replaced with CKEditor.</h1>    
 	    		        				</textarea>
 										<input type="submit" value="텍스트 전송" />
 										<script>

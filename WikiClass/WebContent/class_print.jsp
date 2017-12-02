@@ -15,13 +15,14 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<style type="text/css">
-.td1{
+		header#header{
+
+padding-top: 2em !important;
+}
+		td{
 	background-color: white;
 }
-.table1{
-	border:0px solid black !important;
-}
-.tr1{
+table tbody tr{
 	border:0px solid black !important;
 }
 img{

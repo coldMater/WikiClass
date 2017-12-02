@@ -12,6 +12,7 @@ import com.Service.adminLogin;
 import com.Service.classInsert;
 import com.Service.command;
 import com.Service.groupInsert;
+import com.Service.groupUpdate;
 import com.Service.memberJoin;
 import com.Service.memberLogin;
 import com.Service.mypageInsert;
@@ -31,6 +32,7 @@ public class Controller extends HttpServlet {
 		map.put("noteInsert.do", new noteInsert());
 		map.put("mypageInsert.do", new mypageInsert());
 		map.put("adminLogin.do", new adminLogin());
+		map.put("groupUpdate.do", new groupUpdate());
 	}
 	
 	

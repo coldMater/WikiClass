@@ -9,6 +9,17 @@
 -->
 <html>
 	<head>
+	<style>
+	
+		#bgimage{
+	position:fixed !important;
+	width:100% !important;
+	height:100% !important;
+	
+
+	
+	}
+	</style>
 		<title>WikiClass Join</title>
 		<meta charset="EUC-KR" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +31,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body class="is-loading">
+	<div id="bgimage"><img alt="이미지" src="images/whitebg.jpg" width=100% height=100%></div>
+	
+	
 <%
 String uri = request.getParameter("uri");
 System.out.println("회원가입에 접근한 uri = "+uri);
