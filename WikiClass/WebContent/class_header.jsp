@@ -26,7 +26,7 @@ System.out.println("class_index에 들어온 uri = "+req_uri);
 				<li><a href="memberJoin.jsp?uri=<%=req_uri %>" class="icon">회원가입</a></li>
 			</c:when>
 			<c:otherwise>
-				<li><a href="MyPage.jsp" class="icon">마이페이지</a></li>
+				<li><a href="MyPage.jsp" class="icon">MyPage</a></li>
 				<li><a href="logout?uri=<%=req_uri%>" class="icon">로그아웃</a></li>
 			</c:otherwise>
 		</c:choose>
