@@ -1,3 +1,4 @@
+<%@page import="com.DAO.memberDAO"%>
 <%@page import="com.DAO.NoteHistoryDAO"%>
 <%@page import="com.DAO.ClassDAO"%>
 <%@page import="com.VO.classVO"%>
@@ -39,6 +40,21 @@ h4{
 	</head>
 	<body>
 	
+	<%-- 적절한 접속 상황인지 판단 --%>
+<%-- 	<%= isRightMember((String) session.getAttribute("userNum"),(String) session.getAttribute("email")) %>  --%>
+			
+	<%-- 적절한 접속 상황인지 판단하는 함수 사용법 : isRightMember((String) session.getAttribute("userNum"), (String) session.getAttribute("email"))--%>
+	<%!  
+	
+		public boolean isRightMember(String userNum, String userEmail){
+			memberDAO mdao = new memberDAO();
+			boolean isRight = false; 
+			if(userNum!=null && userEmail!=null){
+				isRight= mdao.isRightMember(userNum,userEmail);	
+			}
+			return isRight;
+		}
+	%>	
 <%
 	//name : 클래스명
 	/* String name = (String)request.getAttribute("className"); */

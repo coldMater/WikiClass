@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.DAO.ClassDAO;
 import com.DAO.NoteDAO;
 import com.DAO.NoteHistoryDAO;
 import com.DAO.TextReadWriteDAO;
@@ -31,8 +32,9 @@ public class NoteUpdatingService extends HttpServlet {
 		String noteNum = request.getParameter("noteNum");
 		String userNum = (String)request.getSession().getAttribute("userNum");
 		ServletContext context =  request.getSession().getServletContext();
-		String saveDir = context.getRealPath("NoteText")+"\\"+noteNum+".txt";
-		System.out.println(saveDir);
+		ClassDAO classDAO = new ClassDAO();
+		String groupNum = classDAO.getGroupNum(classID);
+		String saveDir = context.getRealPath("NoteText")+"\\"+groupNum+"\\"+classID;
 		NoteDAO noteDao = new NoteDAO();
 		
 		//File 수정 내용 : 노트 내용

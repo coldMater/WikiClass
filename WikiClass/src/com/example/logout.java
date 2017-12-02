@@ -15,6 +15,7 @@ public class logout extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.removeAttribute("email");
+		session.removeAttribute("userNum");
 		
 		if(uri.equals("main_index.jsp")) {
 			response.sendRedirect("main_index.jsp");

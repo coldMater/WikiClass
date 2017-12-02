@@ -100,26 +100,16 @@ public class NoteDAO {
 			pst.setString(1, num);
 			rs = pst.executeQuery();
 			if(rs.next()) {
+
 				
-				File file = new File(rs.getString(3)+"\\"+rs.getString(1)+".txt");
-				FileReader reader = new FileReader(file);
-				int ch = 0;
-				String content = "";
-				while ((ch = reader.read()) != -1) { //(ch = reader.read()) != -1 -> ch에 아무런 값이 들어가면 while문 종료
-			            content += (char)ch;
-			         }
-			         
-			    reader.close();
-				tempVO = new NoteVO(rs.getString(1),rs.getString(2),rs.getString(3)+"\\"+rs.getString(1)+".txt",rs.getString(4),rs.getString(5),content);
+				TextReadWriteDAO trwDAO = new TextReadWriteDAO();
+				String content = trwDAO.readNote(rs.getString(3), rs.getString(1));
+				
+			    
+				tempVO = new NoteVO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),content);
 				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		};

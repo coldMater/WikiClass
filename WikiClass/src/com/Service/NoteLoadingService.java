@@ -100,12 +100,16 @@ public class NoteLoadingService extends HttpServlet {
 		}
 		String noteID = (String) request.getAttribute("noteID");
 		if(noteID==null) {
+			
 			noteID=(String)request.getParameter("noteID");
 		}
 		String menuList = tag;
 		request.setAttribute("list", menuList);
 		request.setAttribute("classID", classID);
 		request.setAttribute("noteID", noteID);
+		
+		System.out.println("classID : "+classID);
+		System.out.println("noteID : "+noteID);
 		
 		System.out.println("Final @@ com.Service/NoteLoadingService.java");
 		RequestDispatcher dispatcher = null;
@@ -132,15 +136,29 @@ public class NoteLoadingService extends HttpServlet {
 			String id = node.getNoteID();
 			String pid = node.getParentID();
 			String sid = node.getSiblingID();
+			ArrayList<NodeVO> groupNext = groupHash.get(id);
 			
-			tag += "<li id = "+id+" value = "+"{'NID'="+id+",'PID'="+pid+",'SID'="+sid+",'depth'="+depth+"}"+">";
+			tag += "<li id = "+id+" data-nid ="+id+" data-pid="+pid+" data-sid="+sid+" data-depth="+depth+"}"+">";
 			if(depth==0) {
-				tag+="<span class = 'opener'>";
+				if(groupNext == null) {
+					tag+="<span>";
+				} else {
+					tag+="<span class='opener'>";
+				}
+				
 			}
 			
 			getNoteVO(id);
 			tag += "<a href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"'>";
-			tag += getNoteVO(id).getTitle() + ("{'NID'="+id+",'PID'="+pid+",'SID'="+sid+",'depth'="+depth+"}");
+			tag += getNoteVO(id).getTitle() + ("[<b>N</B>:"+
+															"<font color = '145FCC'>"+id+"</font>"
+											+",<b>P</b>:"+
+															"<font color = 'CC2A14'>"+pid+"</font>"
+											+",<b>S</b>:"+
+															"<font color = '522DFF'>"+sid+"</font>"
+											+",<b>D</b>:"+
+															"<font color = 'FFAA8C'>"+depth+"</font>"
+											+"}");
 			tag += "</a>";
 			if(depth==0) {
 				tag+="</span>";
@@ -148,7 +166,7 @@ public class NoteLoadingService extends HttpServlet {
 				tag+="</li>";
 			}
 
-			ArrayList<NodeVO> groupNext = groupHash.get(id);
+
 			if (groupNext == null)
 				continue;
 

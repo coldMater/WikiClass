@@ -258,11 +258,12 @@
 		// Menu.
 			var $menu = $('#menu'),
 				$menu_openers = $menu.children('ul').find('.opener');
-
+				
 			// Openers.
 				$menu_openers.each(function() {
 
 					var $this = $(this);
+					$this.toggleClass('active')
 
 					$this.on('click', function(event) {
 
@@ -270,7 +271,6 @@
 							event.preventDefault();
 
 						// Toggle.
-							$menu_openers.not($this).removeClass('active');
 							$this.toggleClass('active');
 
 						// Trigger resize (sidebar lock).

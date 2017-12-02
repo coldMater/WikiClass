@@ -11,7 +11,11 @@ import java.io.IOException;
 public class TextReadWriteDAO {
 	public void writeNote(String path, String noteID, String content) {
 		
-		File outFile = new File(path);
+		File outDir = new File(path);
+		outDir.mkdirs();
+		File outFile = new File(path+"\\"+noteID+".txt");
+		System.out.println(path+"\\"+noteID+".txt");
+		
 		// ==========================//
 		// 텍스트 파일 쓰기
 		// ==========================//
@@ -34,8 +38,8 @@ public class TextReadWriteDAO {
 
 	public String readNote(String path, String noteID) {
 		String content = "";
-		File inFile = new File(path);
-
+		File inFile = new File(path+"\\"+noteID+".txt");
+		System.out.println(path+noteID+".txt");
 		// ==========================//
 		// 텍스트 파일 읽기
 		// ==========================//

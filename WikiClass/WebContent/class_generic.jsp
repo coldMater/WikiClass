@@ -29,7 +29,7 @@ header#header {
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
-
+<%System.out.println("여기 오냐?"); %>
 				<!-- Header -->
 				<%@include file="class_header.jsp"%>
 
@@ -43,9 +43,11 @@ header#header {
 					}
 				%>
 				<%
-					NoteDAO dao = new NoteDAO();
+					NoteDAO dao_generic = new NoteDAO();
 				%> <%
- 	NoteVO vo = dao.getNote(noteNum);
+				
+ 	NoteVO vo = dao_generic.getNote(noteNum);
+				
  %>
 				<%=vo.getContent()%> <%-- history 내역 추가하기 --%> <%
  	String userNum = (String) session.getAttribute("userNum");

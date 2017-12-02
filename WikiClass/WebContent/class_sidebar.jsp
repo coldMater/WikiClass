@@ -14,26 +14,32 @@
 	<!-- Sidebar -->
 	<div id="sidebar">
 		<div class="inner">
-
-			<!-- Search -->
-			<section id="search" class="alt">
-			<form method="post" action="#">
-				<input type="text" name="query" id="query" placeholder="Search" />
-			</form>
+			<section>
+			<br /><br /><br />
 			</section>
-
-			<!-- Menu -->
+			
+			
+			<!-- Menu --><!-- 클래스 이름 표시 부분 -->
 			<nav id="menu"> 
 			<header class="major">
-			<% String list = (String) request.getAttribute("list"); %>
-			<% String classNum = (String) request.getAttribute("classID"); %>
-<%-- 			<% ClassDAO dao = new ClassDAO(); %> --%>
-<%-- 			<% classVO vo = dao.getClass(classNum); %> --%>
-<%-- 			<h2><%= vo.getName()%></h2> --%>
+			
+			
+			
+			<% String list_side = (String) request.getAttribute("list"); %>
+			<% String classNum_side = (String) request.getAttribute("classID"); %>
+		
+			<% ClassDAO dao_side = new ClassDAO(); %>
+			<% classVO vo_side = dao_side.getClass(classNum_side); %>
+			<h2><i class="fa fa-book" ></i>&nbsp&nbsp <a style = "border-bottom:none;" href="NoteLoadingService?classNum=<%=classNum_side%>"><%= vo_side.getName()%></a> </h2>
 			</header>
-
-			<%= list %>
+			
+			<% if(list_side!=null){%>
+				<%= list_side %>
+			<%}%>
+			
 			</nav>
+			
+			
 			
 			<section>
 			<header class="major">
@@ -42,7 +48,7 @@
 			
 			<form action="class_note_edit.jsp">
 			<input type="text" name = "noteID" style="width:30%;display:inline;"/>
-			<input type="hidden" name = "classID" value="<%=classNum%>"/>
+			<input type="hidden" name = "classID" value="<%=classNum_side%>"/>
 			<input type="submit" value = "편집" style="text-align: right;float: right;"/>
 			</form>
 			</section>
@@ -52,7 +58,7 @@
 			<h2>노트 생성하기</h2>
 			</header>
 			<p style="text-align: right;float: right;">
-			<a href="class_note.jsp?classNum=<%=classNum%>&amp;groupName=smhrd&amp;className=github&amp;nickname=coldamter" class="button">노트 추가</a>
+			<a href="class_note.jsp?classNum=<%=classNum_side%>&amp;groupName=smhrd&amp;className=github&amp;nickname=coldamter" class="button">노트 추가</a>
 			</p>
 			</section>
 			
@@ -64,7 +70,7 @@
 			<div></div>
 			<input type="text" name = "noteID" style="width:30%;display:inline;"/><b> →</b>
 			<input type="text" name = "parentID" style="width:30%;display:inline;"/>
-			<input type="hidden" name = "classID" value="<%=classNum%>"/>
+			<input type="hidden" name = "classID" value="<%=classNum_side%>"/>
 			<input type="submit" value = "이동" style="text-align: right;float: right;"/>
 			</form>
 			</section>
@@ -76,60 +82,23 @@
 			
 			<form action="NoteDeletingService">
 			<input type="text" name = "noteID" style="width:30%;display:inline;"/>
-			<input type="hidden" name = "classID" value="<%=classNum%>"/>
+			<input type="hidden" name = "classID" value="<%=classNum_side%>"/>
 			<input type="submit" value = "삭제" style="text-align: right;float: right;"/>
 			</form>
 			</section>
-						
-			<!-- Section -->
-			<section> <header class="major">
 			
-			<h2>Ante interdum</h2>
+			<!-- Search -->
+			<section id="search" class="alt">
+			<form method="post" action="#">
+				<input type="text" name="query" id="query" placeholder="Search" />
+			</form>
+			</section>
 			
-			</header>
-			<div class="mini-posts">
-				<article> <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore aliquam.</p>
-				</article>
-				<article> <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore aliquam.</p>
-				</article>
-				<article> <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore aliquam.</p>
-				</article>
-			</div>
-			<ul class="actions">
-				<li><a href="#" class="button">More</a></li>
-			</ul>
-			</section>
-
-			<!-- Section -->
-			<section> <header class="major">
-			<h2>Get in touch</h2>
-			</header>
-			<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare
-				velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed
-				aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus
-				aliquam.</p>
-			<ul class="contact">
-				<li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
-				<li class="fa-phone">(000) 000-0000</li>
-				<li class="fa-home">1234 Somewhere Road #8254<br /> Nashville,
-					TN 00000-0000
-				</li>
-			</ul>
-			</section>
-
 			<!-- Footer -->
 			<footer id="footer">
-			<p class="copyright">
-				&copy; Untitled. All rights reserved. Demo Images: <a
-					href="https://unsplash.com">Unsplash</a>. Design: <a
-					href="https://html5up.net">HTML5 UP</a>.
-			</p>
+			<p class="copyright" style="margin-bottom:0px;">
+				&copy; WikiClass </p>
+			<p class="copyright" style="text-align :right;">Design your idea, spread together.</p>
 			</footer>
 
 		</div>

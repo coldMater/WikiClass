@@ -483,4 +483,27 @@ public class ClassDAO {
 		close();
 		return 0;
 	}
+	
+	public String getGroupNum(String classNum) {
+		getConn();
+		String groupNum="";
+		try {
+			pst = conn.prepareStatement("select group_num from wikiclass where num=?");
+			pst.setString(1, classNum);
+			rs=pst.executeQuery();
+			if(rs.next()) {
+				groupNum = rs.getString(1);
+				System.out.println("반환되는 그룹 넘버는 "+ rs.getString(1));
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			
+		return groupNum;
+	}
 }

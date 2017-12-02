@@ -15,6 +15,7 @@ import com.DAO.ClassDAO;
 import com.DAO.NodeDAO;
 import com.DAO.NoteDAO;
 import com.DAO.NoteHistoryDAO;
+import com.DAO.TextReadWriteDAO;
 import com.VO.NodeVO;
 
 import sun.rmi.server.Dispatcher;
@@ -46,31 +47,27 @@ public class noteInsert implements command{
 		
 		ServletContext context =  request.getSession().getServletContext();//어플리케이션에 대한 정보를 가진다.  
 		String saveDir = context.getRealPath("NoteText");
-		System.out.println(saveDir);
 		
 		String lastSiblingID = "0"; // 클래스 생성 후 최초 추가시 sibling id 는 0 이다.
 		if(getLastSibling() != null) {
 			lastSiblingID = getLastSibling().getNoteID();
 		} 
-		String noteID = noteDao.insertNote(noteName, saveDir, lastSiblingID, classID, userNum);
-				
-		if(noteID!=null) {
-			//결과값을 히스토리에 추가
-			NoteHistoryDAO hisDAO = new NoteHistoryDAO();
-			hisDAO.insertHistory(userNum, noteID, classID, "0", noteName, editor1); //분류(등록:0, 조회 : 1, 수정:2, 삭제:3)
-		}
+		//그룹 넘버 불러오기
+		ClassDAO classDAO = new ClassDAO();
+		String groupNum = classDAO.getGroupNum(classID);
+		//파일 경로 생성 : "rootDir/groupNum/classNum/"
+		String classDir = saveDir+"\\"+groupNum+"\\"+classID+"\\";
+		System.out.println("생성시 경로 ; ###############################");
+		System.out.println(classDir);
+		String noteID = noteDao.insertNote(noteName, classDir, lastSiblingID, classID, userNum);
 		
-		String fileName = saveDir+"\\"+noteID+".txt";
+		TextReadWriteDAO trwDAO = new TextReadWriteDAO();
+
+		//파일 쓰기
+		trwDAO.writeNote(classDir, noteID, editor1);
 		
-		try {
-			BufferedWriter fw = new BufferedWriter(new FileWriter(fileName));
-			fw.write(editor1);
-			fw.flush();
-			fw.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		NoteHistoryDAO nhDAO = new NoteHistoryDAO();
+		nhDAO.insertHistory(userNum, noteID, classID, "0", "Just Created","Just Created");
 		
 		System.out.println("=====insertNote.java=====");
 		try {

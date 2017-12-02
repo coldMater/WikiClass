@@ -43,7 +43,6 @@ h3,h2{
 	
 	//NoteDAO 를 통해 noteID를 통해 가져오기	
 	NoteDAO noteDAO = new NoteDAO();
-	System.out.println(noteNum);
 	NoteVO noteVO = noteDAO.getNote(noteNum);
 	String title = "제목을 정상적으로 불러오지 못하였습니다.";
 	String content ="내용을 정상적으로 불러오지 못하였습니다.";
@@ -52,6 +51,8 @@ h3,h2{
 		content = noteVO.getContent();
 		String path = noteVO.getPath();
 		TextReadWriteDAO trwDAO = new TextReadWriteDAO();
+		System.out.println("여기서 경로는?");
+		System.out.println(path);
 		content = trwDAO.readNote(path, noteNum);
 		
 	}
