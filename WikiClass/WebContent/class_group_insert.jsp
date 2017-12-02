@@ -55,7 +55,7 @@ request.setCharacterEncoding("EUC-KR");
 													<p id="groupText"></p>
 												</td>
 												<td>
-													<input type="button" onclick="groupSelectOne()" id="selectGroup" value="중복확인">
+													<input type="button" onclick="groupSelectOne();personCheck(0);" id="selectGroup" value="중복확인">
 												</td>
 											</tr>
 											<tr>
