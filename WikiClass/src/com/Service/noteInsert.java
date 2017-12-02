@@ -30,7 +30,9 @@ public class noteInsert implements command{
 		String noteName = request.getParameter("noteName");
 		String nickname = request.getParameter("nickname");
 		String editor1 = request.getParameter("editor1");
-		System.out.println("세션에서 가져온 Num 값 : "+request.getSession().getAttribute("userNum"));
+		if(request.getSession().getAttribute("userNum")==null) {
+			System.out.println("세션에 저장된 userNum 값이 없습니다. ");	
+		}
 		String userNum = (String)request.getSession().getAttribute("userNum");
 		System.out.println("클래스 번호 : "+classID);
 		System.out.println("노트 제목 : "+noteName);

@@ -155,4 +155,24 @@ public class NoteDAO {
 		}
 		return tempArr;
 	}
+
+	public int updateNote(String noteNum, String noteName) {
+		getConn();
+		int result=0;	
+		try {
+			pst = conn.prepareStatement("update note set name =? where num = ?");
+			pst.setString(1, noteName);
+			pst.setString(2, noteNum);
+			result = pst.executeUpdate();
+			pst.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
 }

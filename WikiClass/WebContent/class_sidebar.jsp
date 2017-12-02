@@ -37,6 +37,18 @@
 			
 			<section>
 			<header class="major">
+			<h2>노트 편집하기</h2>
+			</header>
+			
+			<form action="class_note_edit.jsp">
+			<input type="text" name = "noteID" style="width:30%;display:inline;"/>
+			<input type="hidden" name = "classID" value="<%=classNum%>"/>
+			<input type="submit" value = "편집" style="text-align: right;float: right;"/>
+			</form>
+			</section>
+			
+			<section>
+			<header class="major">
 			<h2>노트 생성하기</h2>
 			</header>
 			<p style="text-align: right;float: right;">

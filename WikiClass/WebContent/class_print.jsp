@@ -1,3 +1,4 @@
+<%@page import="com.DAO.NoteHistoryDAO"%>
 <%@page import="com.DAO.ClassDAO"%>
 <%@page import="com.VO.classVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -14,10 +15,13 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<style type="text/css">
-		td{
+.td1{
 	background-color: white;
 }
-table tbody tr{
+.table1{
+	border:0px solid black !important;
+}
+.tr1{
 	border:0px solid black !important;
 }
 img{
@@ -33,13 +37,17 @@ h4{
 	</style>
 	</head>
 	<body>
+	
 <%
 	//name : 클래스명
 	/* String name = (String)request.getAttribute("className"); */
-	int num = Integer.parseInt(request.getParameter("classNum"));
-	System.out.println("class_print에 넘어온 클래스 번호 : "+num);
+	String classNum_print = (String)request.getParameter("classNum");
+	if(classNum_print == null){
+		classNum_print = (String)request.getParameter("classID");
+	}
+	System.out.println("class_print에 넘어온 클래스 번호 : "+classNum_print);
 	ClassDAO cdao = new ClassDAO();
-	classVO cvo = cdao.selectNameOne(num);
+	classVO cvo = cdao.selectNameOne(Integer.parseInt(classNum_print));
 	System.out.println("cvo : "+cvo);
 	System.out.println("cvo 클래스 이름 : "+cvo.getName());
 	System.out.println("cvo 클래스 번호 : "+cvo.getNum());
@@ -67,16 +75,16 @@ h4{
 										<h1><%=cvo.getName() %></h1>
 									</header>
 									
-									<table>
-										<tr>
-											<td rowspan="4" width="300px" style="text-align:right;">
+									<table class="table1">
+										<tr class="tr1">
+											<td class="td1" rowspan="4" width="300px" style="text-align:right;">
 												<img src="classImage/<%=cvo.getImgPath() %>" alt="" style="width: 80%; height: 300px; vertical-align:top; border:1px solid black;"/>
 											</td>
-											<td>
+											<td class="td1">
 											</td>
 										</tr>
-										<tr>
-											<td>
+										<tr  class="tr1">
+											<td class="td1">
 											
 												<h4>그룹 : </h4><%=cvo.getGroup_name() %><br>
 												<h4>작성자 : </h4><%=cvo.getMem_name() %><br>
@@ -85,13 +93,13 @@ h4{
 											
 											</td>
 										</tr>
-										<tr>
-											<td>
+										<tr  class="tr1">
+											<td class="td1">
 												
 											</td>
 										</tr>
-										<tr>
-											<td>
+										<tr  class="tr1">
+											<td class="td1">
 											</td>
 										</tr>
 									</table>

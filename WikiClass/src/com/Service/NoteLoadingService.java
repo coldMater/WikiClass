@@ -36,16 +36,12 @@ public class NoteLoadingService extends HttpServlet {
 		response.setContentType("text/html;charset=euc-kr");
 		
 		classID = (String)request.getAttribute("classIDnow");
-		System.out.println("여기는 로딩서비스, 아이디가 나오는지 : "+classID);
 		if(request.getAttribute("classIDnow")==null) {
 			classID = request.getParameter("classNum");
 		}
 		if(classID==null) {
 			classID = request.getParameter("classID");
 		}
-
-		
-		System.out.println("현재의 classID: "+classID);
 		nodeList = nodeDAO.select(classID);
 		noteList = noteDAO.selectNotesByClassID(classID);
 		
