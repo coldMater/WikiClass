@@ -4,6 +4,7 @@
 <%@page import="com.DAO.ClassDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
 	Editorial by HTML5 UP
@@ -171,6 +172,23 @@ transform: rotate(45deg);
 </style>		
 	</head>
 	<body>
+		<c:if test="${requestScope.groupInsert==1 }">
+			<script type="text/javascript">
+				show()
+				function show(){
+					alert("Group积己 肯丰")
+				}
+			</script>
+		</c:if>
+		<c:if test="${requestScope.groupInsert==2 }">
+			<script type="text/javascript">
+				show()
+				function show(){
+					alert("Group积己 角菩")
+				}
+			</script>
+		</c:if>
+	
 <%
 	ClassDAO cdao = new ClassDAO();
 	ArrayList<classVO> list = new ArrayList<classVO>(); 

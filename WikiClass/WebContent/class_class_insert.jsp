@@ -40,7 +40,14 @@ padding:  0 0.75em 0.2em 0 ;
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
-
+		<c:if test="${requestScope.classInsert==2 }">
+			<script type="text/javascript">
+				show()
+				function show(){
+					alert("Class생성 실패")
+				}
+			</script>
+		</c:if>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
