@@ -127,7 +127,6 @@ public class NoteLoadingService extends HttpServlet {
 
 	int depth = 0;
 	String tag = "";
-
 	public String getNextGroup(ArrayList<NodeVO> groupBefore) {
 		//아래 부분에서 실제 목차의 HTML 구조가 만들어진다. 
 		
@@ -138,27 +137,26 @@ public class NoteLoadingService extends HttpServlet {
 			String sid = node.getSiblingID();
 			ArrayList<NodeVO> groupNext = groupHash.get(id);
 			
-			tag += "<li id = "+id+" data-nid ="+id+" data-pid="+pid+" data-sid="+sid+" data-depth="+depth+"}"+">";
+			tag += "<li id = "+id+" data-nid ="+id+" data-pid="+pid+" data-sid="+sid+" data-depth="+depth+" style='border-top:0px;'>";
 			if(depth==0) {
 				if(groupNext == null) {
-					tag+="<span>";
+					tag+="<span style='padding-bottom:0px;padding-top:0px;'>";
 				} else {
-					tag+="<span class='opener'>";
+					tag+="<span class='opener' style='padding-bottom:0px;padding-top:0px;'>";
 				}
 				
 			}
-			
+
+			;
+
 			getNoteVO(id);
-			tag += "<a href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"'>";
-			tag += getNoteVO(id).getTitle() + ("[<b>N</B>:"+
-															"<font color = '145FCC'>"+id+"</font>"
-											+",<b>P</b>:"+
-															"<font color = 'CC2A14'>"+pid+"</font>"
-											+",<b>S</b>:"+
-															"<font color = '522DFF'>"+sid+"</font>"
-											+",<b>D</b>:"+
-															"<font color = 'FFAA8C'>"+depth+"</font>"
-											+"}");
+			tag += "<a style='padding-bottom:0px;' href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"' title = '"+("[N:"+id+", P:"+pid+", S:"+sid+", D:"+depth+"]")+"'>";
+			tag += 							((depth<=1)?"<B>":"")
+																						
+											+ ((depth>=2)?"└ ":"") +getNoteVO(id).getTitle()
+											
+											+ "</font>"
+											+((depth<=1)?"</B>":"");
 			tag += "</a>";
 			if(depth==0) {
 				tag+="</span>";

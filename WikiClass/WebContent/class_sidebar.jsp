@@ -14,14 +14,11 @@
 	<!-- Sidebar -->
 	<div id="sidebar">
 		<div class="inner">
-			<section>
-			<br /><br /><br />
-			</section>
-			
+	
 			
 			<!-- Menu --><!-- 클래스 이름 표시 부분 -->
 			<nav id="menu"> 
-			<header class="major">
+			<header class = "major" style="font-size:1.2em;height:5.5em;" >
 			
 			
 			
@@ -30,7 +27,20 @@
 		
 			<% ClassDAO dao_side = new ClassDAO(); %>
 			<% classVO vo_side = dao_side.getClass(classNum_side); %>
-			<h2><i class="fa fa-book" ></i>&nbsp&nbsp <a style = "border-bottom:none;" href="NoteLoadingService?classNum=<%=classNum_side%>"><%= vo_side.getName()%></a> </h2>
+			<h1 style="display:inline;"><a style = "border-bottom:none;" href="#"><i class="fa fa-book" ></a></i></h1><h2 style="font-size:1.5em">&nbsp&nbsp <a style = "border-bottom:none;" href="NoteLoadingService?classNum=<%=classNum_side%>"><%= vo_side.getName()%></a> </h2>
+			</header>
+			<header class = "icon" style="text-align:right;">
+			<h2 style="font-size:2.0em;">
+			
+				<a style = "border-bottom:none;" href="class_note.jsp?classNum=<%=classNum_side%>&amp;groupName=smhrd&amp;className=github&amp;nickname=coldamter"><i class="fa fa-plus" title="노트 생성(Create)"></i>
+				&nbsp <!--  style = "color:#337ab7;" --> 
+				<a style = "border-bottom:none;" href="#"><i class="fa fa-plane" title="노트 이동(Move)"></i> <!-- fa-arrows : 화살표 -->
+				&nbsp 
+				<a style = "border-bottom:none;" href="#"><i class="fa fa-pencil" title="노트 편집(Edit)"></i>
+				&nbsp 
+				<a style = "border-bottom:none;" href="#"><i class="fa fa-minus"  title="노트 삭제(Delete)"></i></h2>
+			 	<!-- style = "color:#d9534f;" --> 
+			
 			</header>
 			
 			<% if(list_side!=null){%>
@@ -39,7 +49,7 @@
 			
 			</nav>
 			
-			
+			<div style="position:fixed;left:407px;bottom:0px;width:150px;height:150px;background-color: rgba(9,70,77,0.5)"></div>
 			
 			<section>
 			<header class="major">
