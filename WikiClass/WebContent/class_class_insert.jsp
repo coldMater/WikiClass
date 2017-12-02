@@ -60,7 +60,7 @@ padding:  0 0.75em 0.2em 0 ;
 											<!-- 권한 부여된 사람들 출력 -->
 											<!-- 권한 부여할 닉네임 입력 -->
 											<td width="600px" >
-												<input type="text" name="groupName" id="groupName" placeholder="그룹 이름">
+												<input type="text" name="groupName" id="groupName" placeholder="그룹 이름" required>
 												<p id="groupText" style="display: none"></p>
 											</td>
 											<td>
@@ -69,7 +69,7 @@ padding:  0 0.75em 0.2em 0 ;
 										</tr>
 										<tr>
 											<td width="600px" >
-												<input type="text" name="className" id="className" placeholder="클래스 이름">
+												<input type="text" name="className" id="className" placeholder="클래스 이름" required>
 												<p id="classText" style="display: none"></p>
 											</td>
 											<td><!-- 그룹과 클래스명이 같이 중복되지 않으면 된다. -->
