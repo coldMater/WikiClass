@@ -131,8 +131,6 @@ public class NoteLoadingService extends HttpServlet {
 	public String getNextGroup(ArrayList<NodeVO> groupBefore) {
 		//아래 부분에서 실제 목차의 HTML 구조가 만들어진다. 
 		
-
-		
 		for (int i = 0; i < groupBefore.size(); i++) {
 			NodeVO node =  groupBefore.get(i);
 			String id = node.getNoteID();
@@ -173,7 +171,10 @@ public class NoteLoadingService extends HttpServlet {
 	private NoteVO getNoteVO(String id) {
 		NoteVO tempVO=null;
 		for (int i = 0; i < noteList.size(); i++) {
-			tempVO = noteList.get(i);
+			if(noteList.get(i).getNum().equals(id)) {
+				tempVO = noteList.get(i);
+			}
+			
 		}
 		return tempVO;
 	}

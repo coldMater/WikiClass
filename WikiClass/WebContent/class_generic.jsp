@@ -1,3 +1,4 @@
+<%@page import="com.DAO.NoteHistoryDAO"%>
 <%@page import="com.VO.NoteVO"%>
 <%@page import="com.DAO.NoteDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -31,10 +32,15 @@
 									
 									<% String noteNum = request.getParameter("noteID"); %>
 									<% if(noteNum == null){noteNum = (String)request.getAttribute("noteID");} %>
-									<% System.out.println(noteNum+"나오나?"); %>
 									<% NoteDAO dao = new NoteDAO();  %>
 									<% NoteVO vo = dao.getNote(noteNum);%>
 									<%= vo.getContent() %>
+									
+									<%-- history 내역 추가하기 --%>
+									<% String userNum = (String)session.getAttribute("userNum"); %>
+									<% NoteHistoryDAO noteHisDAO = new NoteHistoryDAO(); %>
+									<% String classIDnow = (String)request.getAttribute("classID"); %>
+									<% noteHisDAO.insertHistory(userNum, noteNum, (String)request.getAttribute("classIDnow"), "1", vo.getTitle(), vo.getContent()); %>
 									<input type="hidden" id = "content_note" value = "<%= vo.getPath() %>"/>
 								
 								</section>

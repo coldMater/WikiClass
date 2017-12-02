@@ -5,6 +5,7 @@ grant connect, resource to wcadmin;
 
 select note_id from class_tree_info where class_id = '41';
 
+select * from note_history;
 
 select * from note where num = (select note_id from class_tree_info where class_id = '41');
 
