@@ -120,8 +120,8 @@ padding:  0 0.75em 0.2em 0 ;
 									<script>
 										CKEDITOR.replace('editor1');
 									</script>
-									<input type="submit" value="클래스생성" id="createClass"/>
-									<input type="button" onclick="createC()" id="createClass2" value="클래스생성">
+									<input type="submit" value="클래스만들기" id="createClass"/>
+									<input type="button" onclick="createC()" id="createClass2" value="클래스추가">
 								</form>	
 								</section>
 
