@@ -17,7 +17,28 @@
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style>
 header#header {
-	padding-top: 2em !important;
+	padding-top: 2rem !important;
+}
+
+a[data-depth]{
+font-size:1.0rem !important;
+margin-left:10%;
+}
+
+a[data-depth="2"]{
+font-size:1.1rem !important;
+margin-left:8%;
+}
+
+a[data-depth="1"]{
+font-size:1.2rem !important;
+margin-left:0%;
+}
+
+
+a[data-depth="0"]{
+font-size:1.5rem !important;
+margin-left:0%;
 }
 </style>
 </head>

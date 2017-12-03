@@ -126,7 +126,7 @@ public class NoteLoadingService extends HttpServlet {
 	}
 
 	int depth = 0;
-	String tag = "";
+	String tag ="";
 	public String getNextGroup(ArrayList<NodeVO> groupBefore) {
 		//아래 부분에서 실제 목차의 HTML 구조가 만들어진다. 
 		
@@ -137,8 +137,12 @@ public class NoteLoadingService extends HttpServlet {
 			String sid = node.getSiblingID();
 			ArrayList<NodeVO> groupNext = groupHash.get(id);
 			
-			tag += "<li id = "+id+" data-nid ="+id+" data-pid="+pid+" data-sid="+sid+" data-depth="+depth+" style='border-top:0px;'>";
+			
+			// <li>
+			tag += "<li id = "+id+" class = 'note_list' data-nid ="+id+" data-pid="+pid+" data-sid="+sid+" data-depth="+depth+" style='border-top:0px;'>";
 			if(depth==0) {
+
+				// <span>
 				if(groupNext == null) {
 					tag+="<span style='padding-bottom:0px;padding-top:0px;'>";
 				} else {
@@ -148,19 +152,23 @@ public class NoteLoadingService extends HttpServlet {
 			}
 
 			;
-
+				
 			getNoteVO(id);
-			tag += "<a style='padding-bottom:0px;' href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"' title = '"+("[N:"+id+", P:"+pid+", S:"+sid+", D:"+depth+"]")+"'>";
-			tag += 							((depth<=1)?"<B>":"")
+							// <a>
+			tag += "<a "+"data-depth='"+depth+"'"+"class = 'note_link' style='padding-bottom:0px;' href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"' title = '"+("[N:"+id+", P:"+pid+", S:"+sid+", D:"+depth+"]")+"'>";
+											// <b>
+			tag += 							((depth<=1)?"":"")
 																						
 											+ ((depth>=2)?"└ ":"") +getNoteVO(id).getTitle()
-											
-											+ "</font>"
-											+((depth<=1)?"</B>":"");
+											// </b>
+											+((depth<=1)?"":"");
+							//</a>
 			tag += "</a>";
 			if(depth==0) {
+				//</span>
 				tag+="</span>";
 			} else {
+			//</li>
 				tag+="</li>";
 			}
 

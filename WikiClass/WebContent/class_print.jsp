@@ -75,7 +75,10 @@ h4{
 										//class_grant테이블에 클래스번호와 로그인한 멤버번호를 넣고 있으면 버튼 생성
 										/* int cnt = cdao.selectGrantOne((String)session.getAttribute("email"),cvo.getNum()); */
 									%>
+										<%session.getAttribute("userNum");%>
+										
 										<p style="text-align: right;float: right;"> <a href="class_class_edit.jsp?classNum=<%=cvo.getNum() %>" class="button">Class수정 </a>&nbsp;<a href="class_note.jsp?classNum=<%=cvo.getNum() %>&groupName=<%=cvo.getGroup_name() %>&className=<%=cvo.getName() %>&nickname=<%=cvo.getMem_name() %>" class="button">노트 추가</a></p>
+									
 										<h1><%=cvo.getName() %></h1>
 									</header>
 									
