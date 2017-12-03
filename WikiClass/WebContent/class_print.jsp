@@ -83,7 +83,7 @@ h4{
 																	
 									
 									
-									<%
+							<%-- 		<%
 									ClassDAO classdao = new ClassDAO();
 									String classNum = (String)request.getAttribute("classID");
 									String noteNum = (String)request.getAttribute("noteID");
@@ -101,7 +101,7 @@ h4{
 									String result = pa.sortByWordsNum(saveDir+"/py/words2.py");													
 									
 									%>
-									
+									 --%>
 									
 									
 									
@@ -152,7 +152,7 @@ h4{
 										
 									</table>
 									
-									 <%=result%> 
+								<%-- 	 <%=result%>  --%>
 									
 									
 									
