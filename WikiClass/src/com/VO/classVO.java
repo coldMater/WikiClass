@@ -1,8 +1,8 @@
 package com.VO;
 
 public class classVO {
-	private String group_name; //그룹 번호
-	private String mem_name; //회원 번호
+	private String group_name; //그룹 이름
+	private String mem_name; //회원 닉네임
 	private int num; //클래스 번호
 	private String name; //클래스 명
 	private String favorite; //분야

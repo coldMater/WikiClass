@@ -79,15 +79,21 @@ padding-top: 2em !important;
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Description</th>
+								<th>impormation</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>닉네임</td>
-								<td>${mvo.nickname }</td>
-								<td><button>수정</button></td>
+								<td>
+									<span id="nicknamespan">${mvo.nickname }</span>
+									<input type="text" id="nicknameinput" name="nicknameinput" value="${mvo.nickname }">
+								</td>
+								<td>
+									<button onclick="nicknameUpdate1()" id="nicknamebt1">수정</button>
+									<button onclick="nicknameUpdate2()" id="nicknamebt2">저장</button>
+								</td>
 							</tr>
 							<tr>
 								<td>나이</td>
@@ -185,7 +191,7 @@ padding-top: 2em !important;
 
 					<article id="fa6"> <span class="icon fa-tablet"></span>
 					<div class="content">
-						<h3 id="co6">모바일/테블릿/SNS</h3>
+						<h3 id="co6">모바일/태블릿/SNS</h3>
 						 <p>안드로이드 프로그래밍을 이용하여 모바일, 즉 스마트폰에서 구동되는 것과 관련된 분야입니다.
                  		 <br>해당 클래스 : 아키덱쳐, 네트워크, 전산학 등 </p>
 					</div>
@@ -285,11 +291,35 @@ padding-top: 2em !important;
 						<%	}
 						}%>
 					}	
-				
+				</script>
+				<script type="text/javascript">
+					var nicknameInput = document.getElementById("nicknameinput")	
+					var nicknameSpan = document.getElementById("nicknamespan")	
+					var nicknamebt1 = document.getElementById("nicknamebt1")
+					var nicknamebt2 = document.getElementById("nicknamebt2")
+					nicknameinput.style.display="none"
+					nicknamebt2.style.display="none"
+					
+					function nicknameUpdate1(){
+							nicknameinput.style.display="block"
+							nicknameSpan.style.display="none"
+							nicknamebt1.style.display="none"
+							nicknamebt2.style.display="block"
+						
+							
+						}
+					
+					function nicknameUpdate2(){
+						nicknameinput.style.display="none"
+						nicknameSpan.style.display="block"
+						nicknamebt1.style.display="block"
+						nicknamebt2.style.display="none"	
+						
+					}
 					
 				
-				
 				</script>
+				
 				
 </body>
 </html>

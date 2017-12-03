@@ -17,22 +17,18 @@ import com.DAO.FileDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class classInsert implements command {
+public class classUpdate implements command{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("클래스 만들기 버튼을 클릭하여 classInsert에 들어왔습니다.");
-		response.setContentType("text/html; charset=euc-kr");
 		try {
-			request.setCharacterEncoding("euc-kr");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("클래스 수정 버튼을 클릭하여 classUpdate에 들어왔습니다.");
+		response.setContentType("text/html; charset=euc-kr");
+		request.setCharacterEncoding("euc-kr");
 		
 		HttpSession session = request.getSession();
 		String email = (String)session.getAttribute("email");
-		System.out.println("classInsert에서 세션으로 받아온 아이디 : "+email);
+		System.out.println("classUpdate에서 세션으로 받아온 아이디 : "+email);
 		
 		//파일전송 Form인지를 체크
 		boolean isMulti = ServletFileUpload.isMultipartContent(request);
@@ -44,16 +40,12 @@ public class classInsert implements command {
 		MultipartRequest multi = null;
 		System.out.println("절대경로 >> "+saveDir);
 		
-		
-		try {
 		//DefaultFileRenamePolicy(): 파일명이 중복될 경우 자동으로 바꿔준다.
 		if(isMulti) {
-			
 			multi = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 			
 			FileDAO fdao = FileDAO.getInstance();
-			String groupName = multi.getParameter("groupName");
-			String className = multi.getParameter("className");
+			int classNum = Integer.parseInt(multi.getParameter("classNum"));
 			String favortie = multi.getParameter("favortie");
 			String img = multi.getFilesystemName("img");
 			String editor1 = multi.getParameter("editor1");
@@ -65,29 +57,26 @@ public class classInsert implements command {
 				System.out.println("class_grant에 넘어갈 회원 닉네임 "+person[i]);
 			}
 			
-			System.out.println("classInsert에서 className###분야 :" +className+"###"+favortie);
+			System.out.println("classInsert에서 classNum###분야 :" +classNum+"###"+favortie);
 			if(favortie.equals("-분야-")) {
 				favortie="정해지지않음";
 			}
 			int cnt=0;
-			cnt = fdao.uploadImg(email, groupName, className, favortie, img, editor1);
+			cnt = fdao.classUploadImg(email, classNum, favortie, img, editor1);
 			if(cnt>0) {
-				System.out.println(img+"파일 저장 완료");
-				String encoded = URLEncoder.encode(className);
-				
-				//그룹이름과 클래스 이름은 겹치는게 없으므로 클래스 번호를 가지고온다.
-				int classNum = fdao.selectClassNumOne(groupName,className);
+				System.out.println("클래스 수정 완료");
+				String className = multi.getParameter("className");
 				System.out.println("classInsert에서 받은 classNum값 :"+classNum);
 				cnt = fdao.classGrantInsert(person,className);
 				if(cnt>0) {
-					System.out.println("class Insert에서 권한 넣기 성공");
+					System.out.println("class Update에서 권한 넣기 성공");
 					response.sendRedirect("class_print.jsp?classNum="+classNum);
 				}
 				
 			}else {
 				System.out.println(img+"파일 저장 실패");
-				request.setAttribute("classInsert", 2);
-				RequestDispatcher dis = request.getRequestDispatcher("class_class_insert.jsp");
+				request.setAttribute("classUpdate", 2);
+				RequestDispatcher dis = request.getRequestDispatcher("class_print.jsp.jsp");
 				dis.forward(request, response);
 			}
 			
@@ -102,6 +91,7 @@ public class classInsert implements command {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+		
 	}
+
 }

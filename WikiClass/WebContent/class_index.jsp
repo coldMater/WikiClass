@@ -265,14 +265,23 @@ transform: rotate(45deg);
 													/* request.setAttribute("className", list.get(0).getName()); */
 												%>
 												<div style="width: 50%;float: left;">
-												<a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="image"><img src="classImage/<%=list.get(i).getImgPath() %>" align="left" /></a>
+												<a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="image">
+													<c:choose>
+														<c:when test="<%=list.get(i).getImgPath()==null %>">
+															<img src="classImage/Webvengers.jpg" align="left" />														
+														</c:when>
+														<c:otherwise>
+															<img src="classImage/<%=list.get(i).getImgPath() %>" align="left" />
+														</c:otherwise>
+													</c:choose>
+												</a>
 												</div>
 												<div style="width: 50%;float: left;">
 												<br>
 												<h2><%=list.get(i).getName() %></h2>
-												<p>包府磊 : <%=list.get(i).getMem_name() %><br><br>
-												积己老:<%=list.get(i).getSenddate() %><br><br>
-												弊缝:<%=list.get(i).getGroup_name() %></p>
+												<p><b>包府磊</b> : <%=list.get(i).getMem_name() %><br>
+												<b>积己老</b> : <%=list.get(i).getSenddate() %><br>
+												<b>弊缝</b> : <%=list.get(i).getGroup_name() %></p>
 												<ul class="actions">
 													<li><a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="button"><p>More</p></a></li>
 												</ul>
