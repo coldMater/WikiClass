@@ -177,172 +177,159 @@ ul.actions {
 	width: 7em;
 	margin: -6.8em 0 0 -1.4em;
 }
-</style>
-</head>
-<body>
-	<c:if test="${requestScope.groupInsert==1 }">
-		<script type="text/javascript">
-			show()
-			function show() {
-				alert("Group생성 완료")
-			}
-		</script>
-	</c:if>
-	<c:if test="${requestScope.groupInsert==2 }">
-		<script type="text/javascript">
-			show()
-			function show() {
-				alert("Group생성 실패")
-			}
-		</script>
-	</c:if>
+</style>		
+	</head>
+	<body>
+		<c:if test="${requestScope.groupInsert==1 }">
+			<script type="text/javascript">
+				show()
+				function show(){
+					alert("Group생성 완료")
+				}
+			</script>
+		</c:if>
+		<c:if test="${requestScope.groupInsert==2 }">
+			<script type="text/javascript">
+				show()
+				function show(){
+					alert("Group생성 실패")
+				}
+			</script>
+		</c:if>
+	
 
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<div id="main" >
+						<div class="inner">
+							<!-- Header -->
+							<%@include file="class_header.jsp" %> <!--  로그인/로그아웃 버튼 -->
+							<!-- Banner -->
+								<section id="banner" style="padding-top:30px;padding-bottom:15px;" >
+									<div class="content">
+										<header>
+										<h1>Find your Class, Join your Group</h1>
+										</header>
+									</div>
+									</span>
+								</section>
+								
+									<ul type="disc" id="selTep" style="border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;">
+										<li class="sel1"><a onclick="classSel(1)"><b style="color: #337ab7;">Class</b></a></li>
+										<li class="sel2"><a onclick="classSel(2)"><b style="color: #337ab7;">Group</b></a></li>
+										<c:if test="${not empty sessionScope.email }">
+											<li class="sel3"><a onclick="classSel(3)"><b style="color: #337ab7;">생성하기</b></a></li>
+										</c:if>
+									</ul>
+								
+								<!-- 클래스 목록 Section -->
+								<%
+								ClassDAO cdao = new ClassDAO();
+								ArrayList<classVO> list = new ArrayList<classVO>(); 
+								list = cdao.classSelectAll();
+								%>
+								<section style="padding:0px;border:0px;" id="sec1">
+								
+									<!-- Search -->
+									<!-- <section id="search" class="alt">
+										<form method="post" action="#" >
+											<input type="text" name="query" id="query" placeholder="Search" style="width: 30%;"/>
+											<i class="fa fa-search" aria-hidden="true"></i>
+										</form>
+									</section> -->
+									
+									<div class="posts">
+									<%
+									int count=1;
+									if(request.getParameter("count")!=null){
+										count = Integer.parseInt(request.getParameter("count"));
+									}
+									
+									int pageCount6 = list.size()%54==0 ? list.size()/54-1 : list.size()/54;
+									int pageCount6Temp = 0;
+									if(request.getParameter("pageCo")!=null){
+										pageCount6Temp = Integer.parseInt(request.getParameter("pageCo"));
+									}
+									
+									int start=0;
+									//int pageNum = 1;
+									//값이 넘어오면 바뀌고 안넘어오면 start는 0
+									int requestStrat = 0;
+									if(request.getParameter("start")!=null){
+										requestStrat = Integer.parseInt(request.getParameter("start"));
+									}
+									if(start < requestStrat){
+										start = requestStrat;
+									}
+									int end=start+(pageCount6Temp*54)+8;
+									
+									if(list!=null){
+										
+										System.out.println(list.size());
+										if(end >=list.size() ){
+											end=list.size()-1;
+										}
+										
+										System.out.println("클래스의 start / end / pageCount6Temp / list개수 : "+start+"/"+end+"/"+pageCount6Temp+"/"+list.size());
+										
+										for(int i=start+(pageCount6Temp*54) ; i<=end ; i++){ %>
+											
+											<article>
+												<%
+												System.out.println("출력되는 class i값 : "+i);
+													/* request.setAttribute("className", list.get(0).getName()); */
+												%>
+												<div style="width: 50%;float: left;">
+												<a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="image">
+													<c:choose>
+														<c:when test="<%=list.get(i).getImgPath()==null %>">
+															<img src="classImage/Webvengers.jpg" align="left" />														
+														</c:when>
+														<c:otherwise>
+															<img src="classImage/<%=list.get(i).getImgPath() %>" align="left" />
+														</c:otherwise>
+													</c:choose>
+												</a>
+												</div>
+												<div style="width: 50%;float: left;">
+												<br>
+												<h2><%=list.get(i).getName() %></h2>
+												<p><b>관리자</b> : <%=list.get(i).getMem_name() %><br>
+												<b>생성일</b> : <%=list.get(i).getSenddate() %><br>
+												<b>그룹</b> : <%=list.get(i).getGroup_name() %></p>
+												<ul class="actions">
+													<li><a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="button"><p>More</p></a></li>
+												</ul>
+												</div>	
+											</article>
+										<%} 
+									}%>
+										
+									</div>
+									<div style="text-align: center">
+									
+									
+									<ul class="pagination" style="margin-top: 40px; margin-bottom: 50px;">
+										
+										<li><input type="button" class="button disabled" id="bu1" value="Prev" onclick="cli(-1)"></li>
+										<li><span id="sp1">&hellip;</span></li>
+										<li id="p1"><input type="button" id="li1" onclick="acti(1)" value="<%=6*pageCount6Temp +1%>"></li>
+										<li id="p2"><input type="button" id="li2" onclick="acti(2)" value="<%=6*pageCount6Temp +2%>"></li>
+										<li id="p3"><input type="button" id="li3" onclick="acti(3)" value="<%=6*pageCount6Temp +3%>"></li>
+										<li id="p4"><input type="button" id="li4" onclick="acti(4)" value="<%=6*pageCount6Temp +4%>"></li>
+										<li id="p5"><input type="button" id="li5" onclick="acti(5)" value="<%=6*pageCount6Temp +5%>"></li>
+										<li id="p6"><input type="button" id="li6" onclick="acti(6)" value="<%=6*pageCount6Temp +6%>"></li>
+										<li><span id="sp2">&hellip;</span></li>
+										<li><input type="button" class="button" id="bu2" value="Next" onclick="cli(1)"></li>
+									</ul>
+									</div>
+								</section>
+
+								
+								<!-- 그룹 목록 Section -->
+								<section style="padding:0px;border:0px;" id="sec2">
 	<%
-		ClassDAO cdao = new ClassDAO();
-		ArrayList<classVO> list = new ArrayList<classVO>();
-		list = cdao.classSelectAll();
-	%>
-	<!-- Wrapper -->
-	<div id="wrapper">
-
-		<!-- Main -->
-		<div id="main">
-			<div class="inner">
-				<!-- Header -->
-				<%@include file="class_header.jsp"%>
-				<!--  로그인/로그아웃 버튼 -->
-				<!-- Banner -->
-				<section id="banner">
-				<div class="content">
-					<header>
-					<h1>
-						Find your Class,<br />Join your Group
-					</h1>
-					</header>
-				</div>
-				</span> </section>
-
-				<ul type="disc" id="selTep"
-					style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;">
-					<li class="sel1"><a onclick="classSel(1)"><b
-							style="color: #337ab7;">Class</b></a></li>
-					<li class="sel2"><a onclick="classSel(2)"><b
-							style="color: #337ab7;">Group</b></a></li>
-					<c:if test="${not empty sessionScope.email }">
-						<li class="sel3"><a onclick="classSel(3)"><b
-								style="color: #337ab7;">생성하기</b></a></li>
-					</c:if>
-				</ul>
-
-				<!-- 클래스 목록 Section -->
-				<section style="padding:0px;border:0px;" id="sec1">
-				<div class="posts">
-					<%
-						int count = 1;
-						if (request.getParameter("count") != null) {
-							count = Integer.parseInt(request.getParameter("count"));
-						}
-
-						int pageCount6 = list.size() % 54 == 0 ? list.size() / 54 - 1 : list.size() / 54;
-						int pageCount6Temp = 0;
-						if (request.getParameter("pageCo") != null) {
-							pageCount6Temp = Integer.parseInt(request.getParameter("pageCo"));
-						}
-
-						int start = 0;
-						//int pageNum = 1;
-						//값이 넘어오면 바뀌고 안넘어오면 start는 0
-						int requestStrat = 0;
-						if (request.getParameter("start") != null) {
-							requestStrat = Integer.parseInt(request.getParameter("start"));
-						}
-						if (start < requestStrat) {
-							start = requestStrat;
-						}
-						int end = start + (pageCount6Temp * 54) + 8;
-
-						if (list != null) {
-
-							System.out.println(list.size());
-							if (end >= list.size()) {
-								end = list.size() - 1;
-							}
-
-							System.out.println("클래스의 start / end / pageCount6Temp / list개수 : " + start + "/" + end + "/"
-									+ pageCount6Temp + "/" + list.size());
-
-							for (int i = start + (pageCount6Temp * 54); i <= end; i++) {
-					%>
-
-					<article> <%
- 	System.out.println("출력되는 class i값 : " + i);
- 			/* request.setAttribute("className", list.get(0).getName()); */
- %>
-					<div style="width: 50%; float: left;">
-						<a href="NoteLoadingService?classNum=<%=list.get(i).getNum()%>"
-							class="image"> <c:choose>
-								<c:when test="<%=list.get(i).getImgPath() == null%>">
-									<img src="classImage/Webvengers.jpg" align="left" />
-								</c:when>
-								<c:otherwise>
-									<img src="classImage/<%=list.get(i).getImgPath()%>"
-										align="left" />
-								</c:otherwise>
-							</c:choose>
-						</a>
-					</div>
-					<div style="width: 50%; float: left;">
-						<br>
-						<h2><%=list.get(i).getName()%></h2>
-						<p>
-							<b>관리자</b> :
-							<%=list.get(i).getMem_name()%><br> <b>생성일</b> :
-							<%=list.get(i).getSenddate()%><br> <b>그룹</b> :
-							<%=list.get(i).getGroup_name()%></p>
-						<ul class="actions">
-							<li><a
-								href="NoteLoadingService?classNum=<%=list.get(i).getNum()%>"
-								class="button"><p>More</p></a></li>
-						</ul>
-					</div>
-					</article>
-					<%
-						}
-						}
-					%>
-
-				</div>
-				<div style="text-align: center">
-
-
-					<ul class="pagination"
-						style="margin-top: 40px; margin-bottom: 50px;">
-
-						<li><input type="button" class="button disabled" id="bu1"
-							value="Prev" onclick="cli(-1)"></li>
-						<li><span id="sp1">&hellip;</span></li>
-						<li id="p1"><input type="button" id="li1" onclick="acti(1)"
-							value="<%=6 * pageCount6Temp + 1%>"></li>
-						<li id="p2"><input type="button" id="li2" onclick="acti(2)"
-							value="<%=6 * pageCount6Temp + 2%>"></li>
-						<li id="p3"><input type="button" id="li3" onclick="acti(3)"
-							value="<%=6 * pageCount6Temp + 3%>"></li>
-						<li id="p4"><input type="button" id="li4" onclick="acti(4)"
-							value="<%=6 * pageCount6Temp + 4%>"></li>
-						<li id="p5"><input type="button" id="li5" onclick="acti(5)"
-							value="<%=6 * pageCount6Temp + 5%>"></li>
-						<li id="p6"><input type="button" id="li6" onclick="acti(6)"
-							value="<%=6 * pageCount6Temp + 6%>"></li>
-						<li><span id="sp2">&hellip;</span></li>
-						<li><input type="button" class="button" id="bu2" value="Next"
-							onclick="cli(1)"></li>
-					</ul>
-				</div>
-				</section>
-
-
-				<!-- 그룹 목록 Section -->
-				<section style="padding:0px;border:0px;" id="sec2"> <%
  	//클래스를 가지고오는 리스트
  	ArrayList<groupSearchVO> list2 = new ArrayList<groupSearchVO>();
  	list2 = cdao.groupSelectAll();
