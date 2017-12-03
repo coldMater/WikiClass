@@ -92,7 +92,7 @@ public class PythonAnalysis {
 
 		}
 		
-		return "<table>"+result+"</table>";
+		return "<table class=table4_3>"+result+"</table>";
 
 	}
 }

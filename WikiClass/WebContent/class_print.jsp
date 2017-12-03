@@ -49,6 +49,23 @@ h4{
 	System.out.println("cvo 클래스 이름 : "+cvo.getName());
 	System.out.println("cvo 클래스 번호 : "+cvo.getNum());
 	
+	
+	ClassDAO classdao = new ClassDAO();
+	
+	String classNum = (String)request.getAttribute("classID");
+	String noteNum = (String)request.getAttribute("noteID");
+	String groupNum = classdao.getGroupNum(classNum);
+	
+	System.out.println(classNum+"//"+noteNum+"//"+groupNum);
+	
+	session.setAttribute("pyClassID", classNum);
+	session.setAttribute("pyNoteID", noteNum);
+	session.setAttribute("pyGroupID", groupNum);
+	
+	
+
+	
+	
 %>
 		<!-- 수정 실패 -->
 		<c:if test="${requestScope.classUpdate==2 }">
