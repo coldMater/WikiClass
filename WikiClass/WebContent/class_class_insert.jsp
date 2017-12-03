@@ -71,7 +71,14 @@ padding:  0 0.75em 0.2em 0 ;
 											<!-- 권한 부여된 사람들 출력 -->
 											<!-- 권한 부여할 닉네임 입력 -->
 											<td width="600px" >
-												<input type="text" name="groupName" id="groupName" placeholder="그룹 이름" required>
+												<c:choose>
+													<c:when test="${not empty param.groupName}" >
+														<input type="text" name="groupName" id="groupName" value="${param.groupName }" placeholder="그룹 이름" required>
+													</c:when>
+													<c:otherwise>
+														<input type="text" name="groupName" id="groupName" placeholder="그룹 이름" required>
+													</c:otherwise>
+												</c:choose>
 												<p id="groupText" style="display: none"></p>
 											</td>
 											<td>

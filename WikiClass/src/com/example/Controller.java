@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.Service.adminLogin;
 import com.Service.classInsert;
+import com.Service.classUpdate;
 import com.Service.command;
 import com.Service.groupInsert;
 import com.Service.groupUpdate;
@@ -33,6 +34,7 @@ public class Controller extends HttpServlet {
 		map.put("mypageInsert.do", new mypageInsert());
 		map.put("adminLogin.do", new adminLogin());
 		map.put("groupUpdate.do", new groupUpdate());
+		map.put("classUpdate.do", new classUpdate());
 	}
 	
 	

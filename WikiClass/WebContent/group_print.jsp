@@ -90,7 +90,7 @@ h4{
 											System.out.println("group_print에서 나온 email/cnt 값 : "+(String)session.getAttribute("email")+"/"+cnt);
 											if(cnt==1){
 											%>
-												<p style="text-align: right;float: right;"> <a href="class_group_edit.jsp?groupNum=<%=gvo.getNum() %>" class="button">편집 </a>&nbsp;<a href="class_class_insert.jsp" class="button">클래스 추가</a></p>	
+												<p style="text-align: right;float: right;"> <a href="class_group_edit.jsp?groupNum=<%=gvo.getNum() %>" class="button">편집 </a>&nbsp;<a href="class_class_insert.jsp?groupName=<%=gvo.getName() %>" class="button">클래스 추가</a></p>	
 											<%} 	
 										}%>
 										<h1><%=gvo.getName() %>Group</h1>
@@ -120,14 +120,25 @@ h4{
 													/* request.setAttribute("className", list.get(0).getName()); */
 												%>
 												<div style="width: 50%;float: left;">
-												<a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="image"><img src="classImage/<%=list.get(i).getImgPath() %>" align="left" /></a>
+												<a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="image">
+													<c:choose>
+														<c:when test="<%=list.get(i).getImgPath()==null %>">
+															<img src="classImage/Webvengers.jpg" align="left" />														
+														</c:when>
+														<c:otherwise>
+															<img src="classImage/<%=list.get(i).getImgPath() %>" align="left" />
+														</c:otherwise>
+													</c:choose>
+													
+												</a>
 												</div>
 												<div style="width: 50%;float: left;">
 												<br>
 												<h2><%=list.get(i).getName() %></h2>
-												<p>관리자 : <%=list.get(i).getMem_name() %><br><br>
-												생성일:<%=list.get(i).getSenddate() %><br><br>
-												그룹:<%=list.get(i).getGroup_name() %></p>
+												<p>
+													<b>관리자</b> : <%=list.get(i).getMem_name() %><br>
+													<b>생성일</b>:<%=list.get(i).getSenddate() %><br>
+												</p>
 												<ul class="actions">
 													<li><a href="NoteLoadingService?classNum=<%=list.get(i).getNum() %>" class="button"><p>More</p></a></li>
 												</ul>

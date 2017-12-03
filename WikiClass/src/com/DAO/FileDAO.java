@@ -165,6 +165,28 @@ public class FileDAO {
 		return classNum;
 	}
 
+	public int classUploadImg(String email, int classNum, String favortie, String img, String editor1) {
+		getConn();
+		try {
+			String sql = "update wikiclass set imgpath=?,favorite=?,classpath=? where num=?";
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, img);
+			pst.setString(2, favortie);
+			pst.setString(3, editor1);
+			pst.setInt(4, classNum);
+			int cnt = pst.executeUpdate();
+			if(cnt>0) {
+				return 1;
+			}
+			close();
+		} catch (SQLException e) {
+			System.out.println("FileDAO classUploadImg error");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
 
 
 
