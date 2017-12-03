@@ -57,7 +57,7 @@
 									ftw.readFolderAndWrite(folderPath, writeTxtPath);									
 									
 									PythonAnalysis pa = new PythonAnalysis();
-									String result = pa.sortByWordsNum(saveDir+"/py/words2.py");
+									String result = pa.sortByWordsNum(saveDir+"/py/words3.py");
 								
 									/* System.out.println("Dir : "+saveDir);
 									System.out.println("classNum : "+classNum);
