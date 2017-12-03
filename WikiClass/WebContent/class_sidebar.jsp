@@ -32,12 +32,15 @@ font-size:2.0rem;
 			
 			
 			<% String list_side = (String) request.getAttribute("list"); %>
+
 			<% String classNum_side = (String) request.getAttribute("classID"); %>
 
 			<% if(classNum_side ==null){
 				classNum_side = request.getParameter("classNum");	
 			}%>
+
 			<% ClassDAO dao_side = new ClassDAO(); %>
+
 			
 			<% if(dao_side.getClass(classNum_side)!=null){
 				classVO vo_side = dao_side.getClass(classNum_side); %>
@@ -47,6 +50,7 @@ font-size:2.0rem;
 			<a style = "border-bottom:none;" href="NoteLoadingService?classNum=<%=classNum_side%>">
 			<%= vo_side.getName()%></a> </h2>
 			<%} %>
+
 			</header>
 			<header class = "icon" style="text-align:right;">
 			<h2 style="font-size:2.0rem;margin-top:15%">

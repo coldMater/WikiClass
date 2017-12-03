@@ -18,13 +18,13 @@
  font-family:'NanumGothicExtraBold';
 }
 div > p{
-font-family: 'Nanum Gothic', sans-serif;3
+font-family: 'Nanum Gothic', sans-serif;
 font-weight:bold;
 }
 footer > a{
 font-family: 'Nanum Gothic', sans-serif;
 font-weight:bold;
-}
+}s
 footer > a > span{
 font-family: 'Nanum Gothic', sans-serif;
 font-weight:bold;
@@ -85,7 +85,7 @@ background-color:  !important;
 					<tr>
 						<td><header>
 							<h1 style="font-size: 6em;">
-								<a href="main_index.jsp" id="logo"><img src="images/logo2.png" alt="로고입니다" width="20%"/>WikiClass</a>
+								<a href="main_index.jsp" id="logo"><img src="images/mainLogo.png" alt="로고입니다" width="15%"/>WikiClass</a>
 							</h1>
 							<hr />
 							<p>우리들의 가장 완벽한 노트, 위키 클래스</p>

@@ -121,6 +121,15 @@ class_id number
 );
 
 
+ create table NOTE_HISTORY(
+    author_id number,
+    note_id number,
+    class_id number,
+    classification number,
+    senddate date,
+    bef_title varchar2(100),
+    bef_content clob);
+
 
 create sequence note_num
 start with 1

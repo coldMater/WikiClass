@@ -123,6 +123,7 @@
                                             <th>이미지저장위치</th>
                                             <th>문서저장위치</th>
                                             <th>최종수정날짜</th>
+                                            <th>클래스삭제</th>
                                         </thead>
                                         <tbody>
                                            <c:forEach items="${ClassSearch}" var="i">
@@ -135,7 +136,20 @@
                                                 <td>${i.imagepath}</td>
                                                 <td>${i.classpath}</td>
                                                 <td class="text-primary">편집하기</td>
-                                                <td class="text-primary"><a onclick="confirm('그룹을 삭제하시겠습니까? 그룹에 속한 클래스도 함께 삭제 됩니다')">문서삭제</a></td>
+                                                <td class="text-primary"><a onclick="classdel();">클래스삭제</a></td>
+                                            	<script type="text/javascript">
+													<!--클래스삭제 자바스크립트-->
+														function classdel() {
+															var classdel = confirm("클래스를 삭제하시겠습니까?");
+															if (classdel == true) {
+																location.href = "../../classDelete?num=${i.group_num}";
+																alert("클래스가 삭제되었습니다");
+															}else if(classdel==false){
+																alert("클래스 삭제가 취소되었습니다");
+															}
+														}
+													</script>
+                                            
                                             </tr>
                                           </c:forEach>
                                         </tbody>
@@ -149,35 +163,22 @@
             <footer class="footer">
                 <div class="container-fluid">
                     <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                       <ul>
+					<li><a href="http://knjas.or.kr"> WikiClass 바로가기 </a></li>
+					<li><a href="http://knjas.or.kr/admin/index/dashboard.jsp">dashboard</a></li>
+					<li><a href="http://knjas.or.kr/admin/index/member.jsp">member</a></li>
+					<li><a href="http://knjas.or.kr/admin/index/group.jsp">group</a></li>
+					<li><a href="http://knjas.or.kr/admin/index/document.jsp">document</a></li>
+					
+				</ul>
+				</nav>
+				<p class="copyright pull-right">
+					&copy;
+					<script>
+						document.write(new Date().getFullYear())
+					</script>
+					Made by Webvenger's Team<br> copyright @ by Webvenger's All Rights Reserved 
+				</p>
                     </p>
                 </div>
             </footer>

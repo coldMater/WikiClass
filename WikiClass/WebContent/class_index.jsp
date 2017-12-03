@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.DAO.ClassDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
@@ -12,162 +12,170 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
+
+
+
 	<head>
 		<title>WikiClass</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="class_assets/css/main.css" />
+		<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
 <style type="text/css">
-
-
-
-header#header{
-
-padding-top: 2em !important;
+header#header {
+	padding-top: 2em !important;
 }
 
-div#main > div.inner >  section{
+div#main>div.inner>section {
+	
 }
-a.image{
-width: 50%;
+
+a.image {
+	width: 50%;
 }
+
 .posts article .image {
-    display: inline;
-}
-h2{
-  margin: 0.5em 0.7em 0.5em;
-}
-div > p {
-    margin: 0.5em 0.7em 1em 1.3em;
-}
-ul {
-   margin: 0 2em 0 1.3em;
-}
-ul.actions {
-    cursor: default;
-    list-style: none;
-    /* padding-left: inherit; */
+	display: inline;
 }
 
-#selTep{
+h2 {
+	margin: 0.5em 0.7em 0.5em;
+}
+
+div>p {
+	margin: 0.5em 0.7em 1em 1.3em;
+}
+
+ul {
+	margin: 0 2em 0 1.3em;
+}
+
+ul.actions {
+	cursor: default;
+	list-style: none;
+	/* padding-left: inherit; */
+}
+
+#selTep {
 	box-sizing: border-box;
 	display: flex;
-    margin-top: 0;	
-/*     -webkit-margin-before: 1em;
+	margin-top: 0;
+	/*     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 40px; */
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-bottom: 1px solid #ddd !important;
-   /*  border-top: 1px solid #ddd !important; */
-    margin-bottom: 10px;
-    padding-left: 0;
-    list-style: none;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-bottom: 1px solid #ddd !important;
+	/*  border-top: 1px solid #ddd !important; */
+	margin-bottom: 10px;
+	padding-left: 0;
+	list-style: none;
 }
 
-
-
-#selTep li{
+#selTep li {
 	float: left;
-    margin-bottom: -1px;
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-    text-align: -webkit-match-parent;
-    font-size: 23px;
-    line-height: 1.42857143;
-    -webkit-margin-before: 1em;
-    /* -webkit-margin-after: 1em; */
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 40px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    text-align: -webkit-match-parent;
+	margin-bottom: -1px;
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	text-align: -webkit-match-parent;
+	font-size: 23px;
+	line-height: 1.42857143;
+	-webkit-margin-before: 1em;
+	/* -webkit-margin-after: 1em; */
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: -webkit-match-parent;
 }
 
-#selTep li:active{
-    display: list-item;
-    text-align: -webkit-match-parent;
+#selTep li:active {
+	display: list-item;
+	text-align: -webkit-match-parent;
 }
 
-#selTep li a{
+#selTep li a {
 	color: #337ab7;
 	/* color: #20C0FF; */
-    text-decoration: none;
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-    margin-right: 2px;
-    line-height: 1.42857143;
-    border: 1px solid transparent;
-    border-radius: 4px 4px 0 0;
-    background-color: transparent;
-    float: left;
-    margin-bottom: -1px;
-    box-sizing: border-box;
+	text-decoration: none;
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+	margin-right: 2px;
+	line-height: 1.42857143;
+	border: 1px solid transparent;
+	border-radius: 4px 4px 0 0;
+	background-color: transparent;
+	float: left;
+	margin-bottom: -1px;
+	box-sizing: border-box;
 }
 
-#selTep li a:hover{
+#selTep li a:hover {
 	color: #555;
-    cursor: default;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-bottom-color: transparent;
-    text-decoration: none;
-    outline: 0;
+	cursor: default;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+	text-decoration: none;
+	outline: 0;
 }
-#selTep li a:active{
-    outline: 0;
+
+#selTep li a:active {
+	outline: 0;
 }
+
 #selTep li a:focus {
 	color: #23527c;
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .icon {
 	flex-shrink: 0;
-    line-height: 10em;
-    text-align: center;
+	line-height: 10em;
+	text-align: center;
 	padding: 0;
-    font: inherit;
-    vertical-align: baseline;    
-    box-sizing: border-box;  
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box;
 	/* color: #f56a6a; */
 	color: #20C0FF;
-    font-size: 0.05rem;
-	font-family: FontAwesome;    
-    font-style: normal;
-    font-weight: normal;
-    text-transform: none !important;
-    border-bottom: solid 2px rgba(210, 215, 217, 0.75) !important;
-}
-.icon:before {
-    -webkit-font-smoothing: antialiased;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-transform: none !important;
-    font-size: 2.7rem;
+	font-size: 0.05rem;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	text-transform: none !important;
+	border-bottom: solid 2px rgba(210, 215, 217, 0.75) !important;
 }
 
-.icon:after{
-transform: rotate(45deg);
-    border-radius: 0.25rem;
-    border: solid 2px rgba(210, 215, 217, 0.75);
-    content: '';
-    display: block;
-    height: 7em;
-    left: 50%;
-    top: 50%;
-    width: 7em;  
-    margin: -6.8em 0 0 -1.4em;
+.icon:before {
+	-webkit-font-smoothing: antialiased;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	text-transform: none !important;
+	font-size: 2.7rem;
+}
+
+.icon:after {
+	transform: rotate(45deg);
+	border-radius: 0.25rem;
+	border: solid 2px rgba(210, 215, 217, 0.75);
+	content: '';
+	display: block;
+	height: 7em;
+	left: 50%;
+	top: 50%;
+	width: 7em;
+	margin: -6.8em 0 0 -1.4em;
 }
 </style>		
 	</head>
@@ -189,25 +197,19 @@ transform: rotate(45deg);
 			</script>
 		</c:if>
 	
-<%
-	ClassDAO cdao = new ClassDAO();
-	ArrayList<classVO> list = new ArrayList<classVO>(); 
-	list = cdao.classSelectAll();
-	
-%>
+
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Main -->
 					<div id="main" >
 						<div class="inner">
 							<!-- Header -->
 							<%@include file="class_header.jsp" %> <!--  로그인/로그아웃 버튼 -->
 							<!-- Banner -->
-								<section id="banner">
+								<section id="banner" style="padding-top:30px;padding-bottom:15px;" >
 									<div class="content">
 										<header>
-										<h1>Find your Class,<br/>Join your Group</h1>
+										<h1>Find your Class, Join your Group</h1>
 										</header>
 									</div>
 									</span>
@@ -222,7 +224,21 @@ transform: rotate(45deg);
 									</ul>
 								
 								<!-- 클래스 목록 Section -->
+								<%
+								ClassDAO cdao = new ClassDAO();
+								ArrayList<classVO> list = new ArrayList<classVO>(); 
+								list = cdao.classSelectAll();
+								%>
 								<section style="padding:0px;border:0px;" id="sec1">
+								
+									<!-- Search -->
+									<!-- <section id="search" class="alt">
+										<form method="post" action="#" >
+											<input type="text" name="query" id="query" placeholder="Search" style="width: 30%;"/>
+											<i class="fa fa-search" aria-hidden="true"></i>
+										</form>
+									</section> -->
+									
 									<div class="posts">
 									<%
 									int count=1;
@@ -314,384 +330,408 @@ transform: rotate(45deg);
 								<!-- 그룹 목록 Section -->
 								<section style="padding:0px;border:0px;" id="sec2">
 	<%
-	//클래스를 가지고오는 리스트
-	ArrayList<groupSearchVO> list2 = new ArrayList<groupSearchVO>(); 
-	list2 = cdao.groupSelectAll();
-%>
-									<div class="posts">
-									<%
-									int count2=1;
-									if(request.getParameter("count2")!=null){
-										count2 = Integer.parseInt(request.getParameter("count2"));
-									}
-									
-									
-									int pageCount62 = list2.size()%54==0 ? list2.size()/54-1 : list2.size()/54;
-									int pageCount62Temp = 0;
-									if(request.getParameter("pageCo2")!=null){
-										pageCount62Temp = Integer.parseInt(request.getParameter("pageCo2"));
-									}
-									
-									
-									int start2=0;
-									//int pageNum = 1;
-									//값이 넘어오면 바뀌고 안넘어오면 start는 0
-									int requestStrat2 = 0;
-									if(request.getParameter("start2")!=null){
-										requestStrat2 = Integer.parseInt(request.getParameter("start2"));
-									}
-									if(start2 < requestStrat2){
-										start2 = requestStrat2;
-									}
-									int end2=start2+(pageCount62Temp*54)+8;
-									
-									if(list2!=null){
-										
-										System.out.println("그룹 개수 : "+list2.size());
-										if(end2 >=list2.size() ){
-											end2=list2.size()-1;
-										}
-										
-										System.out.println("그룸의 start2 / end2 / pageCount62Temp / list2개수 : "+start2+"/"+end2+"/"+pageCount62Temp+"/"+list2.size());
-										
-										for(int i=start2+(pageCount62Temp*54) ; i<=end2 ; i++){ %>
-											<article>
-												<%
-												System.out.println("출력되는 class i값 : "+i);
-												%>
-												<br>
-												<div style="width: 20%; float: left; height: 97px">
-													<span id="span1" class="icon fa-users"></span>
-												</div>
-												<div style="width: 100%; height: 97px;">
-													<a href="group_print.jsp?groupNum=<%=list2.get(i).getNum()%>"><h2><%=list2.get(i).getName() %></h2></a>
-												</div>
-													<%=list2.get(i).getContent()%>
-											</article>
-										<%} 
-									}%>
-										
-									</div>
-									<div style="text-align: center">
-									
-									
-									<ul class="pagination" style="margin-top: 40px; margin-bottom: 50px;">
-										
-										<li><input type="button" class="button disabled" id="bu3" value="Prev" onclick="cli2(-1)"></li>
-										<li><span id="sp3">&hellip;</span></li>
-										<li id="p7"><input type="button" id="li7" onclick="acti2(1)" value="<%=6*pageCount62Temp +1%>"></li>
-										<li id="p8"><input type="button" id="li8" onclick="acti2(2)" value="<%=6*pageCount62Temp +2%>"></li>
-										<li id="p9"><input type="button" id="li9" onclick="acti2(3)" value="<%=6*pageCount62Temp +3%>"></li>
-										<li id="p10"><input type="button" id="li10" onclick="acti2(4)" value="<%=6*pageCount62Temp +4%>"></li>
-										<li id="p11"><input type="button" id="li11" onclick="acti2(5)" value="<%=6*pageCount62Temp +5%>"></li>
-										<li id="p12"><input type="button" id="li12" onclick="acti2(6)" value="<%=6*pageCount62Temp +6%>"></li>
-										<li><span id="sp4">&hellip;</span></li>
-										<li><input type="button" class="button" id="bu4" value="Next" onclick="cli2(1)"></li>
-									</ul>
-									</div>
-								</section>
+ 	//클래스를 가지고오는 리스트
+ 	ArrayList<groupSearchVO> list2 = new ArrayList<groupSearchVO>();
+ 	list2 = cdao.groupSelectAll();
+ %>
+				<div class="posts">
+					<%
+						int count2 = 1;
+						if (request.getParameter("count2") != null) {
+							count2 = Integer.parseInt(request.getParameter("count2"));
+						}
 
-								
-								<!-- 생성하기 Section -->
-								<section style="padding:0px;border:0px;" id="sec3">
-									<div class="posts">
-										<article>
-											<div style="width: 50%;float: left;">
-											<a href="class_class_insert.jsp" class="image"><img src="images/classInsert.png" align="left" /></a>
-											</div>
-											<div style="width: 50%;float: left;">
-											<br>
-											</div>	
-										</article>
-										<article>
-											<div style="width: 50%;float: left;">
-											<a href="class_group_insert.jsp" class="image"><img src="images/groupInsert.png" align="left" /></a>
-											</div>
-											<div style="width: 50%;float: left;">
-											<br>
-											</div>	
-										</article>
-									</div>
-								</section>
-								
-							
-							
-							
-						</div>
+						int pageCount62 = list2.size() % 54 == 0 ? list2.size() / 54 - 1 : list2.size() / 54;
+						int pageCount62Temp = 0;
+						if (request.getParameter("pageCo2") != null) {
+							pageCount62Temp = Integer.parseInt(request.getParameter("pageCo2"));
+						}
+
+						int start2 = 0;
+						//int pageNum = 1;
+						//값이 넘어오면 바뀌고 안넘어오면 start는 0
+						int requestStrat2 = 0;
+						if (request.getParameter("start2") != null) {
+							requestStrat2 = Integer.parseInt(request.getParameter("start2"));
+						}
+						if (start2 < requestStrat2) {
+							start2 = requestStrat2;
+						}
+						int end2 = start2 + (pageCount62Temp * 54) + 8;
+
+						if (list2 != null) {
+
+							System.out.println("그룹 개수 : " + list2.size());
+							if (end2 >= list2.size()) {
+								end2 = list2.size() - 1;
+							}
+
+							System.out.println("그룸의 start2 / end2 / pageCount62Temp / list2개수 : " + start2 + "/" + end2 + "/"
+									+ pageCount62Temp + "/" + list2.size());
+
+							for (int i = start2 + (pageCount62Temp * 54); i <= end2; i++) {
+					%>
+					<article> <%
+ 	System.out.println("출력되는 class i값 : " + i);
+ %> <br>
+					<div style="width: 20%; float: left; height: 97px">
+						<span id="span1" class="icon fa-users"></span>
 					</div>
-	
-				<%-- <%@ include file="class_sidebar.jsp" %> --%>
-			</div>
+					<div style="width: 100%; height: 97px;">
+						<a href="group_print.jsp?groupNum=<%=list2.get(i).getNum()%>"><h2><%=list2.get(i).getName()%></h2></a>
+					</div>
+					<%=list2.get(i).getContent()%> </article>
+					<%
+						}
+						}
+					%>
 
-		<!-- Scripts -->
-			<script src="class_assets/js/jquery.min.js"></script>
-			<script src="class_assets/js/skel.min.js"></script>
-			<script src="class_assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="class_assets/js/main.js"></script>
-			<script type="text/javascript">
-				
-				//클래스 그룹 생성하기 버튼 누르면 동작
-				var new_sec1 = document.getElementById("sec1");
-				var new_sec2 = document.getElementById("sec2");
-				var new_sec3 = document.getElementById("sec3");
-				
+				</div>
+				<div style="text-align: center">
+
+
+					<ul class="pagination"
+						style="margin-top: 40px; margin-bottom: 50px;">
+
+						<li><input type="button" class="button disabled" id="bu3"
+							value="Prev" onclick="cli2(-1)"></li>
+						<li><span id="sp3">&hellip;</span></li>
+						<li id="p7"><input type="button" id="li7" onclick="acti2(1)"
+							value="<%=6 * pageCount62Temp + 1%>"></li>
+						<li id="p8"><input type="button" id="li8" onclick="acti2(2)"
+							value="<%=6 * pageCount62Temp + 2%>"></li>
+						<li id="p9"><input type="button" id="li9" onclick="acti2(3)"
+							value="<%=6 * pageCount62Temp + 3%>"></li>
+						<li id="p10"><input type="button" id="li10"
+							onclick="acti2(4)" value="<%=6 * pageCount62Temp + 4%>"></li>
+						<li id="p11"><input type="button" id="li11"
+							onclick="acti2(5)" value="<%=6 * pageCount62Temp + 5%>"></li>
+						<li id="p12"><input type="button" id="li12"
+							onclick="acti2(6)" value="<%=6 * pageCount62Temp + 6%>"></li>
+						<li><span id="sp4">&hellip;</span></li>
+						<li><input type="button" class="button" id="bu4" value="Next"
+							onclick="cli2(1)"></li>
+					</ul>
+				</div>
+				</section>
+
+
+				<!-- 생성하기 Section -->
+				<section style="padding:0px;border:0px;" id="sec3">
+				<div class="posts">
+					<article>
+					<div style="width: 50%; float: left;">
+						<a href="class_class_insert.jsp" class="image"><img
+							src="images/classInsert.png" align="left" /></a>
+					</div>
+					<div style="width: 50%; float: left;">
+						<br>
+					</div>
+					</article>
+					<article>
+					<div style="width: 50%; float: left;">
+						<a href="class_group_insert.jsp" class="image"><img
+							src="images/groupInsert.png" align="left" /></a>
+					</div>
+					<div style="width: 50%; float: left;">
+						<br>
+					</div>
+					</article>
+				</div>
+				</section>
+
+
+
+
+			</div>
+		</div>
+
+		<%-- <%@ include file="class_sidebar.jsp" %> --%>
+	</div>
+
+	<!-- Scripts -->
+	<script src="class_assets/js/jquery.min.js"></script>
+	<script src="class_assets/js/skel.min.js"></script>
+	<script src="class_assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="class_assets/js/main.js"></script>
+	<script type="text/javascript">
+		//클래스 그룹 생성하기 버튼 누르면 동작
+		var new_sec1 = document.getElementById("sec1");
+		var new_sec2 = document.getElementById("sec2");
+		var new_sec3 = document.getElementById("sec3");
+
+		new_sec2.style.display = "none"
+		new_sec3.style.display = "none"
+
+		function classSel(number) {
+			if (number == 1) {
+				new_sec1.style.display = "block"
 				new_sec2.style.display = "none"
 				new_sec3.style.display = "none"
-				
-				function classSel(number){
-					if(number==1){
-						new_sec1.style.display = "block"
-						new_sec2.style.display = "none"
-						new_sec3.style.display = "none"
-					}else if(number==2){
-						new_sec1.style.display = "none"
-						new_sec2.style.display = "block"
-						new_sec3.style.display = "none"
-						
-					}else if(number==3){
-						new_sec1.style.display = "none"
-						new_sec2.style.display = "none"
-						new_sec3.style.display = "block"
-					}
-					
+			} else if (number == 2) {
+				new_sec1.style.display = "none"
+				new_sec2.style.display = "block"
+				new_sec3.style.display = "none"
+
+			} else if (number == 3) {
+				new_sec1.style.display = "none"
+				new_sec2.style.display = "none"
+				new_sec3.style.display = "block"
+			}
+
+		}
+	</script>
+
+	<!-- 클래스 페이징 -->
+	<script type="text/javascript">
+		//count값으로 색 표시
+		for (var i = 1; i <= 6; i++) {
+			var new_liNum = document.getElementById("li" + i)
+			if (i ==
+	<%=count%>
+		) {
+				new_liNum.className = "page active"
+			} else {
+				new_liNum.className = "page"
+			}
+		}
+
+		//기준이 되는 번호 pageNum 찾는곳
+		//page active를 찾아서 pageNum으로 설정\
+		var pageNum = 1;
+		for (var i = 1; i <= 6; i++) {
+			var new_li = document.getElementById("li" + i)
+			if (new_li.className == "page active") {
+				pageNum = i
+			}
+		}
+
+		var pageCountTemp =
+	<%=pageCount6Temp%>
+		var countTemp =
+	<%=count%>
+		var startTemp =
+	<%=start%>
+		//alert("pageNum 기준이 되는 수 : "+pageNum)
+		//클릭시 실행하는 함수 넘겨주는 값
+		function acti(number) {
+			for (var i = 1; i <= 6; i++) {
+				var new_liNum = document.getElementById("li" + i)
+				//alert(new_liNum.innerHTML)
+				if (i == number) {
+					new_liNum.className = "page active"
+				} else {
+					new_liNum.className = "page"
 				}
-				
-			</script>
-			
-			<!-- 클래스 페이징 -->
-			<script type="text/javascript">
-				 
-				 //count값으로 색 표시
-				for(var i=1 ; i<=6 ; i++){
-					var new_liNum = document.getElementById("li"+i)
-					if(i==<%=count%>){
-						new_liNum.className = "page active"
-					}else{
-						new_liNum.className = "page"
-					}
+				//alert(pageNum+"/"+number)
+
+			}
+			countTemp = number
+			startTemp = (
+	<%=start / 9%>
+		+ number - pageNum) * 9
+			//alert('countTemp/startTemp : '+countTemp+"/"+startTemp)
+			location.href = "class_index.jsp?start=" + startTemp + "&count="
+					+ countTemp + "&pageCo=" + pageCountTemp + "&sel=1";
+		}
+
+		//페이지 개수
+		var listPage =
+	<%=list.size() % 9 == 0 ? list.size() / 9 : list.size() / 9 + 1%>
+		//pageCount6가 0이면 1~6페이지
+		//보여주는 페이지 개수
+		var printPage = listPage -
+	<%=pageCount6Temp * 6%>
+		for (var i = 1; i <= 6; i++) {
+			var new_liP = document.getElementById("p" + i)
+			if (i <= printPage) {
+				new_liP.style.display = "inline"
+			} else {
+				new_liP.style.display = "none"
+			}
+		}
+
+		//pageCount6가 0이면 next를 보여주고 아니면 안보여줌
+		//pageCount6가 0일때 (pageCount6+1)*54 > list.size() 이면 ...을 보여주고 Next활성화
+		//pageCount6가 ?일때 (pageCount6>=1 이면 ...과 Prev활성화(button)
+		//비활성화 button disabled
+		var new_bu1 = document.getElementById("bu1")
+		var new_bu2 = document.getElementById("bu2")
+		var new_sp1 = document.getElementById("sp1")
+		var new_sp2 = document.getElementById("sp2")
+
+		new_sp1.style.display = "none";
+		new_sp2.style.display = "none";
+
+		if ((pageCountTemp + 1) * 54 <
+	<%=list.size()%>
+		) {
+			new_sp2.style.display = "inline";
+			new_bu2.className = "button"
+		} else {
+			new_sp2.style.display = "none";
+			new_bu2.className = "button disabled"
+		}
+
+		if (pageCountTemp >= 1) {
+			new_sp1.style.display = "inline";
+			new_bu1.className = "button"
+		} else {
+			new_sp1.style.display = "none";
+			new_bu1.className = "button disabled"
+		}
+
+		//next나 prev누르면 페이지 넘기기
+		function cli(number) {
+			pageCountTemp = pageCountTemp + number
+			startTemp = 0
+			countTemp = 1
+			location.href = "class_index.jsp?start=" + startTemp + "&count="
+					+ countTemp + "&pageCo=" + pageCountTemp + "&sel=1";
+		}
+	</script>
+
+	<!-- 그룹 페이징 -->
+	<script type="text/javascript">
+		//count값으로 색 표시
+		for (var i = 7; i <= 12; i++) {
+			var new_liNum = document.getElementById("li" + i)
+			if ((i - 6) ==
+	<%=count2%>
+		) {
+				new_liNum.className = "page active"
+			} else {
+				new_liNum.className = "page"
+			}
+		}
+
+		//new_li1.className = "page active"
+
+		//기준이 되는 번호 pageNum 찾는곳
+		//page active를 찾아서 pageNum으로 설정\
+		var pageNum2 = 7;
+		for (var i = 7; i <= 12; i++) {
+			var new_li = document.getElementById("li" + i)
+			if (new_li.className == "page active") {
+				pageNum2 = (i - 6)
+			}
+		}
+
+		var pageCountTemp2 =
+	<%=pageCount62Temp%>
+		var countTemp2 =
+	<%=count2%>
+		var startTemp2 =
+	<%=start2%>
+		//alert("pageNum 기준이 되는 수 : "+pageNum)
+		//클릭시 실행하는 함수 넘겨주는 값
+		function acti2(number) {
+			for (var i = 7; i <= 12; i++) {
+				var new_liNum = document.getElementById("li" + i)
+				//alert(new_liNum.innerHTML)
+				if (i == number) {
+					new_liNum.className = "page active"
+				} else {
+					new_liNum.className = "page"
 				}
-				
-				//기준이 되는 번호 pageNum 찾는곳
-				//page active를 찾아서 pageNum으로 설정\
-				var pageNum = 1;
-				for(var i=1 ; i<=6 ; i++){
-					var new_li = document.getElementById("li"+i)
-					if(new_li.className=="page active"){
-						pageNum = i
-					}
-				}
-					
-				var pageCountTemp = <%=pageCount6Temp%>
-				var countTemp = <%=count%>
-				var startTemp = <%=start%>
-				//alert("pageNum 기준이 되는 수 : "+pageNum)
-				//클릭시 실행하는 함수 넘겨주는 값
-				function acti(number){
-					for(var i=1 ; i<=6 ; i++){
-						var new_liNum = document.getElementById("li"+i)
-						//alert(new_liNum.innerHTML)
-						if(i==number){
-							new_liNum.className = "page active"
-						}else{
-							new_liNum.className = "page"
-						}
-						//alert(pageNum+"/"+number)
-						
-					}
-					countTemp = number
-					startTemp = (<%=start/9%>+number-pageNum)*9
-					//alert('countTemp/startTemp : '+countTemp+"/"+startTemp)
-					location.href="class_index.jsp?start="+startTemp+"&count="+countTemp+"&pageCo="+pageCountTemp+"&sel=1";
-				}
-				
-				
-				//페이지 개수
-				var listPage = <%=list.size()%9==0?list.size()/9 : list.size()/9+1 %>
-				//pageCount6가 0이면 1~6페이지
-				//보여주는 페이지 개수
-				var printPage = listPage - <%=pageCount6Temp*6%>
-				for(var i=1 ; i<=6 ; i++){
-					var new_liP = document.getElementById("p"+i)
-					if(i<=printPage){
-						new_liP.style.display="inline"
-					}else{
-						new_liP.style.display="none"
-					}
-				}
-				
-				
-				//pageCount6가 0이면 next를 보여주고 아니면 안보여줌
-				//pageCount6가 0일때 (pageCount6+1)*54 > list.size() 이면 ...을 보여주고 Next활성화
-				//pageCount6가 ?일때 (pageCount6>=1 이면 ...과 Prev활성화(button)
-				//비활성화 button disabled
-				var new_bu1 = document.getElementById("bu1")
-				var new_bu2 = document.getElementById("bu2")
-				var new_sp1 = document.getElementById("sp1")
-				var new_sp2 = document.getElementById("sp2")
-				
-				new_sp1.style.display = "none";
-				new_sp2.style.display = "none";
-				
-				
-				if((pageCountTemp+1)*54 < <%=list.size()%> ){
-					new_sp2.style.display = "inline";
-					new_bu2.className = "button"
-				}else{
-					new_sp2.style.display = "none";
-					new_bu2.className = "button disabled"
-				}
-				
-				if(pageCountTemp>=1){
-					new_sp1.style.display = "inline";
-					new_bu1.className = "button"
-				}else{
-					new_sp1.style.display = "none";
-					new_bu1.className = "button disabled"
-				}
-				
-				//next나 prev누르면 페이지 넘기기
-				function cli(number){
-					pageCountTemp = pageCountTemp + number
-					startTemp = 0
-					countTemp = 1
-					location.href="class_index.jsp?start="+startTemp+"&count="+countTemp+"&pageCo="+pageCountTemp+"&sel=1";
-				}
-			
-			</script>
-			
-			<!-- 그룹 페이징 -->
-			<script type="text/javascript">
-				 
-				 //count값으로 색 표시
-				for(var i=7 ; i<=12 ; i++){
-					var new_liNum = document.getElementById("li"+i)
-					if((i-6)==<%=count2%>){
-						new_liNum.className = "page active"
-					}else{
-						new_liNum.className = "page"
-					}
-				}
-				
-				//new_li1.className = "page active"
-				
-				//기준이 되는 번호 pageNum 찾는곳
-				//page active를 찾아서 pageNum으로 설정\
-				var pageNum2 = 7;
-				for(var i=7 ; i<=12 ; i++){
-					var new_li = document.getElementById("li"+i)
-					if(new_li.className=="page active"){
-						pageNum2 = (i-6)
-					}
-				}
-					
-				var pageCountTemp2 = <%=pageCount62Temp%>
-				var countTemp2 = <%=count2%>
-				var startTemp2 = <%=start2%>
-				//alert("pageNum 기준이 되는 수 : "+pageNum)
-				//클릭시 실행하는 함수 넘겨주는 값
-				function acti2	(number){
-					for(var i=7 ; i<=12 ; i++){
-						var new_liNum = document.getElementById("li"+i)
-						//alert(new_liNum.innerHTML)
-						if(i==number){
-							new_liNum.className = "page active"
-						}else{
-							new_liNum.className = "page"
-						}
-						//alert(pageNum+"/"+number)
-						
-					}
-					//alert('pageNum2 : '+pageNum2)
-					countTemp2 = number
-					startTemp2 = (<%=start2/9%>+number-pageNum2)*9
-					//alert('countTemp/startTemp : '+countTemp+"/"+startTemp)
-					location.href="class_index.jsp?start2="+startTemp2+"&count2="+countTemp2+"&pageCo2="+pageCountTemp2+"&sel=2";
-				}
-				
-				
-				//페이지 개수
-				var listPage2 = <%=list2.size()%9==0?list2.size()/9 : list2.size()/9+1 %>
-				//pageCount6가 0이면 1~6페이지
-				//보여주는 페이지 개수
-				var printPage2 = listPage2 - <%=pageCount62Temp*6%>
-				for(var i=7 ; i<=12 ; i++){
-					var new_liP = document.getElementById("p"+i)
-					if((i-6)<=printPage2){
-						new_liP.style.display="inline"
-					}else{
-						new_liP.style.display="none"
-					}
-				}
-				
-				
-				//pageCount6가 0이면 next를 보여주고 아니면 안보여줌
-				//pageCount6가 0일때 (pageCount6+1)*54 > list.size() 이면 ...을 보여주고 Next활성화
-				//pageCount6가 ?일때 (pageCount6>=1 이면 ...과 Prev활성화(button)
-				//비활성화 button disabled
-				var new_bu3 = document.getElementById("bu3")
-				var new_bu4 = document.getElementById("bu4")
-				var new_sp3 = document.getElementById("sp3")
-				var new_sp4 = document.getElementById("sp4")
-				
-				new_sp3.style.display = "none";
-				new_sp4.style.display = "none";
-				
-				
-				if((pageCountTemp2+1)*54 < <%=list2.size()%> ){
-					new_sp4.style.display = "inline";
-					new_bu4.className = "button"
-				}else{
-					new_sp4.style.display = "none";
-					new_bu4.className = "button disabled"
-				}
-				
-				if(pageCountTemp2>=1){
-					new_sp3.style.display = "inline";
-					new_bu3.className = "button"
-				}else{
-					new_sp3.style.display = "none";
-					new_bu3.className = "button disabled"
-				}
-				
-				//next나 prev누르면 페이지 넘기기
-				function cli2(number){
-					pageCountTemp2 = pageCountTemp2 + number
-					startTemp2 = 0
-					countTemp2 = 1
-					location.href="class_index.jsp?start2="+startTemp2+"&count2="+countTemp2+"&pageCo2="+pageCountTemp2+"&sel=2";
-				}
-				
-			</script>
-			
-			<!-- url을 가지고와서 sel값을 확인 후에 클래스인지 그룹인지 확인후 띄어줌  -->
-			<script type="text/javascript">
-	
-				var url = location.href;
-			    // get 파라미터 값을 가져올 수 있는 ? 를 기점으로 slice 한 후 split 으로 나눔
-			    var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
-			
-			    //sel의 값이 받아와진다.
-			    var varName = parameters[3].split('=')[1];
-			   // alert("2 : "+varName)
-		       
-			    change(varName)
-				function change(a) {
-					var new_sec1 = document.getElementById("sec1");
-					var new_sec2 = document.getElementById("sec2");
-					var new_sec3 = document.getElementById("sec3");
-					
-					if(a==1){
-						new_sec1.style.display = "block"
-						new_sec2.style.display = "none"
-						new_sec3.style.display = "none"
-					}else if(a==2){
-						new_sec1.style.display = "none"
-						new_sec2.style.display = "block"
-						new_sec3.style.display = "none"
-					}
-				}
-			</script>
-			
-	</body>
+				//alert(pageNum+"/"+number)
+
+			}
+			//alert('pageNum2 : '+pageNum2)
+			countTemp2 = number
+			startTemp2 = (
+	<%=start2 / 9%>
+		+ number - pageNum2) * 9
+			//alert('countTemp/startTemp : '+countTemp+"/"+startTemp)
+			location.href = "class_index.jsp?start2=" + startTemp2 + "&count2="
+					+ countTemp2 + "&pageCo2=" + pageCountTemp2 + "&sel=2";
+		}
+
+		//페이지 개수
+		var listPage2 =
+	<%=list2.size() % 9 == 0 ? list2.size() / 9 : list2.size() / 9 + 1%>
+		//pageCount6가 0이면 1~6페이지
+		//보여주는 페이지 개수
+		var printPage2 = listPage2 -
+	<%=pageCount62Temp * 6%>
+		for (var i = 7; i <= 12; i++) {
+			var new_liP = document.getElementById("p" + i)
+			if ((i - 6) <= printPage2) {
+				new_liP.style.display = "inline"
+			} else {
+				new_liP.style.display = "none"
+			}
+		}
+
+		//pageCount6가 0이면 next를 보여주고 아니면 안보여줌
+		//pageCount6가 0일때 (pageCount6+1)*54 > list.size() 이면 ...을 보여주고 Next활성화
+		//pageCount6가 ?일때 (pageCount6>=1 이면 ...과 Prev활성화(button)
+		//비활성화 button disabled
+		var new_bu3 = document.getElementById("bu3")
+		var new_bu4 = document.getElementById("bu4")
+		var new_sp3 = document.getElementById("sp3")
+		var new_sp4 = document.getElementById("sp4")
+
+		new_sp3.style.display = "none";
+		new_sp4.style.display = "none";
+
+		if ((pageCountTemp2 + 1) * 54 <
+	<%=list2.size()%>
+		) {
+			new_sp4.style.display = "inline";
+			new_bu4.className = "button"
+		} else {
+			new_sp4.style.display = "none";
+			new_bu4.className = "button disabled"
+		}
+
+		if (pageCountTemp2 >= 1) {
+			new_sp3.style.display = "inline";
+			new_bu3.className = "button"
+		} else {
+			new_sp3.style.display = "none";
+			new_bu3.className = "button disabled"
+		}
+
+		//next나 prev누르면 페이지 넘기기
+		function cli2(number) {
+			pageCountTemp2 = pageCountTemp2 + number
+			startTemp2 = 0
+			countTemp2 = 1
+			location.href = "class_index.jsp?start2=" + startTemp2 + "&count2="
+					+ countTemp2 + "&pageCo2=" + pageCountTemp2 + "&sel=2";
+		}
+	</script>
+
+	<!-- url을 가지고와서 sel값을 확인 후에 클래스인지 그룹인지 확인후 띄어줌  -->
+	<script type="text/javascript">
+		var url = location.href;
+		// get 파라미터 값을 가져올 수 있는 ? 를 기점으로 slice 한 후 split 으로 나눔
+		var parameters = (url.slice(url.indexOf('?') + 1, url.length))
+				.split('&');
+
+		//sel의 값이 받아와진다.
+		var varName = parameters[3].split('=')[1];
+		// alert("2 : "+varName)
+
+		change(varName)
+		function change(a) {
+			var new_sec1 = document.getElementById("sec1");
+			var new_sec2 = document.getElementById("sec2");
+			var new_sec3 = document.getElementById("sec3");
+
+			if (a == 1) {
+				new_sec1.style.display = "block"
+				new_sec2.style.display = "none"
+				new_sec3.style.display = "none"
+			} else if (a == 2) {
+				new_sec1.style.display = "none"
+				new_sec2.style.display = "block"
+				new_sec3.style.display = "none"
+			}
+		}
+	</script>
+
+</body>
 </html>

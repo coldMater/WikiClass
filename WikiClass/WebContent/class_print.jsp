@@ -137,4 +137,3 @@ h4{
 			<script src="class_assets/js/main.js"></script>
 
 	</body>
-</html>

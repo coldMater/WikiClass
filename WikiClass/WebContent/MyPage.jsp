@@ -18,7 +18,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="class_assets/css/main.css" />
+<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style type="text/css">
@@ -80,32 +80,25 @@ padding-top: 2em !important;
 							<tr>
 								<th>Name</th>
 								<th>impormation</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
+							<form action="nicknameUpdate.do">
 							<tr>
-								<td>닉네임</td>
+								<td>&nbsp;<i class="fa fa-user" aria-hidden="true" style="color:#20C0FF" ></i>&nbsp;&nbsp;닉네임</td>
 								<td>
 									<span id="nicknamespan">${mvo.nickname }</span>
-									<input type="text" id="nicknameinput" name="nicknameinput" value="${mvo.nickname }">
-								</td>
-								<td>
-									<button onclick="nicknameUpdate1()" id="nicknamebt1">수정</button>
-									<button onclick="nicknameUpdate2()" id="nicknamebt2">저장</button>
 								</td>
 							</tr>
+							</form>	
 							<tr>
-								<td>나이</td>
-								<td>선택하게 만듬</td>
-								<td><button>수정</button></td>
+								<td><i class="fa fa-sticky-note-o" aria-hidden="true" style="color:#20C0FF"><i class="fa fa-question" aria-hidden="true"></i></i>&nbsp;노트수</td>
+								<td>0</td>
 							</tr>
 							<tr>
-								<td>성별</td>
+								<td><i class="fa fa-sticky-note-o" aria-hidden="true" style="color:#20C0FF"><i class="fa fa-exclamation" aria-hidden="true" ></i></i>&nbsp;&nbsp;노트 기여도</td>
 								<td>선택하게 만든</td>
-								<td><button>수정</button></td>
 							</tr>
-
 						</tbody>
 					</table>
 					</article>
@@ -291,33 +284,6 @@ padding-top: 2em !important;
 						<%	}
 						}%>
 					}	
-				</script>
-				<script type="text/javascript">
-					var nicknameInput = document.getElementById("nicknameinput")	
-					var nicknameSpan = document.getElementById("nicknamespan")	
-					var nicknamebt1 = document.getElementById("nicknamebt1")
-					var nicknamebt2 = document.getElementById("nicknamebt2")
-					nicknameinput.style.display="none"
-					nicknamebt2.style.display="none"
-					
-					function nicknameUpdate1(){
-							nicknameinput.style.display="block"
-							nicknameSpan.style.display="none"
-							nicknamebt1.style.display="none"
-							nicknamebt2.style.display="block"
-						
-							
-						}
-					
-					function nicknameUpdate2(){
-						nicknameinput.style.display="none"
-						nicknameSpan.style.display="block"
-						nicknamebt1.style.display="block"
-						nicknamebt2.style.display="none"	
-						
-					}
-					
-				
 				</script>
 				
 				
