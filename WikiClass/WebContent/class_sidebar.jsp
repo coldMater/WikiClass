@@ -23,11 +23,15 @@
 			
 			
 			<% String list_side = (String) request.getAttribute("list"); %>
-			<% String classNum_side = (String) request.getAttribute("classID"); %>
+			<% String classNum_side = (String)request.getAttribute("classID"); %>
 		
 			<% ClassDAO dao_side = new ClassDAO(); %>
 			<% classVO vo_side = dao_side.getClass(classNum_side); %>
-			<h1 style="display:inline;"><a style = "border-bottom:none;" href="#"><i class="fa fa-book" ></a></i></h1><h2 style="font-size:1.5em">&nbsp&nbsp <a style = "border-bottom:none;" href="NoteLoadingService?classNum=<%=classNum_side%>"><%= vo_side.getName()%></a> </h2>
+			<h1 style="display:inline;">
+				<a style = "border-bottom:none;" href="#">
+				<i class="fa fa-book" ></i>
+				</a>
+			</h1><h2 style="font-size:1.5em">&nbsp&nbsp <a style = "border-bottom:none;" href="NoteLoadingService?classNum=<%=classNum_side%>"><%= vo_side.getName()%></a> </h2>
 			</header>
 			<header class = "icon" style="text-align:right;">
 			<h2 style="font-size:2.0em;">

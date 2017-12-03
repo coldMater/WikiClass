@@ -150,7 +150,7 @@ padding:  0 0.75em 0.2em 0 ;
 	<div id="sidebar">
 		<div class="inner">
 
-			<!-- Menu -->
+			Menu
 			<nav id="menu"> <header class="major">
 			<h2>클래스란?</h2>
 			</header>

@@ -17,6 +17,7 @@ import com.Service.groupUpdate;
 import com.Service.memberJoin;
 import com.Service.memberLogin;
 import com.Service.mypageInsert;
+import com.Service.nicknameUpdate;
 import com.Service.noteInsert;
 
 @WebServlet("*.do")
@@ -35,6 +36,7 @@ public class Controller extends HttpServlet {
 		map.put("adminLogin.do", new adminLogin());
 		map.put("groupUpdate.do", new groupUpdate());
 		map.put("classUpdate.do", new classUpdate());
+		map.put("nicknameUpdate.do", new nicknameUpdate());
 	}
 	
 	

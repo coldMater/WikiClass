@@ -18,7 +18,7 @@
  font-family:'NanumGothicExtraBold';
 }
 div > p{
-font-family: 'Nanum Gothic', sans-serif;3
+font-family: 'Nanum Gothic', sans-serif;
 font-weight:bold;
 }
 footer > a{

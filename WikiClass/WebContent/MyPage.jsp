@@ -18,7 +18,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="class_assets/css/main.css" />
+<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style type="text/css">
@@ -84,17 +84,19 @@ padding-top: 2em !important;
 							</tr>
 						</thead>
 						<tbody>
+							<form action="nicknameUpdate.do">
 							<tr>
 								<td>닉네임</td>
 								<td>
 									<span id="nicknamespan">${mvo.nickname }</span>
-									<input type="text" id="nicknameinput" name="nicknameinput" value="${mvo.nickname }">
+									<input type="text" id="nicknameinput" name="nicknameinput" value="${mvo.nickname }" style="width: 130px;">
 								</td>
 								<td>
-									<button onclick="nicknameUpdate1()" id="nicknamebt1">수정</button>
-									<button onclick="nicknameUpdate2()" id="nicknamebt2">저장</button>
+									<input type="button" onclick="nicknameUpdate1()" id="nicknamebt1" value="수정">
+									<input type="submit" id="nicknamebt2" value="저장">
 								</td>
 							</tr>
+							</form>	
 							<tr>
 								<td>나이</td>
 								<td>선택하게 만듬</td>
@@ -306,14 +308,14 @@ padding-top: 2em !important;
 							nicknamebt1.style.display="none"
 							nicknamebt2.style.display="block"
 						
-							
-						}
+					}
 					
 					function nicknameUpdate2(){
 						nicknameinput.style.display="none"
 						nicknameSpan.style.display="block"
 						nicknamebt1.style.display="block"
 						nicknamebt2.style.display="none"	
+						
 						
 					}
 					

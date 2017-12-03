@@ -121,9 +121,7 @@ h4{
 
 						</div>
 					</div>
-
 				<%@ include file="class_sidebar.jsp" %>
-
 			</div>
 
 		<!-- Scripts -->
