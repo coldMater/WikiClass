@@ -6,8 +6,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>MyPage</title>
+<meta charset="euc-kr" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
+<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
 <body>
 	<%
@@ -26,15 +31,20 @@
 
 	<div class="row">
 		<div class="6u 12u$(small)">
-			<ul style="padding-left: 20px">
-				<c:forEach items="${list }" var="i">
-					<h3>
-						<li>${i }</li>
-					</h3>
+			<table style="width: 100%">
+				<c:forEach items="${list }" var="i" >
+				<tr>	
+					<td>
+						<i class="fa fa-users" aria-hidden="true" style="color:#20C0FF;font-size:1.2rem"></i><b style="font-size:1.2rem;">${i }</b>
+					</td>
+				</tr>	
 				</c:forEach>
-			</ul>
+			</table>
 		</div>
 	</div>
-
+				<script src="class_assets/js/jquery.min.js"></script>
+				<script src="class_assets/js/skel.min.js"></script>
+				<script src="class_assets/js/util.js"></script>
+				<script src="class_assets/js/main.js"></script>
 </body>
 </html>

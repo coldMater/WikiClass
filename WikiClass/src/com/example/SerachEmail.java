@@ -27,7 +27,7 @@ public class SerachEmail extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		if(wmvo == null) {
-			out.print("존재하지 않는 이메일입니다.");
+			out.print("가입가능한 이메일입니다.");
 		}else {
 			out.print("이메일이 존재합니다.");
 		}

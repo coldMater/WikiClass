@@ -110,8 +110,8 @@
                         <div class="col-md-12">
                             <div class="card card-plain">
                                 <div class="card-header" data-background-color="blue">
-                                    <h4 class="title">Table on Plain Background</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
+                                    <h4 class="title">데이터분석 -> 워드클라우드 & 레이더그래프</h4>
+                                    <p class="category">문서내에서 가장 많이 사용되는 단어들을 워드클라우드와 레이더형식의 그래프로 보여줍니다</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table table-hover">
@@ -177,34 +177,21 @@
                 <div class="container-fluid">
                     <nav class="pull-left">
                         <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+					<li><a href="http://knjas.or.kr"> WikiClass 바로가기 </a></li>
+					<li><a href="http://knjas.or.kr/admin/index/dashboard.jsp">dashboard</a></li>
+					<li><a href="http://knjas.or.kr/admin/index/member.jsp">member</a></li>
+					<li><a href="http://knjas.or.kr/admin/index/group.jsp">group</a></li>
+					<li><a href="http://knjas.or.kr/admin/index/document.jsp">document</a></li>
+					
+				</ul>
+				</nav>
+				<p class="copyright pull-right">
+					&copy;
+					<script>
+						document.write(new Date().getFullYear())
+					</script>
+					Made by Webvenger's Team<br> copyright @ by Webvenger's All Rights Reserved 
+				</p>
                     </p>
                 </div>
             </footer>

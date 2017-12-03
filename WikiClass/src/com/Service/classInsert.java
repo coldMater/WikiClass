@@ -62,7 +62,7 @@ public class classInsert implements command {
 			//class_grant테이블에 클래스번호와 회원번호 추가
 			String[] person = multi.getParameterValues("person");
 			for (int i = 0; i < person.length; i++) {
-				System.out.println("class_grant에 넘어갈 회원 닉네임 "+person[i]);
+				System.out.println("class_grant에 넘어갈 회원 닉네임 "+person[i]); 
 			}
 			
 			System.out.println("classInsert에서 className###분야 :" +className+"###"+favortie);
