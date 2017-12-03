@@ -524,6 +524,7 @@ public class ClassDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		close();
 		return 0;
 	}
 	

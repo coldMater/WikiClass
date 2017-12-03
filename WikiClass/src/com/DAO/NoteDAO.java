@@ -29,7 +29,7 @@ public class NoteDAO {
 		try {
 			p.load(in);
 		} catch (IOException e1) {
-			System.out.println("memberDAO getConn properties errer");
+			System.out.println("NoteDAO getConn properties errer");
 			e1.printStackTrace();
 		}
 
@@ -40,19 +40,31 @@ public class NoteDAO {
 		try {
 			Class.forName(p.getProperty("dbclass"));
 		} catch (ClassNotFoundException e) {
-			System.out.println("memberDAO forName error");
+			System.out.println("NoteDAO forName error");
 			e.printStackTrace();
 		}
 
 		try {
 			conn = DriverManager.getConnection(url, dbid, dbpw);
 		} catch (SQLException e) {
-			System.out.println("memberDAO connection error");
+			System.out.println("NoteDAO connection error");
 			e.printStackTrace();
 		}
 
 	}
-
+	public void close() {
+		try {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException e) {
+			System.out.println("NodeDAO close finally error");
+			e.printStackTrace();
+		}
+	}
 	public String insertNote(String title, String path, String siblingID, String classID, String userNum) {
 		getConn();
 		String sequenceNow = "";
@@ -88,7 +100,7 @@ public class NoteDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		close();
 		return sequenceNow;
 	}
 
@@ -113,7 +125,7 @@ public class NoteDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		};
-		
+		close();
 		return tempVO;
 	}
 	
@@ -143,6 +155,7 @@ public class NoteDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		close();
 		return tempArr;
 	}
 
@@ -161,7 +174,7 @@ public class NoteDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		close();
 		return result;
 		
 	}

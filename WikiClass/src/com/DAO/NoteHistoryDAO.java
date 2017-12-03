@@ -21,7 +21,7 @@ public class NoteHistoryDAO {
 		try {
 			p.load(in);
 		} catch (IOException e1) {
-			System.out.println("memberDAO getConn properties errer");
+			System.out.println("NoteHistoryDAO getConn properties errer");
 			e1.printStackTrace();
 		}
 
@@ -32,19 +32,31 @@ public class NoteHistoryDAO {
 		try {
 			Class.forName(p.getProperty("dbclass"));
 		} catch (ClassNotFoundException e) {
-			System.out.println("memberDAO forName error");
+			System.out.println("NoteHistoryDAO forName error");
 			e.printStackTrace();
 		}
 
 		try {
 			conn = DriverManager.getConnection(url, dbid, dbpw);
 		} catch (SQLException e) {
-			System.out.println("memberDAO connection error");
+			System.out.println("NoteHistoryDAO connection error");
 			e.printStackTrace();
 		}
 
 	}
-	
+	public void close() {
+		try {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException e) {
+			System.out.println("NoteHistoryDAO close finally error");
+			e.printStackTrace();
+		}
+	}
 	public int insertHistory(String author, String noteID, String classID, String classification, String bef_title, String bef_content) {
 		//author : 해당 과정을 수행한 사람의 ID
 		//noteID : 해당 과정이 적용된 노트의 ID 
@@ -74,6 +86,7 @@ public class NoteHistoryDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		close();
 		return cnt;
 	}
 }

@@ -19,6 +19,44 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style type="text/css">
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+.inner{
+ font-family:'NanumGothicExtraBold';
+}
+div > p{
+font-family: 'Nanum Gothic', sans-serif;
+font-weight:bold;
+}
+footer > a{
+font-family: 'Nanum Gothic', sans-serif;
+font-weight:bold;
+}s
+footer > a > span{
+font-family: 'Nanum Gothic', sans-serif;
+font-weight:bold;
+font-size: 130%;
+}
+div#header{
+background-image: url("images/main1.jpg");
+}
+div#footer{
+padding-top:48px; 
+padding-bottom:48px; 
+}
+li span{
+color:black;
+font-family: 'Nanum Gothic', sans-serif;
+font-weight:bold;
+}
+ul.divided > li{
+margin-top: 16px !important;
+padding-top: 16px !important;
+}
+ul.icons{
+background-color:  !important;
+}
+
 header#header{
 
 padding-top: 2em !important;

@@ -24,7 +24,7 @@ public class NodeDAO {
 		try {
 			p.load(in);
 		} catch (IOException e1) {
-			System.out.println("memberDAO getConn properties errer");
+			System.out.println("NodeDAO getConn properties errer");
 			e1.printStackTrace();
 		}
 
@@ -35,19 +35,31 @@ public class NodeDAO {
 		try {
 			Class.forName(p.getProperty("dbclass"));
 		} catch (ClassNotFoundException e) {
-			System.out.println("memberDAO forName error");
+			System.out.println("NodeDAO forName error");
 			e.printStackTrace();
 		}
 
 		try {
 			conn = DriverManager.getConnection(url, dbid, dbpw);
 		} catch (SQLException e) {
-			System.out.println("memberDAO connection error");
+			System.out.println("NodeDAO connection error");
 			e.printStackTrace();
 		}
 
 	}
-
+	public void close() {
+		try {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException e) {
+			System.out.println("NodeDAO close finally error");
+			e.printStackTrace();
+		}
+	}
 	public ArrayList<NodeVO> select(String class_id) {
 		getConn();
 		ArrayList<NodeVO> nodeList = new ArrayList<NodeVO>();
@@ -64,6 +76,7 @@ public class NodeDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		close();
 		return nodeList;
 	}
 
@@ -83,7 +96,7 @@ public class NodeDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		close();
 		return nodeList;
 
 	}
@@ -106,7 +119,7 @@ public class NodeDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		close();
 		return result;
 
 	}

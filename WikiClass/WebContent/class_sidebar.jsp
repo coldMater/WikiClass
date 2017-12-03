@@ -11,7 +11,42 @@
 <title>Insert title here</title>
 <style>
 
-
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+.inner{
+ font-family:'NanumGothicExtraBold';
+}
+div > p{
+font-family: 'Nanum Gothic', sans-serif;
+font-weight:bold;
+}
+footer > a{
+font-family: 'Nanum Gothic', sans-serif;
+font-weight:bold;
+}s
+footer > a > span{
+font-family: 'Nanum Gothic', sans-serif;
+font-weight:bold;
+font-size: 130%;
+}
+div#header{
+background-image: url("images/main1.jpg");
+}
+div#footer{
+padding-top:48px; 
+padding-bottom:48px; 
+}
+li span{
+color:black;
+font-family: 'Nanum Gothic', sans-serif;
+font-weight:bold;
+}
+ul.divided > li{
+margin-top: 16px !important;
+padding-top: 16px !important;
+}
+ul.icons{
+background-color:  !important;
+}
 
 a[data-depth="0"]{
 font-size:2.0rem;
