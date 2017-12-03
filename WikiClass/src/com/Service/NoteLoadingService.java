@@ -136,8 +136,7 @@ public class NoteLoadingService extends HttpServlet {
 			String pid = node.getParentID();
 			String sid = node.getSiblingID();
 			ArrayList<NodeVO> groupNext = groupHash.get(id);
-			
-			
+
 			// <li>
 			tag += "<li id = "+id+" class = 'note_list' data-nid ="+id+" data-pid="+pid+" data-sid="+sid+" data-depth="+depth+" style='border-top:0px;'>";
 			if(depth==0) {

@@ -48,10 +48,6 @@ ul.icons{
 background-color:  !important;
 }
 
-a[data-depth="0"]{
-font-size:2.0rem;
-}
-
 </style>
 </head>
 <body>

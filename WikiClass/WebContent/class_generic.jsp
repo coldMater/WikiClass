@@ -55,8 +55,15 @@ background-color:  !important;
 }
 
 header#header {
-	padding-top: 2em !important;
+	padding-top: 2rem !important;
 }
+
+a[data-depth="0"]{
+font-family:'NanumGothicExtraBold';
+font-size:1.2rem !important;
+font-weight:bold;
+}
+
 </style>
 </head>
 <body>
