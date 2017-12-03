@@ -62,7 +62,7 @@ font-size:2.0rem;
 			
 			<!-- Menu --><!-- 클래스 이름 표시 부분 -->
 			<nav id="menu"> 
-			<header class = "major" style="font-size:1.2rem;height:5.5rem;" >
+			<header class = "major" style="font-size:1.2em;height:5.5em;" >
 			
 			
 			
@@ -80,15 +80,12 @@ font-size:2.0rem;
 			<% if(dao_side.getClass(classNum_side)!=null){
 				classVO vo_side = dao_side.getClass(classNum_side); %>
 			
-			<h2 style="font-size:2.0rem;margin-top: 18%;">
-			<a style = "border-bottom:none;" href="#"><i class="fa fa-book" ></i></a>&nbsp&nbsp 
-			<a style = "border-bottom:none;" href="NoteLoadingService?classNum=<%=classNum_side%>">
-			<%= vo_side.getName()%></a> </h2>
+			<h1 style="display:inline;"><a style = "border-bottom:none;" href="#"><i class="fa fa-book" ></i></a></h1><h2 style="font-size:1.5em">&nbsp&nbsp <a style = "border-bottom:none;" href="NoteLoadingService?classNum=<%=classNum_side%>"><%= vo_side.getName()%></a> </h2>
 			<%} %>
 
 			</header>
 			<header class = "icon" style="text-align:right;">
-			<h2 style="font-size:2.0rem;margin-top:15%">
+			<h2 style="font-size:2.0em;">
 			
 				<a style = "border-bottom:none;" href="class_note.jsp?classNum=<%=classNum_side%>&amp;groupName=smhrd&amp;className=github&amp;nickname=coldamter"><i class="fa fa-plus" title="노트 생성(Create)"></i>
 				&nbsp <!--  style = "color:#337ab7;" --> 
@@ -103,12 +100,11 @@ font-size:2.0rem;
 			
 			<% if(list_side!=null){%>
 				<%= list_side %>
-			
-			<%}
-			System.out.println(list_side);
-			%>
+			<%}%>
 			
 			</nav>
+			
+			<div style="position:fixed;left:407px;bottom:0px;width:150px;height:150px;background-color: rgba(9,70,77,0.5)"></div>
 			
 			<section>
 			<header class="major">
@@ -169,65 +165,6 @@ font-size:2.0rem;
 				&copy; WikiClass </p>
 			<p class="copyright" style="text-align :right;">Design your idea, spread together.</p>
 			</footer>
-			
-			<!-- UI Sript -->
-
-			<div style="position:fixed;left:407px;bottom:0px;width:300px;height:150px;background-color: rgba(255,255,255,0.5)">
-			
-			<table>
-				<tr>
-					<td>
-					
-								<fieldset>
-			<legend>UI 이동 확인 </legend>
-			<input type="text" value = "" id ="mouse_loc_now" style="display:inline-block;" />
-			<input type="text" value = "" id ="mouse_down" style="display:inline;"/>
-			<input type="text" value = "" id ="mouse_up" style="display:inline;"/>
-			
-			</fieldset>
-					
-					
-					</td>
-				</tr>
-			</table>
-
-			
-			
-			
-			</div>
-			
-			<!-- UI 자바스크립트  확인 위한 태그-->
-			
-			<script type="text/javascript">
-				
-				var nid;
-				var pid;
-				var id;
-				$(".note_link").prop("disabled", true);
-
-				var list = document.getElementsByClassName('note_list');
-				for ( var i = 0; i< list.length;i++){
-					list[i].addEventListener('mousedown', function(){
-						nid= this.getAttribute('id');
-						document.getElementById('mouse_down').setAttribute('value',nid);
-					})
-					
-					list[i].addEventListener('mouseup', function(){
-						pid= this.getAttribute('id');
-						document.getElementById('mouse_up').setAttribute('value',pid);
-						
-					})
-					
-					list[i].addEventListener('mouseover', function(){
-						now= this.getAttribute('id');
-						document.getElementById('mouse_loc_now').setAttribute('value',now);
-					})
-				}
-				
-				
-			
-			</script>
-			
 
 		</div>
 	</div>

@@ -1,3 +1,5 @@
+<%@page import="Analysis.PythonAnalysis"%>
+<%@page import="Analysis.FolderToWrite"%>
 <%@page import="com.DAO.ClassDAO"%>
 <%@page import="com.VO.classVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -10,17 +12,17 @@
 		<meta charset="EUC-KR" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="class_assets/css/main.css" />
+		<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style type="text/css">
 header#header{
 padding-top: 2em !important;
 }
-td{
+.td1{
 	background-color: white;
 }
-table tbody tr{
+.table1, .tr1, .td1{
 	border:0px solid black !important;
 }
 img{
@@ -47,6 +49,23 @@ h4{
 	System.out.println("cvo 클래스 이름 : "+cvo.getName());
 	System.out.println("cvo 클래스 번호 : "+cvo.getNum());
 	
+	
+	ClassDAO classdao = new ClassDAO();
+	
+	String classNum = (String)request.getAttribute("classID");
+	String noteNum = (String)request.getAttribute("noteID");
+	String groupNum = classdao.getGroupNum(classNum);
+	
+	System.out.println(classNum+"//"+noteNum+"//"+groupNum);
+	
+	session.setAttribute("pyClassID", classNum);
+	session.setAttribute("pyNoteID", noteNum);
+	session.setAttribute("pyGroupID", groupNum);
+	
+	
+
+	
+	
 %>
 		<!-- 수정 실패 -->
 		<c:if test="${requestScope.classUpdate==2 }">
@@ -68,23 +87,26 @@ h4{
 							<%@include file="class_header.jsp" %>
 
 							<!-- Content -->
-								<section>
+								<section style="padding-top:20px">
 									<header class="main">
 									<!-- 그룹에 권한이 있는 사람이 들어올 때만 편집과 노트 추가 가능 -->
 									<%
 										//class_grant테이블에 클래스번호와 로그인한 멤버번호를 넣고 있으면 버튼 생성
-										/* int cnt = cdao.selectGrantOne((String)session.getAttribute("email"),cvo.getNum()); */
+										if(session.getAttribute("email")!=null){
+										String userEmail = (String)session.getAttribute("email");
+									 	 int cnt = cdao.selectClassOne(userEmail,cvo.getNum());
+										if(cnt>0){ 
 									%>
-										<%session.getAttribute("userNum");%>
-										
 										<p style="text-align: right;float: right;"> <a href="class_class_edit.jsp?classNum=<%=cvo.getNum() %>" class="button">Class수정 </a>&nbsp;<a href="class_note.jsp?classNum=<%=cvo.getNum() %>&groupName=<%=cvo.getGroup_name() %>&className=<%=cvo.getName() %>&nickname=<%=cvo.getMem_name() %>" class="button">노트 추가</a></p>
-									
+									<% 	}}	%> 
 										<h1><%=cvo.getName() %></h1>
 									</header>
-									
-									<table>
-										<tr>
-											<td rowspan="4" width="300px" style="text-align:right;">
+
+
+									<table class="table1" style="float: left">
+
+										<tr class="tr1">
+											<td class="td1" rowspan="4" width="300px" style="text-align:right;">
 													<c:choose>
 														<c:when test="<%=cvo.getImgPath()==null %>">
 															<img src="classImage/Webvengers.jpg" alt="" style="width: 80%; height: 300px; vertical-align:top; border:1px solid black;"/>
@@ -95,38 +117,30 @@ h4{
 													</c:choose>
 												
 											</td>
-											<td>
+											<td class="td1">
 											</td>
 										</tr>
-										<tr>
-											<td>
-											
+										<tr class="tr1">
+											<td class="td1">
 												<h4>그룹 : </h4><%=cvo.getGroup_name() %><br>
 												<h4>작성자 : </h4><%=cvo.getMem_name() %><br>
 												<h4>분야 : </h4><%=cvo.getFavorite() %><br>
 												<h4>작성날짜 : </h4><%=cvo.getSenddate() %><br>
-											
 											</td>
 										</tr>
-										<tr>
-											<td>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
+										<tr class="tr1">
+											<td colspan = "2" class="td1">
 											</td>
 										</tr>
 									</table>
-									<p><%=cvo.getClassPath() %></p>
-									
-								</section>
 
+									 <iframe src="python1.jsp" style="width: 40%; height: 370px;display:inline;"></iframe>
+									<p style="text-align: left;"><%=cvo.getClassPath() %></p>
+
+								</section>
 						</div>
 					</div>
-
 				<%@ include file="class_sidebar.jsp" %>
-
 			</div>
 
 		<!-- Scripts -->
@@ -137,3 +151,4 @@ h4{
 			<script src="class_assets/js/main.js"></script>
 
 	</body>
+</html>
