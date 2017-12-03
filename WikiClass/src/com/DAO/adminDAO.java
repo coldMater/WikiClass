@@ -347,7 +347,7 @@ public class adminDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		close();
+		
 		return cnt;
 	}
 	
