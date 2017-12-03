@@ -18,7 +18,7 @@
 <style>
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-.inner{
+body{
  font-family:'NanumGothicExtraBold';
 }
 div > p{
