@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -17,26 +16,8 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-.inner{
- font-family:'NanumGothicExtraBold';
-}
-div > p{
-font-family: 'Nanum Gothic', sans-serif;
-font-weight:bold;
-}
-footer > a{
-font-family: 'Nanum Gothic', sans-serif;
-font-weight:bold;
-}s
-footer > a > span{
-font-family: 'Nanum Gothic', sans-serif;
-font-weight:bold;
-font-size: 130%;
-}
-
 header#header{
-padding-top: 2rem !important;
+padding-top: 2em !important;
 }
 .td1{
 	background-color: white;
@@ -54,18 +35,6 @@ img{
 h4{
 	display: inline;
 }
-
-
-
-
-
-
-a[data-depth="0"]{
-font-family:'NanumGothicExtraBold';
-font-size:1.5rem !important;
-font-weight:bold;
-}
-
 	</style>
 	</head>
 	<body>
@@ -132,9 +101,9 @@ font-weight:bold;
 									<% 	}}	%> 
 										<h1><%=cvo.getName() %></h1>
 									</header>
-
-
-									<table class="table1" style="float: left">
+									
+									<div class="row"> 
+									<div class="6u 12u$(small)"><table class="table1" style="float: left; width:100% !important">
 
 										<tr class="tr1">
 											<td class="td1" rowspan="4" width="300px" style="text-align:right;">
@@ -163,9 +132,14 @@ font-weight:bold;
 											<td colspan = "2" class="td1">
 											</td>
 										</tr>
-									</table>
-
-									 <iframe src="python1.jsp" style="width: 40%; height: 370px;display:inline;"></iframe>
+									</table></div>
+									<div class="6u 12u$(small)"><i class="fa fa-search fa-2x" style="width:45px; height:45px"></i><h2 style="display:inline !important">ClassÀÇ ´Ü¾î</h2> 
+									 <iframe src="python1.jsp" style="width: 100%; height: 1000px;display:inline;"></iframe></div>
+									</div>
+									
+								
+									
+									
 									<p style="text-align: left;"><%=cvo.getClassPath() %></p>
 
 								</section>
