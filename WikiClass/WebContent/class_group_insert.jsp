@@ -27,10 +27,12 @@ padding-top: 2em !important;
 		<title>class 만들기</title>
 		<meta charset="EUC-KR" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="font_adjust.css" />
 		<link rel="stylesheet" href="class_assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 	</head>
 	<body>
 <%

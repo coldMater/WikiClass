@@ -100,12 +100,13 @@ background-color:  !important;
 			
 			</nav>
 			
-			<div style="position:fixed;left:407px;bottom:0px;width:150px;height:150px;background-color: rgba(9,70,77,0.5)"></div>
 			
 			<section>
 			<header class="major">
 			<h2>노트 편집하기</h2>
 			</header>
+			<input type="text" value="" id="nid" placeholder="nid"/>
+			<input type="text" value="" id="pid" placeholder="pid"/>
 			
 			<form action="class_note_edit.jsp">
 			<input type="text" name = "noteID" style="width:30%;display:inline;"/>

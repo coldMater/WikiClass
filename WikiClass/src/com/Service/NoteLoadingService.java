@@ -88,8 +88,9 @@ public class NoteLoadingService extends HttpServlet {
 		ArrayList<NodeVO> groupZero = groupHash.get("0");
 		if (groupZero != null) {
 			getNextGroup(groupZero);
-
-			tag = "<ul>"+tag+"</ul>";
+			
+			//태그 양옆 처리
+			tag = "<ul style='border-left:2.5px solid rgba(32,192,255,0.5); left:-20px;padding-left:25px;'>"+tag+"</ul>";
 			
 			System.out.println("=====NoteLoadingService.java/Servlet=====");
 
@@ -106,11 +107,10 @@ public class NoteLoadingService extends HttpServlet {
 		String menuList = tag;
 		request.setAttribute("list", menuList);
 		request.setAttribute("classID", classID);
+		request.setAttribute("classNum", classID);
 		request.setAttribute("noteID", noteID);
 		
-		System.out.println("classID : "+classID);
-		System.out.println("noteID : "+noteID);
-		
+				
 		System.out.println("Final @@ com.Service/NoteLoadingService.java");
 		RequestDispatcher dispatcher = null;
 
@@ -119,10 +119,10 @@ public class NoteLoadingService extends HttpServlet {
 		} else {
 			dispatcher = request.getRequestDispatcher("class_generic.jsp");
 		}
-		
+		tag = "";
 		dispatcher.forward(request, response);
 		
-		tag = "";
+
 	}
 
 	int depth = 0;
@@ -136,38 +136,30 @@ public class NoteLoadingService extends HttpServlet {
 			String pid = node.getParentID();
 			String sid = node.getSiblingID();
 			ArrayList<NodeVO> groupNext = groupHash.get(id);
-
+			
 			// <li>
 			tag += "<li id = "+id+" class = 'note_list' data-nid ="+id+" data-pid="+pid+" data-sid="+sid+" data-depth="+depth+" style='border-top:0px;'>";
-			if(depth==0) {
+			tag += "<a draggable='true' ondrop='drag(event)' ondragover='d(event)' data-depth='"+depth+"'"+"class = 'note_link' style='display:inline;padding-bottom:0px;width:90%;' href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"' title = '"+("[N:"+id+", P:"+pid+", S:"+sid+", D:"+depth+"]")+"'>";
 
+			tag += getSpaceByDepth(depth) + getNoteVO(id).getTitle();
+
+			tag += "</a>";
+			if(depth==0) {
+				
 				// <span>
 				if(groupNext == null) {
-					tag+="<span style='padding-bottom:0px;padding-top:0px;'>";
+					tag+="<span data-depth='"+depth+"' style='padding-bottom:0px;padding-top:0px;top:-38px;left:10px;'>";
+
 				} else {
-					tag+="<span class='opener' style='padding-bottom:0px;padding-top:0px;'>";
+					tag+="<span class='opener active' data-depth='"+depth+"' style='padding-bottom:0px;padding-top:0px;top:-38px;left:10px;'>";
+
 				}
 				
 			}
 
-			;
-				
-			getNoteVO(id);
-							// <a>
-			tag += "<a "+"data-depth='"+depth+"'"+"class = 'note_link' style='padding-bottom:0px;' href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"' title = '"+("[N:"+id+", P:"+pid+", S:"+sid+", D:"+depth+"]")+"'>";
-											// <b>
-			tag += 							((depth<=1)?"":"")
-																						
-											+ ((depth>=2)?"└ ":"") +getNoteVO(id).getTitle()
-											// </b>
-											+((depth<=1)?"":"");
-							//</a>
-			tag += "</a>";
 			if(depth==0) {
-				//</span>
 				tag+="</span>";
 			} else {
-			//</li>
 				tag+="</li>";
 			}
 
@@ -185,6 +177,20 @@ public class NoteLoadingService extends HttpServlet {
 		}
 
 		return tag;
+	}
+
+	private String getSpaceByDepth(int depth2) {
+		String temp = "";
+		if(depth2==0) {
+			
+		} if(depth2==1) {
+			
+		} if(depth2>=2) {
+			for (int i = 1; i < depth2; i++) {
+				temp+="&nbsp&nbsp";
+			}
+		}
+		return temp;
 	}
 
 	private NoteVO getNoteVO(String id) {

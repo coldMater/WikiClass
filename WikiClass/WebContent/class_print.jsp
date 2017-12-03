@@ -10,6 +10,7 @@
 <html>
 	<head>
 		<title>class view</title>
+		<link rel="stylesheet" href="font_adjust.css" />
 		<meta charset="EUC-KR" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -55,15 +56,26 @@ h4{
 	display: inline;
 }
 
+a[data-depth]{
+font-family:'NanumGothicExtraBold';
+font-size:0.93rem !important;
+}
 
+a[data-depth="2"]{
 
+font-size:1.0rem !important;
+}
 
-
+a[data-depth="1"]{
+font-size:1.05rem !important;
+font-weight:bold;
+border-bottom:solid 1.0px rgba(210, 215, 217, 0.75);
+}
 
 a[data-depth="0"]{
-font-family:'NanumGothicExtraBold';
-font-size:1.5rem !important;
+font-size:1.3rem !important;
 font-weight:bold;
+border-bottom:solid 1.5px rgba(210, 215, 217, 0.75);
 }
 
 	</style>
@@ -73,6 +85,9 @@ font-weight:bold;
 	//name : 클래스명
 	/* String name = (String)request.getAttribute("className"); */
 	int num = Integer.parseInt(request.getParameter("classNum"));
+	if(request.getParameter("classNum")==null){
+		num =Integer.parseInt((String)request.getAttribute("classNum"));
+	}
 	System.out.println("class_print에 넘어온 클래스 번호 : "+num);
 	ClassDAO cdao = new ClassDAO();
 	classVO cvo = cdao.selectNameOne(num);
@@ -140,10 +155,10 @@ font-weight:bold;
 											<td class="td1" rowspan="4" width="300px" style="text-align:right;">
 													<c:choose>
 														<c:when test="<%=cvo.getImgPath()==null %>">
-															<img src="classImage/Webvengers.jpg" alt="" style="width: 80%; height: 300px; vertical-align:top; border:1px solid black;"/>
+															<img src="classImage/Webvengers.jpg" alt="" style="width: 100%; height: 300px; vertical-align:top; border:1px solid black;"/>
 														</c:when>
 														<c:otherwise>
-															<img src="classImage/<%=cvo.getImgPath() %>" alt="" style="width: 80%; height: 300px; vertical-align:top; border:1px solid black;"/>
+															<img src="classImage/<%=cvo.getImgPath() %>" alt="" style="width: 100%; height: 300px; vertical-align:top; border:1px solid black;"/>
 														</c:otherwise>
 													</c:choose>
 												

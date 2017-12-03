@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
+	<link rel="stylesheet" href="font_adjust.css" />
 <style type="text/css">
 header#header{
 
@@ -75,20 +76,31 @@ h3,h2{
 					</div>
 
 			<!-- Search -->
-	<div id="sidebar">
+
+			</div>
+		
+			<div id="sidebar" class="inactive">
 		<div class="inner">
 
 			<!-- Menu -->
 			<nav id="menu"> <header class="major">
-			<h2>노트 설명</h2>
+			<h2>클래스란?</h2>
 			</header>
-			노트에 대한 설명이 간략하게 필요합니다.<br>
-			어떤 태그가 어떻게 이루어지는지 설명
+			- 클래스 페이지에 오신 걸 환영합니다!<br>
+			- 이 페이지에서는 당신의 그룹 구성원들과<br>&nbsp; &nbsp;공유할 수 있는 클래스를 만들 수 있습니다.<br>
+			- 클래스는 특정한 범주가 있는 카테고리입<br>&nbsp; &nbsp;니다. 만약 당신의 그룹이 하나의 반이라면,<br>&nbsp; &nbsp;클래스는 당신이 배우는 과목을 뜻합니다.<br>
+			<hr>
+			<h3>클래스 수정</h3>
+			- 분야, 클래스에 대한 설명, 권한 추가를<br>&nbsp;&nbsp;할 수 있습니다.
+			<hr style="border:1;">
+			<h3>주의사항</h3>
+			- 클래스의 첫 페이지는 해당 클래스에 대한<br>&nbsp; &nbsp;소개로 작성해주시길 바랍니다.<br>
+			- 세부적인 수정이 아닌, 큰 규모의 수정이거나 <br>&nbsp; &nbsp;목차 수정은 해당 클래스 관리자와 이야기 후<br>&nbsp; &nbsp;수정하시길 바랍니다.<br>
+			- 무분별한 목차,노트 수정은 그룹원들에게<br>&nbsp; &nbsp;혼란을 가중시킬 수 있습니다.<br>
 			</nav>
 
 		</div>
-	</div>
-			</div>
+	<a href="#sidebar" class="toggle">Toggle</a></div>
 
 		<!-- Scripts -->
 			<script src="class_assets/js/jquery.min.js"></script>

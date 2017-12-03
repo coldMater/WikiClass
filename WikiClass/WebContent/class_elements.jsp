@@ -9,6 +9,7 @@
 <html>
 	<head>
 		<title>Elements - Editorial by HTML5 UP</title>
+		<link rel="stylesheet" href="font_adjust.css" />
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->

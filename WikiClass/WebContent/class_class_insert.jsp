@@ -4,9 +4,12 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 	<head>
+	<link rel="stylesheet" href="font_adjust.css" />
 <style type="text/css">
+
 header#header{
 
 padding-top: 2em !important;
@@ -65,7 +68,7 @@ padding:  0 0.75em 0.2em 0 ;
 									</header>
 								<form action="classInsert.do" method="post" enctype="multipart/form-data">
 									<span class="image main" >
-										<img src="images/classInsert.png" alt="" style="width: 23%; height: 300px"/><input type="file" name="img"  style="margin-left:31px;"></span>
+										<img src="images/classInsert.png" alt="" style="width: 23%; height: 300px"/><input type="file" class= "special" name="img"  style="margin-left:31px;"></span>
 									<table id="classtable">
 										<tr>
 											<!-- 권한 부여된 사람들 출력 -->

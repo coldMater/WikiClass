@@ -8,6 +8,7 @@
 <html>
 <head>
 <title>노트 view</title>
+<link rel="stylesheet" href="font_adjust.css" />
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -16,11 +17,10 @@
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style>
-
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-body{
- font-family:'NanumGothicExtraBold';
+i{
+display:inline;
 }
+
 div > p{
 font-family: 'Nanum Gothic', sans-serif;
 font-weight:bold;
@@ -58,10 +58,26 @@ header#header {
 	padding-top: 2rem !important;
 }
 
-a[data-depth="0"]{
+a[data-depth]{
 font-family:'NanumGothicExtraBold';
-font-size:1.2rem !important;
+font-size:0.93rem !important;
+}
+
+a[data-depth="2"]{
+
+font-size:1.0rem !important;
+}
+
+a[data-depth="1"]{
+font-size:1.05rem !important;
 font-weight:bold;
+border-bottom:solid 1.0px rgba(210, 215, 217, 0.75);
+}
+
+a[data-depth="0"]{
+font-size:1.3rem !important;
+font-weight:bold;
+border-bottom:solid 1.5px rgba(210, 215, 217, 0.75);
 }
 
 </style>
@@ -74,7 +90,7 @@ font-weight:bold;
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
-<%System.out.println("여기 오냐?"); %>
+
 				<!-- Header -->
 				<%@include file="class_header.jsp"%>
 
@@ -131,6 +147,30 @@ font-weight:bold;
 	<script src="class_assets/js/util.js"></script>
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="class_assets/js/main.js"></script>
+
+	<script type="text/javascript">
+	var nid=3;
+	var pid=3;
+	var text_nid = document.getElementById("nid");
+	var text_pid = document.getElementById("pic");
+	
+	function drag(ev) {
+	    var target = ev.target
+	    alert(target.id);
+	}
+	
+	function drop(ev) {
+		
+	    ev.preventDefault();
+	    var data = ev.dataTransfer.getData("text");
+	    nid = data;
+	    var pid = ev.target.id
+	    
+	    text_nid.Attribute("value",3);
+	    text_nid.setattribute("value",5);
+	}
+	
+	</script>
 
 </body>
 </html>

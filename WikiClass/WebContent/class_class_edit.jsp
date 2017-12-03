@@ -9,6 +9,46 @@
 <html>
 	<head>
 <style type="text/css">
+body h1, h2, h3, h4, h5, h6, #createNote{
+ font-family:'NanumGothicExtraBold' !important;
+}
+
+.fileName {display:inline-block;width:190px;height:30px;padding-left:10px;margin-right:5px;line-height:30px;border:1px solid #aaa;background-color:#fff;vertical-align:middle}
+.btn_file {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		background-color: transparent;
+		border-radius: 0.375em;
+		border: 0;
+		/* box-shadow: inset 0 0 0 2px #f56a6a;
+		color: #f56a6a !important; */
+		box-shadow: inset 0 0 0 2px #20C0FF;
+		color: #20C0FF !important;
+		
+		cursor: pointer;
+		display: inline-block;
+		font-family: "Roboto Slab", serif;
+		font-size: 0.8em;
+		font-weight: 700;
+		height: 3.5em;
+		letter-spacing: 0.075em;
+		line-height: 3.5em;
+		padding: 0 2.25em;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		white-space: nowrap;
+		font-family:'NanumGothicExtraBold' !important;
+		foint-size : 1.5rem;
+}
+input[type="file"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
 header#header{
 
 padding-top: 2em !important;
@@ -67,7 +107,38 @@ padding:  0 0.75em 0.2em 0 ;
 								<!-- 클래스번호를 넘겨서 이미지 정보, 분야, 내용 업데이트 후 사람추가  -->	
 								<form action="classUpdate.do" method="post" enctype="multipart/form-data">
 									<span class="image main" >
-										<img src="images/classInsert.png" alt="" style="width: 23%; height: 300px"/><input type="file" name="img"  style="margin-left:31px;"></span>
+										<img src="images/classInsert.png" alt="" style="width: 23%; height: 300px"/>
+										
+										
+										<table>
+											<tr>
+												<td width="470px">
+												
+												<input type="text" class="fileName" readonly="readonly" style="width:400;">
+											
+												
+												</td>
+												<td><label for="uploadBtn" class="btn_file"><span class="icon fa-folder-open fa-2x">
+											<input type="file" name="img" id="uploadBtn" class="uploadBtn"></td>
+											</tr>
+										</table>
+											
+										
+										
+										
+
+										
+										
+										</table>
+										
+									</span>
+<!-- 										
+										
+										<ul class="actions">
+											<li><input type="file"  name="img"  style="margin-left:31px;"></li>
+										</ul> -->
+										
+										
 									<table id="classtable">
 										<tr>
 											<td width="600px" >
@@ -115,7 +186,7 @@ padding:  0 0.75em 0.2em 0 ;
 									<script>
 										CKEDITOR.replace('editor1');
 									</script>
-									<input type="submit" value="클래스생성" id="createClass"/>
+									<input type="submit" value="클래스수정" id="createClass"/>
 									<input type="button" onclick="createC()" id="createClass2" value="클래스생성">
 								</form>	
 								</section>
@@ -226,7 +297,15 @@ padding:  0 0.75em 0.2em 0 ;
 	               			}	
 	         		 });
 				}
-			
+			var uploadFile = $('.fileBox .uploadBtn');
+			uploadFile.on('change', function(){
+				if(window.FileReader){
+					var filename = $(this)[0].files[0].name;
+				} else {
+					var filename = $(this).val().split('/').pop().split('\\').pop();
+				}
+				$(this).siblings('.fileName').val(filename);
+			});
 			</script>
 
 	</body>

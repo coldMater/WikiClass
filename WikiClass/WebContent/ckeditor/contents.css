@@ -2,6 +2,13 @@
 Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
+@import url(font-awesome.min.css);
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body h1, h2, h3, h4, h5, h6, #createNote, input, a {
+ font-family:'NanumGothicExtraBold' !important;
+}
 
 body
 {
