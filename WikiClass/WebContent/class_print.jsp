@@ -1,3 +1,5 @@
+<%@page import="Analysis.PythonAnalysis"%>
+<%@page import="Analysis.FolderToWrite"%>
 <%@page import="com.DAO.ClassDAO"%>
 <%@page import="com.VO.classVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -78,6 +80,37 @@ h4{
 										<p style="text-align: right;float: right;"> <a href="class_class_edit.jsp?classNum=<%=cvo.getNum() %>" class="button">Class수정 </a>&nbsp;<a href="class_note.jsp?classNum=<%=cvo.getNum() %>&groupName=<%=cvo.getGroup_name() %>&className=<%=cvo.getName() %>&nickname=<%=cvo.getMem_name() %>" class="button">노트 추가</a></p>
 										<h1><%=cvo.getName() %></h1>
 									</header>
+																	
+									
+									
+									<%
+									ClassDAO classdao = new ClassDAO();
+									String classNum = (String)request.getAttribute("classID");
+									String noteNum = (String)request.getAttribute("noteID");
+									String groupNum = classdao.getGroupNum(classNum);
+									ServletContext context =  request.getSession().getServletContext();//어플리케이션에 대한 정보를 가진다.  
+									String saveDir = context.getRealPath("NoteText");
+									System.out.println("@@@@@@@@@@@@@@"+saveDir);
+
+									String folderPath = saveDir+"/"+groupNum+"/"+classNum;
+									String writeTxtPath = saveDir+"/out.txt";
+									FolderToWrite ftw = new FolderToWrite();
+									ftw.readFolderAndWrite(folderPath, writeTxtPath);									
+									
+									PythonAnalysis pa = new PythonAnalysis();
+									String result = pa.sortByWordsNum(saveDir+"/py/words2.py");													
+									
+									%>
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
 									
 									<table>
 										<tr>
@@ -102,12 +135,13 @@ h4{
 												<h4>작성자 : </h4><%=cvo.getMem_name() %><br>
 												<h4>분야 : </h4><%=cvo.getFavorite() %><br>
 												<h4>작성날짜 : </h4><%=cvo.getSenddate() %><br>
+												
 											
 											</td>
 										</tr>
 										<tr>
 											<td>
-												
+												<input type="button" value="단어빈도 분석">
 											</td>
 										</tr>
 										<tr>
@@ -115,6 +149,14 @@ h4{
 											</td>
 										</tr>
 									</table>
+									
+									 <%=result%> 
+									
+									
+									
+									
+									
+									
 									<p><%=cvo.getClassPath() %></p>
 									
 								</section>
