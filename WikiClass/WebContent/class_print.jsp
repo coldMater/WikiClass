@@ -85,38 +85,7 @@ h4{
 										<h1><%=cvo.getName() %></h1>
 									</header>
 																	
-									
-									
-									<%
-									ClassDAO classdao = new ClassDAO();
-									String classNum = (String)request.getAttribute("classID");
-									String noteNum = (String)request.getAttribute("noteID");
-									String groupNum = classdao.getGroupNum(classNum);
-									ServletContext context =  request.getSession().getServletContext();//어플리케이션에 대한 정보를 가진다.  
-									String saveDir = context.getRealPath("NoteText");
-									System.out.println("@@@@@@@@@@@@@@"+saveDir);
-
-									String folderPath = saveDir+"/"+groupNum+"/"+classNum;
-									String writeTxtPath = saveDir+"/out.txt";
-									FolderToWrite ftw = new FolderToWrite();
-									ftw.readFolderAndWrite(folderPath, writeTxtPath);									
-									
-									PythonAnalysis pa = new PythonAnalysis();
-									String result = pa.sortByWordsNum(saveDir+"/py/words2.py");													
-									
-									%>
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									<table class="table1">
+									<table class="table1" style="float: left">
 										<tr class="tr1">
 											<td class="td1" rowspan="4" width="300px" style="text-align:right;">
 													<c:choose>
@@ -134,38 +103,22 @@ h4{
 										</tr>
 										<tr class="tr1">
 											<td class="td1">
-											
 												<h4>그룹 : </h4><%=cvo.getGroup_name() %><br>
 												<h4>작성자 : </h4><%=cvo.getMem_name() %><br>
 												<h4>분야 : </h4><%=cvo.getFavorite() %><br>
 												<h4>작성날짜 : </h4><%=cvo.getSenddate() %><br>
-												
-											
 											</td>
 										</tr>
-
-										<td colspan = "2">
-												<input type="button" value="단어빈도 분석">
-												</td>
-												</tr>
-
-										
 										<tr class="tr1">
-											<td class="td1">
+											<td colspan = "2" class="td1">
+												<input type="button" value="단어빈도 분석">
 											</td>
-										
+										</tr>
 									</table>
-									
-									 <%=result%> 
-									
-									
-									
-									
-									
-									
+									 <iframe src="python1.jsp" style="width: 40%; height: 320px;display:inline;"></iframe>
 									<p><%=cvo.getClassPath() %></p>
-									
 								</section>
+								
 
 						</div>
 					</div>
