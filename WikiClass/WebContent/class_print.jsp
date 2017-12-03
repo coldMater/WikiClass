@@ -140,7 +140,7 @@ h4{
 											</td>
 										</tr>
 
-										<tr><td colspan = "2">
+										<td colspan = "2">
 												<input type="button" value="단어빈도 분석">
 												</td>
 												</tr>
@@ -149,7 +149,7 @@ h4{
 										<tr class="tr1">
 											<td class="td1">
 											</td>
-										</tr>
+										
 									</table>
 									
 									 <%=result%> 

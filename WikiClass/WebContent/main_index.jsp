@@ -24,7 +24,7 @@ font-weight:bold;
 footer > a{
 font-family: 'Nanum Gothic', sans-serif;
 font-weight:bold;
-}
+}s
 footer > a > span{
 font-family: 'Nanum Gothic', sans-serif;
 font-weight:bold;
