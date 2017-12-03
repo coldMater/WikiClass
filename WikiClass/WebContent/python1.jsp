@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <%
 									ClassDAO classdao = new ClassDAO();
 									String classNum = (String)request.getAttribute("classID");
