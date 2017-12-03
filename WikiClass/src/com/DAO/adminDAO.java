@@ -531,7 +531,7 @@ public class adminDAO {
 				rs = pst.executeQuery();
 				while (rs.next()) {
 					
-					SearchList.add(new GraphFieldClassVO(rs.getInt(1)));
+				//	SearchList.add(new GraphFieldClassVO(rs.getInt(1)));
 				}
 			}
 		} catch (SQLException e) {
