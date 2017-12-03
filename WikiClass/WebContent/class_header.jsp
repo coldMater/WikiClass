@@ -17,7 +17,7 @@ System.out.println("class_index에 들어온 uri = "+req_uri);
 	<!-- Header -->
 	<header id="header"> 
 		<a href="class_index.jsp" class="logo">
-			<img src="images/logo3.png" alt="" style="float:left;"/>
+			<img src="images/class_index_logo.png" alt="" style="float:left;width: 25%;height: 70px"/>
 		</a>
 	<ul class="icons" style="margin-top: auto;">
 		<c:choose>

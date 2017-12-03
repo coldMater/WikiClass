@@ -73,9 +73,13 @@ h4{
 									<!-- 그룹에 권한이 있는 사람이 들어올 때만 편집과 노트 추가 가능 -->
 									<%
 										//class_grant테이블에 클래스번호와 로그인한 멤버번호를 넣고 있으면 버튼 생성
-										/* int cnt = cdao.selectGrantOne((String)session.getAttribute("email"),cvo.getNum()); */
+										if(session.getAttribute("email")!=null){
+										String userEmail = (String)session.getAttribute("email");
+									 	 int cnt = cdao.selectClassOne(userEmail,cvo.getNum());
+										if(cnt>0){ 
 									%>
 										<p style="text-align: right;float: right;"> <a href="class_class_edit.jsp?classNum=<%=cvo.getNum() %>" class="button">Class수정 </a>&nbsp;<a href="class_note.jsp?classNum=<%=cvo.getNum() %>&groupName=<%=cvo.getGroup_name() %>&className=<%=cvo.getName() %>&nickname=<%=cvo.getMem_name() %>" class="button">노트 추가</a></p>
+									<% 	}}	%> 
 										<h1><%=cvo.getName() %></h1>
 									</header>
 									

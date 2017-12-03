@@ -189,12 +189,7 @@ transform: rotate(45deg);
 			</script>
 		</c:if>
 	
-<%
-	ClassDAO cdao = new ClassDAO();
-	ArrayList<classVO> list = new ArrayList<classVO>(); 
-	list = cdao.classSelectAll();
-	
-%>
+
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -222,7 +217,21 @@ transform: rotate(45deg);
 									</ul>
 								
 								<!-- 클래스 목록 Section -->
+								<%
+								ClassDAO cdao = new ClassDAO();
+								ArrayList<classVO> list = new ArrayList<classVO>(); 
+								list = cdao.classSelectAll();
+								%>
 								<section style="padding:0px;border:0px;" id="sec1">
+								
+									<!-- <!-- Search -->
+									<section id="search" class="alt">
+										<form method="post" action="#" >
+											<input type="text" name="query" id="query" placeholder="Search" style="width: 30%;"/>
+											<i class="fa fa-search" aria-hidden="true"></i>
+										</form>
+									</section> -->
+									
 									<div class="posts">
 									<%
 									int count=1;

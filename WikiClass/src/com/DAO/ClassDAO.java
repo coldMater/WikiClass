@@ -502,8 +502,29 @@ public class ClassDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-			
 		return groupNum;
 	}
+	
+	public int selectClassOne(String memEmail, int classNum) {
+		getConn();
+		try {
+			pst = conn.prepareStatement("select * from class_grant where class_num=? and mem_num=(select num from member where email=?)");
+			pst.setInt(1, classNum);
+			pst.setString(2, memEmail);
+			rs=pst.executeQuery();
+			System.out.print("클래스번호 / 회원아이디 : "+classNum+"/"+memEmail);
+			if(rs.next()) {
+				System.out.println("권한이 있습니다.");
+				return 1;
+			}
+			System.out.println("권한이 없습니다.");
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 }
