@@ -12,7 +12,7 @@
 		<meta charset="EUC-KR" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="class_assets/css/main.css" />
+		<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<style type="text/css">
@@ -78,7 +78,7 @@ h4{
 							<%@include file="class_header.jsp" %>
 
 							<!-- Content -->
-								<section>
+								<section style="padding-top:20px">
 									<header class="main">
 									<!-- 그룹에 권한이 있는 사람이 들어올 때만 편집과 노트 추가 가능 -->
 									<%
@@ -93,7 +93,7 @@ h4{
 												<p style="text-align: right;float: right;"> <a href="class_group_edit.jsp?groupNum=<%=gvo.getNum() %>" class="button">편집 </a>&nbsp;<a href="class_class_insert.jsp?groupName=<%=gvo.getName() %>" class="button">클래스 추가</a></p>	
 											<%} 	
 										}%>
-										<h1><%=gvo.getName() %>Group</h1>
+										<h1><i class="fa fa-users" aria-hidden="true" style="color:#20C0FF"></i><%=gvo.getName() %></h1>
 									</header>
 									<!-- 그룹 설명 출력 -->
 									<h2>그룹 설명</h2>
@@ -110,8 +110,8 @@ h4{
 								%>
 
 								<!-- 클래스 목록 Section -->
-								<h2>클래스 목록</h2>
-								<section style="padding:0px;border:0px;" id="sec1">
+								<h2 style="border-bottom: solid 3px #20C0FF;display:inline;">클래스 목록</h2>
+								<section style="padding:0px;border:0px;margin-top:20px" id="sec1">
 									<div class="posts">
 									<% 	for(int i=0 ; i<list.size() ; i++){ %>
 											<article>

@@ -10,17 +10,17 @@
 		<meta charset="EUC-KR" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="class_assets/css/main.css" />
+		<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <style type="text/css">
 header#header{
 padding-top: 2em !important;
 }
-td{
+.td1{
 	background-color: white;
 }
-table tbody tr{
+.table1, .tr1, .td1{
 	border:0px solid black !important;
 }
 img{
@@ -68,7 +68,7 @@ h4{
 							<%@include file="class_header.jsp" %>
 
 							<!-- Content -->
-								<section>
+								<section style="padding-top:20px">
 									<header class="main">
 									<!-- 그룹에 권한이 있는 사람이 들어올 때만 편집과 노트 추가 가능 -->
 									<%
@@ -79,9 +79,9 @@ h4{
 										<h1><%=cvo.getName() %></h1>
 									</header>
 									
-									<table>
-										<tr>
-											<td rowspan="4" width="300px" style="text-align:right;">
+									<table class="table1">
+										<tr class="tr1">
+											<td class="td1" rowspan="4" width="300px" style="text-align:right;">
 													<c:choose>
 														<c:when test="<%=cvo.getImgPath()==null %>">
 															<img src="classImage/Webvengers.jpg" alt="" style="width: 80%; height: 300px; vertical-align:top; border:1px solid black;"/>
@@ -92,11 +92,11 @@ h4{
 													</c:choose>
 												
 											</td>
-											<td>
+											<td class="td1">
 											</td>
 										</tr>
-										<tr>
-											<td>
+										<tr class="tr1">
+											<td class="td1">
 											
 												<h4>그룹 : </h4><%=cvo.getGroup_name() %><br>
 												<h4>작성자 : </h4><%=cvo.getMem_name() %><br>
@@ -105,13 +105,12 @@ h4{
 											
 											</td>
 										</tr>
-										<tr>
-											<td>
-												
+										<tr class="tr1">
+											<td class="td1">
 											</td>
 										</tr>
-										<tr>
-											<td>
+										<tr class="tr1">
+											<td class="td1">
 											</td>
 										</tr>
 									</table>

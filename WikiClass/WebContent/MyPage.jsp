@@ -80,7 +80,6 @@ padding-top: 2em !important;
 							<tr>
 								<th>Name</th>
 								<th>impormation</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -89,25 +88,17 @@ padding-top: 2em !important;
 								<td>닉네임</td>
 								<td>
 									<span id="nicknamespan">${mvo.nickname }</span>
-									<input type="text" id="nicknameinput" name="nicknameinput" value="${mvo.nickname }" style="width: 130px;">
-								</td>
-								<td>
-									<input type="button" onclick="nicknameUpdate1()" id="nicknamebt1" value="수정">
-									<input type="submit" id="nicknamebt2" value="저장">
 								</td>
 							</tr>
 							</form>	
 							<tr>
-								<td>나이</td>
+								<td>노트수</td>
 								<td>선택하게 만듬</td>
-								<td><button>수정</button></td>
 							</tr>
 							<tr>
-								<td>성별</td>
+								<td>노트 기여도</td>
 								<td>선택하게 만든</td>
-								<td><button>수정</button></td>
 							</tr>
-
 						</tbody>
 					</table>
 					</article>
@@ -293,33 +284,6 @@ padding-top: 2em !important;
 						<%	}
 						}%>
 					}	
-				</script>
-				<script type="text/javascript">
-					var nicknameInput = document.getElementById("nicknameinput")	
-					var nicknameSpan = document.getElementById("nicknamespan")	
-					var nicknamebt1 = document.getElementById("nicknamebt1")
-					var nicknamebt2 = document.getElementById("nicknamebt2")
-					nicknameinput.style.display="none"
-					nicknamebt2.style.display="none"
-					
-					function nicknameUpdate1(){
-							nicknameinput.style.display="block"
-							nicknameSpan.style.display="none"
-							nicknamebt1.style.display="none"
-							nicknamebt2.style.display="block"
-						
-					}
-					
-					function nicknameUpdate2(){
-						nicknameinput.style.display="none"
-						nicknameSpan.style.display="block"
-						nicknamebt1.style.display="block"
-						nicknamebt2.style.display="none"	
-						
-						
-					}
-					
-				
 				</script>
 				
 				

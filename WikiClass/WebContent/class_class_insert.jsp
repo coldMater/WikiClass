@@ -34,7 +34,7 @@ padding:  0 0.75em 0.2em 0 ;
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<script src="./ckeditor/ckeditor.js"></script>
 		<link rel="stylesheet" href="./ckeditor/contents.css" />
-		<link rel="stylesheet" href="class_assets/css/main.css" />
+		<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -59,7 +59,7 @@ padding:  0 0.75em 0.2em 0 ;
 							<%@include file="class_header.jsp" %>
 
 							<!-- Content -->
-								<section>
+								<section style="padding-top:20px">
 									<header class="main">
 										<h1>Class 추가</h1>
 									</header>
@@ -150,7 +150,6 @@ padding:  0 0.75em 0.2em 0 ;
 	<div id="sidebar">
 		<div class="inner">
 
-			Menu
 			<nav id="menu"> <header class="major">
 			<h2>클래스란?</h2>
 			</header>
@@ -214,7 +213,7 @@ padding:  0 0.75em 0.2em 0 ;
           				new_groupp.style.display="inline"
                				if(result=="사용 가능한 그룹 입니다."){
                					new_groupp.innerHTML = result
-               					new_groupp.style.color = "blue"
+               					new_groupp.style.color = "#20C0FF"
                					groupbool = true;
                				}else{
                					var r = result
@@ -223,7 +222,7 @@ padding:  0 0.75em 0.2em 0 ;
                					new_groupp.innerHTML = ""
                					new_a.appendChild(new_txt)
                					new_a.href = "class_group_insert.jsp"
-               					new_a.style.color = "red"
+               					new_a.style.color = "#f56a6a"
                					new_groupp.appendChild(new_a)
                					groupbool = false;
                				}
@@ -251,10 +250,10 @@ padding:  0 0.75em 0.2em 0 ;
           				new_classp.style.display="inline"
           				new_classp.innerHTML = result
                				if(result=="사용 가능 한 class입니다."){
-               					new_classp.style.color = "blue"
+               					new_classp.style.color = "#20C0FF"
                					classbool = true;
                				}else{
-               					new_classp.style.color = "red"
+               					new_classp.style.color = "#f56a6a"
                					classbool = false;
                				}
           				if(groupbool && classbool && boo){
@@ -318,9 +317,9 @@ padding:  0 0.75em 0.2em 0 ;
 	               				if(result=="비어있습니다."){
 	               					new_p.innerHTML = ""
 	               				}else if(result=="그룹에 존재하지 않는 사용자입니다."){
-	               					new_p.style.color = "red"
+	               					new_p.style.color = "#f56a6a"
 	               				}else{
-	               					new_p.style.color = "blue"
+	               					new_p.style.color = "#20C0FF"
 	               				} 
 	          					
 	          					
@@ -330,7 +329,7 @@ padding:  0 0.75em 0.2em 0 ;
 	          						var new_chickP = document.getElementById("personText"+i)
 	          						//값이 있는것 중에서만 확인 후에 전부다 가능한 사람일 경우만 버튼 체인지
 	          						if(new_chickInput.value!=""){
-	          							if(new_chickP.style.color=="red"){
+	          							if(new_chickP.style.color=="#f56a6a"){
 	          								boo = false;
 	          							}
 	          						}

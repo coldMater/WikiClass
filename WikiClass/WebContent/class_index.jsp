@@ -204,7 +204,7 @@ transform: rotate(45deg);
 							<!-- Header -->
 							<%@include file="class_header.jsp" %> <!--  로그인/로그아웃 버튼 -->
 							<!-- Banner -->
-								<section id="banner">
+								<section id="banner" style="padding-top:30px;padding-bottom:15px;" >
 									<div class="content">
 										<header>
 										<h1>Find your Class,<br/>Join your Group</h1>
