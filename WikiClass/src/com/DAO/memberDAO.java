@@ -134,6 +134,7 @@ public class memberDAO {
 				String senddate = rs.getString(5);
 				mvo = new MemberVO(num,email, password, nickname,senddate);
 			}else {
+				System.out.println("memberDAO의 emailselect 이게 뜨면 안되요");
 				return null;
 			}
 		} catch (SQLException e) {
@@ -232,5 +233,29 @@ public class memberDAO {
 		close();
 		return selectFavorite;
 	}
+
+	public int groupPersonSelectOne(String nickname, String groupname) {
+		getConn();
+		try {//그룹에 속해있는 사람인지 알아 볼 수 있다.
+			String sql = "select * from group_person where nickname=? and group_num=(select num from wikigroup where name=?)";
+			pst = conn.prepareStatement(sql);
+			pst.setString(1,nickname);
+			pst.setString(2,groupname);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				return 1;
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("memberDAO groupPersonSelectOne error");
+			e.printStackTrace();
+		} 
+		close();
+		return 0;
+	}
 	
+	public boolean isRightMember(String userNum, String userEmail) {
+		return (emailselect(userEmail).getNum()+"").equals(userNum); 
+	}
 }

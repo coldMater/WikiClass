@@ -1,3 +1,7 @@
+<%@page import="com.VO.classVO"%>
+<%@page import="com.DAO.ClassDAO"%>
+<%@page import="com.VO.NoteVO"%>
+<%@page import="com.DAO.NoteDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,94 +14,112 @@
 	<!-- Sidebar -->
 	<div id="sidebar">
 		<div class="inner">
+	
+			
+			<!-- Menu --><!-- 클래스 이름 표시 부분 -->
+			<nav id="menu"> 
+			<header class = "major" style="font-size:1.2em;height:5.5em;" >
+			
+			
+			
+			<% String list_side = (String) request.getAttribute("list"); %>
 
+			<% String classNum_side = (String) request.getAttribute("classID"); %>
+
+			<% if(classNum_side ==null){
+				classNum_side = request.getParameter("classNum");	
+			}%>
+
+			<% ClassDAO dao_side = new ClassDAO(); %>
+
+			
+			<% if(dao_side.getClass(classNum_side)!=null){
+				classVO vo_side = dao_side.getClass(classNum_side); %>
+			
+			<h1 style="display:inline;"><a style = "border-bottom:none;" href="#"><i class="fa fa-book" ></i></a></h1><h2 style="font-size:1.5em">&nbsp&nbsp <a style = "border-bottom:none;" href="NoteLoadingService?classNum=<%=classNum_side%>"><%= vo_side.getName()%></a> </h2>
+			<%} %>
+
+			</header>
+			<header class = "icon" style="text-align:right;">
+			<h2 style="font-size:2.0em;">
+			
+				<a style = "border-bottom:none;" href="class_note.jsp?classNum=<%=classNum_side%>&amp;groupName=smhrd&amp;className=github&amp;nickname=coldamter"><i class="fa fa-plus" title="노트 생성(Create)"></i>
+				&nbsp <!--  style = "color:#337ab7;" --> 
+				<a style = "border-bottom:none;" href="#"><i class="fa fa-plane" title="노트 이동(Move)"></i> <!-- fa-arrows : 화살표 -->
+				&nbsp 
+				<a style = "border-bottom:none;" href="#"><i class="fa fa-pencil" title="노트 편집(Edit)"></i>
+				&nbsp 
+				<a style = "border-bottom:none;" href="#"><i class="fa fa-minus"  title="노트 삭제(Delete)"></i></h2>
+			 	<!-- style = "color:#d9534f;" --> 
+			
+			</header>
+			
+			<% if(list_side!=null){%>
+				<%= list_side %>
+			<%}%>
+			
+			</nav>
+			
+			<div style="position:fixed;left:407px;bottom:0px;width:150px;height:150px;background-color: rgba(9,70,77,0.5)"></div>
+			
+			<section>
+			<header class="major">
+			<h2>노트 편집하기</h2>
+			</header>
+			
+			<form action="class_note_edit.jsp">
+			<input type="text" name = "noteID" style="width:30%;display:inline;"/>
+			<input type="hidden" name = "classID" value="<%=classNum_side%>"/>
+			<input type="submit" value = "편집" style="text-align: right;float: right;"/>
+			</form>
+			</section>
+			
+			<section>
+			<header class="major">
+			<h2>노트 생성하기</h2>
+			</header>
+			<p style="text-align: right;float: right;">
+			<a href="class_note.jsp?classNum=<%=classNum_side%>&amp;groupName=smhrd&amp;className=github&amp;nickname=coldamter" class="button">노트 추가</a>
+			</p>
+			</section>
+			
+			<section>
+			<header class="major">
+			<h2>노트 이동(부모를 지정하세요)</h2>
+			</header>
+			<form action="NoteMovingService">
+			<div></div>
+			<input type="text" name = "noteID" style="width:30%;display:inline;"/><b> →</b>
+			<input type="text" name = "parentID" style="width:30%;display:inline;"/>
+			<input type="hidden" name = "classID" value="<%=classNum_side%>"/>
+			<input type="submit" value = "이동" style="text-align: right;float: right;"/>
+			</form>
+			</section>
+			
+			<section>
+			<header class="major">
+			<h2>노트 삭제하기</h2>
+			</header>
+			
+			<form action="NoteDeletingService">
+			<input type="text" name = "noteID" style="width:30%;display:inline;"/>
+			<input type="hidden" name = "classID" value="<%=classNum_side%>"/>
+			<input type="submit" value = "삭제" style="text-align: right;float: right;"/>
+			</form>
+			</section>
+			
 			<!-- Search -->
 			<section id="search" class="alt">
 			<form method="post" action="#">
 				<input type="text" name="query" id="query" placeholder="Search" />
 			</form>
 			</section>
-
-			<!-- Menu -->
-			<nav id="menu"> <header class="major">
-			<h2>목차</h2>
-			</header>
-			<ul>
-				<li><a href="main_index.jsp">메인홈페이지</a></li>
-				<li><a href="class_index.jsp">class메인홈페이지</a></li>
-				<li><a href="class_generic.jsp">노트 첫페이지</a></li>
-				<li><a href="class_editor.jsp">에디터 편집페이지</a></li>
-				<li><a href="class_elements.jsp">Elements</a></li>
-				<li><a href="#">대단원입니다.</a></li>
-				<li><span class="opener">중단원열기</span>
-					<ul>
-						<li><a href="#">중단원입니다.</a></li>
-						<li><a href="#">Ipsum Adipiscing</a></li>
-						<li><a href="#">Tempus Magna</a></li>
-						<li><a href="#">Feugiat Veroeros</a></li>
-					</ul></li>
-				<li><a href="#">Etiam Dolore</a></li>
-				<li><a href="#">Adipiscing</a></li>
-				<li><span class="opener">Another Submenu</span>
-					<ul>
-						<li><a href="#">Lorem Dolor</a></li>
-						<li><a href="#">Ipsum Adipiscing</a></li>
-						<li><a href="#">Tempus Magna</a></li>
-						<li><a href="#">Feugiat Veroeros</a></li>
-					</ul></li>
-				<li><a href="#">Maximus Erat</a></li>
-				<li><a href="#">Sapien Mauris</a></li>
-				<li><a href="#">Amet Lacinia</a></li>
-			</ul>
-			</nav>
-
-			<!-- Section -->
-			<section> <header class="major">
-			<h2>Ante interdum</h2>
-			</header>
-			<div class="mini-posts">
-				<article> <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore aliquam.</p>
-				</article>
-				<article> <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore aliquam.</p>
-				</article>
-				<article> <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore aliquam.</p>
-				</article>
-			</div>
-			<ul class="actions">
-				<li><a href="#" class="button">More</a></li>
-			</ul>
-			</section>
-
-			<!-- Section -->
-			<section> <header class="major">
-			<h2>Get in touch</h2>
-			</header>
-			<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare
-				velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed
-				aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus
-				aliquam.</p>
-			<ul class="contact">
-				<li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
-				<li class="fa-phone">(000) 000-0000</li>
-				<li class="fa-home">1234 Somewhere Road #8254<br /> Nashville,
-					TN 00000-0000
-				</li>
-			</ul>
-			</section>
-
+			
 			<!-- Footer -->
 			<footer id="footer">
-			<p class="copyright">
-				&copy; Untitled. All rights reserved. Demo Images: <a
-					href="https://unsplash.com">Unsplash</a>. Design: <a
-					href="https://html5up.net">HTML5 UP</a>.
-			</p>
+			<p class="copyright" style="margin-bottom:0px;">
+				&copy; WikiClass </p>
+			<p class="copyright" style="text-align :right;">Design your idea, spread together.</p>
 			</footer>
 
 		</div>

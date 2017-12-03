@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.VO.classVO;
+import com.VO.groupSearchVO;
 
 public class ClassDAO {
 	Connection conn = null;
@@ -132,30 +133,31 @@ public class ClassDAO {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println("ClassDAO groupInsert error");
+			System.out.println("ClassDAO personInsert error");
 			e.printStackTrace();
 		}
 		close();
 		return cnt;
 	}
 	
-	public classVO selectNameOne(String name) {
+	public classVO selectNameOne(int num) {
 		getConn();
 		classVO cvo = null;
-		String sql = "select wikigroup.name, member.nickname, wikiclass.num,wikiclass.name,wikiclass.favorite, wikiclass.imgPath, wikiclass.classPath, wikiclass.senddate from wikigroup,member,wikiclass where wikigroup.num=(select group_num from wikiclass where name=?) and member.num=(select mem_num from wikiclass where name=?)  and wikiclass.name=?"; 
+		//클래스 번호로, 그룹이름, 닉네임, 클래스 번호, 클래스이름, 클래스 분야, 클래스 이미지, 클래스 내용, 클래스 데이트
+		String sql = "select wikigroup.name, member.nickname, wikiclass.num,wikiclass.name,wikiclass.favorite, wikiclass.imgPath, wikiclass.classPath, wikiclass.senddate from wikigroup,member,wikiclass where wikigroup.num=(select group_num from wikiclass where num=?) and member.num=(select mem_num from wikiclass where num=?)  and wikiclass.num=?"; 
 			
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, name);
-			pst.setString(2, name);
-			pst.setString(3, name);
+			pst.setInt(1, num);
+			pst.setInt(2, num);
+			pst.setInt(3, num);
 			rs = pst.executeQuery();
 			System.out.println("rs.next 안들어옴");
 			if(rs.next()) {
 				System.out.println("rs.next 들어옴");
 				String group_name = rs.getString(1); 
 				String mem_name = rs.getString(2);
-				int num = rs.getInt(3); 
+				String name = rs.getString(4);
 				String favorite = rs.getString(5); 
 				String imgPath = rs.getString(6); 
 				String classPath = rs.getString(7); 
@@ -197,7 +199,7 @@ public class ClassDAO {
 	
 	public ArrayList<classVO> classSelectAll() {
 		getConn();
-		String sql = "select * from wikiclass"; 
+		String sql = "select * from wikiclass ORDER BY num desc"; 
 		ArrayList<classVO> list = new ArrayList<classVO>();	
 		try {
 			pst = conn.prepareStatement(sql);
@@ -224,6 +226,40 @@ public class ClassDAO {
 		}
 		close();
 		return list;
+	}
+	
+	public classVO getClass(String num) {
+		getConn();
+		classVO tempVO = null;
+		try {
+			pst = conn.prepareStatement("select * from wikiclass where num = ?");
+			pst.setString(1, num);
+			
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				tempVO = new classVO(rs.getString(1),
+											 rs.getString(2),
+											 Integer.parseInt(rs.getString(3)),
+											 rs.getString(4),
+											 rs.getString(5),
+											 rs.getString(6),
+											 rs.getString(7),
+											 rs.getString(8));
+			}
+//			private String group_name; //그룹 번호
+//			private String mem_name; //회원 번호
+//			private int num; //클래스 번호
+//			private String name; //클래스 명
+//			private String favorite; //분야
+//			private String imgPath; //이미지 경로
+//			private String classPath; //클래스 내용-->경로로 수정
+//			private String senddate; //작성 날짜
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tempVO;
 	}
 
 	private String mNumNickname(int mem_num) {
@@ -316,7 +352,158 @@ public class ClassDAO {
 		}
 		close();
 		return list;
+	}
+	
+	/*public int selectGrantOne(String email, int classNum) {
+		//회원 이메일과 클래스 번호로 class_grant테이블에서 조회 있으면 1
 		
+	}*/
+	
+	//전체그룹 가져오기
+	public ArrayList<groupSearchVO> groupSelectAll() {
+		getConn();
+		String sql = "select * from wikigroup ORDER BY num desc"; 
+		ArrayList<groupSearchVO> list = new ArrayList<groupSearchVO>();	
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				int group_num = rs.getInt(1);
+				String group_name =rs.getString(2);
+				String content = rs.getString(3);
+				groupSearchVO gvo = new groupSearchVO(group_num, group_name, content);
+				list.add(gvo);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("ClassDAO groupSelectAll error");
+			e.printStackTrace();
+		}
+		close();
+		return list;
+	}
+	
+	public groupSearchVO selectGroupNameOne(int groupNum) {
+		//그룹 번호로 그룹의 정보 가져오기
+		getConn();
+		groupSearchVO gvo = null;
+		String sql = "select * from wikigroup where num=?"; 
+			
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, groupNum);
+			rs = pst.executeQuery();
+			if(rs.next()) {
+				int group_num = rs.getInt(1); 
+				String group_name = rs.getString(2);
+				String content = rs.getString(3);
+				gvo = new groupSearchVO(group_num, group_name, content);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("ClassDAO selectGroupNameOne error");
+			e.printStackTrace();
+		}
+		close();
+		return gvo;
+	}
+	
+	
+	public ArrayList<classVO> classSelectGroup(int groupNum) {
+		getConn();
+		ArrayList<classVO> list = new ArrayList<classVO>();	
+		try {
+			String sql = "select * from wikiclass where group_num=?"; 
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, groupNum);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				int group_num = rs.getInt(1);
+				int mem_num = rs.getInt(2);
+				int num = rs.getInt(3); 
+				String name = rs.getString(4);
+				String favorite = rs.getString(5); 
+				String imgPath = rs.getString(6); 
+				String classPath = rs.getString(7); 
+				String senddate = rs.getString(8); 
+				String group_name = gNumName(group_num);
+				String mem_nickname = mNumNickname(mem_num);
+				classVO cvo = new classVO(group_name, mem_nickname, num, name, favorite, imgPath, classPath, senddate);
+				list.add(cvo);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("ClassDAO classSelectGroup error");
+			e.printStackTrace();
+		}
+		close();
+		return list;
+	}
+	
+	public int selectMemberGroupGrant(String email, int groupNum) {
+		getConn();
+		try {
+			String sql = "select * from group_person where nickname=(select nickname from member where email=?) and group_num=?" ; 
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, email);
+			pst.setInt(2, groupNum);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				return 1;
+			}
+		} catch (SQLException e) {
+			System.out.println("ClassDAO selectMemberGroupGrant error");
+			e.printStackTrace();
+		}
 		
+		close();
+		return 0;
+	}
+
+	public int groupUpdate(int num, String content) {
+		getConn();
+		try {
+			String sql = "update wikigroup set content=? where num = ?"; 
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, content);
+			pst.setInt(2, num);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				return 1;
+			}
+		} catch (SQLException e) {
+			System.out.println("ClassDAO groupUpdate error");
+			e.printStackTrace();
+		}
+		
+		close();
+		return 0;
+	}
+	
+	public String getGroupNum(String classNum) {
+		getConn();
+		String groupNum="";
+		try {
+			pst = conn.prepareStatement("select group_num from wikiclass where num=?");
+			pst.setString(1, classNum);
+			rs=pst.executeQuery();
+			if(rs.next()) {
+				groupNum = rs.getString(1);
+				System.out.println("반환되는 그룹 넘버는 "+ rs.getString(1));
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			
+		return groupNum;
 	}
 }

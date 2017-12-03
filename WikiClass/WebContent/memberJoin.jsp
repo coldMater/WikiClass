@@ -9,6 +9,17 @@
 -->
 <html>
 	<head>
+	<style>
+	
+		#bgimage{
+	position:fixed !important;
+	width:100% !important;
+	height:100% !important;
+	
+
+	
+	}
+	</style>
 		<title>WikiClass Join</title>
 		<meta charset="EUC-KR" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +31,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body class="is-loading">
+	<div id="bgimage"><img alt="이미지" src="images/whitebg.jpg" width=100% height=100%></div>
+	
+	
 <%
 String uri = request.getParameter("uri");
 System.out.println("회원가입에 접근한 uri = "+uri);
@@ -45,19 +59,22 @@ request.setCharacterEncoding("EUC-KR");
 						</header>
 						
 						<form method="post" action="memberJoin.do">
-							<div class="field">
-								<input type="text" name="email" id="email" placeholder="email" required onfocusout="emailCheck()" style="text-transform:none;"/>
-								<p id="emailText"></p><!-- 여기에 중복 확인 -->
+							<div class="field" style="margin-bottom:5px;text-align: left;">
+								<input type="text" name="email" id="email" placeholder="email" maxlength="25" required onfocusout="emailCheck()" style="text-transform:none;display: inline;width: 85%;margin-bottom:3px;"/>
+								<!-- fa fa-circle-o fa-2x ## fa fa-check-circle-o fa-2x ## fa fa-times-circle-o fa-2x-->
+								<i class="" id="logincheck" aria-hidden="true"></i>
+								<p id="emailText">&nbsp;</p><!-- 여기에 중복 확인 -->
 							</div>
-							<div class="field">
-								<input type="password" name="Password1" id="Password1" placeholder="Password" required style="text-transform:none;"/>
+							<div class="field" style="margin-bottom: 37px;text-align: left;">
+								<input type="password" name="Password1" id="Password1" placeholder="Password" maxlength="12" required style="text-transform:none;display: inline;width: 85%;margin-bottom:3px;"/>
 							</div>
-							<div class="field">
-								<input type="password" name="Password2" id="Password2" placeholder="Confirm Password " required onfocusout="passwordCheck()" style="text-transform:none;"/>
-								<p id="passwordText"></p><!-- 여기에 패스워드 일치 확인 -->
+							<div class="field" style="margin-bottom: 5px;text-align: left;">
+								<input type="password" name="Password2" id="Password2" placeholder="Confirm Password " maxlength="12" required onkeyup="passwordCheck()" style="text-transform:none;display: inline;width: 85%;margin-bottom:3px;"/>
+								<i class="" id="logincheck1" aria-hidden="true"></i>
+								<p id="passwordText">&nbsp;</p><!-- 여기에 패스워드 일치 확인 -->
 							</div>
-							<div class="field">
-								<input type="text" name="nickname" id="nickname" placeholder="nickname" required style="text-transform:none;"/>
+							<div class="field" style="text-align: left;">
+								<input type="text" name="nickname" id="nickname" placeholder="nickname" maxlength="9" required style="text-transform:none;display: inline;width: 85%;margin-bottom:3px;text-align: left;"/>
 							</div>
 							<input type="text" name="uri" value="<%=uri %>" style="display: none; text-transform:none;">
 							<ul class="actions">
@@ -85,11 +102,17 @@ request.setCharacterEncoding("EUC-KR");
           			url:"SerachEmail",
          			data : "email="+email.value,
           			success : function(result){
-               			emailText.innerHTML = result
-               				if(result=="존재하지 않는 이메일입니다."){
-               					emailText.style.color = "blue"
+          				var logincheck = document.getElementById("logincheck");
+               				if(result=="가입가능한 이메일입니다."){
+               					emailText.innerHTML = "&nbsp;"
+               					logincheck.style.color="#20C0FF"
+               					logincheck.className = "fa fa-check-circle-o fa-2x"
+               					emailText.style.color = "#20C0FF"
                				}else{
-               					emailText.style.color = "red"
+               					emailText.innerHTML = result 
+               					logincheck.style.color="#f56a6a"
+               					logincheck.className = "fa fa-times-circle-o fa-2x"
+               					emailText.style.color = "#f56a6a"
                				}
                			}
          			 });
@@ -98,12 +121,17 @@ request.setCharacterEncoding("EUC-KR");
    				var password2 = document.getElementById("Password2")
      			var passwordText = document.getElementById("passwordText")
    				function passwordCheck(){
+   					var logincheck1 = document.getElementById("logincheck1");
           			if(password1.value == password2.value){
    						passwordText.innerHTML = "비밀번호가 일치합니다."
-   						passwordText.style.color = "blue"
+   						passwordText.style.color = "#20C0FF"
+   						logincheck1.style.color="#20C0FF"
+               			logincheck1.className = "fa fa-check-circle-o fa-2x" 
           			}else{
           				passwordText.innerHTML = "비밀번호가 일치하지 않습니다."
-   						passwordText.style.color = "red"
+   						passwordText.style.color = "#f56a6a"
+   						logincheck1.style.color="#f56a6a"
+               			logincheck1.className = "fa fa-times-circle-o fa-2x"	
           			}
     			 }
    				

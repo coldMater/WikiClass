@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -41,20 +43,23 @@ public class groupInsert implements command {
 				cnt = cdao.personInsert(groupnum, person);
 
 				if (cnt > 0) {
-					out.println("<script>alert('그룹이 생성되었습니다.');</script>");
-					System.out.println("그룹 생성 완료 경고창 띄움");
-					response.sendRedirect("class_index.jsp");
+					request.setAttribute("groupInsert", 1);
+					RequestDispatcher dis = request.getRequestDispatcher("class_index.jsp");
+					dis.forward(request, response);
 				} else {
-					out.println("<script>alert('그룹 생성에 실패하였습니다.');</script>");
-					System.out.println("그룹 생성 실패1 경고창 띄움");
-					response.sendRedirect("class_group_insert.jsp");
+					request.setAttribute("groupInsert", 2);
+					RequestDispatcher dis = request.getRequestDispatcher("class_index.jsp");
+					dis.forward(request, response);
 				}
 			} else {
-				out.println("<script>alert('그룹 생성에 실패하였습니다.');</script>");
-				System.out.println("그룹 생성 실패2 경고창 띄움");
-				response.sendRedirect("class_group_insert.jsp");
+				request.setAttribute("groupInsert", 2);
+				RequestDispatcher dis = request.getRequestDispatcher("class_index.jsp");
+				dis.forward(request, response);
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

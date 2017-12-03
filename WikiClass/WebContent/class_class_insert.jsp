@@ -7,6 +7,10 @@
 <html>
 	<head>
 <style type="text/css">
+header#header{
+
+padding-top: 2em !important;
+}
 #cke_1_contents{
 	height: 400px !important;
 }
@@ -30,13 +34,20 @@ padding:  0 0.75em 0.2em 0 ;
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<script src="./ckeditor/ckeditor.js"></script>
 		<link rel="stylesheet" href="./ckeditor/contents.css" />
-		<link rel="stylesheet" href="class_assets/css/main.css" />
+		<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
-
+		<c:if test="${requestScope.classInsert==2 }">
+			<script type="text/javascript">
+				show()
+				function show(){
+					alert("Class생성 실패")
+				}
+			</script>
+		</c:if>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -48,19 +59,26 @@ padding:  0 0.75em 0.2em 0 ;
 							<%@include file="class_header.jsp" %>
 
 							<!-- Content -->
-								<section>
+								<section style="padding-top:20px">
 									<header class="main">
 										<h1>Class 추가</h1>
 									</header>
 								<form action="classInsert.do" method="post" enctype="multipart/form-data">
-									<span class="image main" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그룹 이미지 선택
-										<br><img src="images/pic11.jpg" alt="" style="width: 17%; height: 300px" /><input type="file" name="img"></span>
+									<span class="image main" >
+										<img src="images/classInsert.png" alt="" style="width: 23%; height: 300px"/><input type="file" name="img"  style="margin-left:31px;"></span>
 									<table id="classtable">
 										<tr>
 											<!-- 권한 부여된 사람들 출력 -->
 											<!-- 권한 부여할 닉네임 입력 -->
 											<td width="600px" >
-												<input type="text" name="groupName" id="groupName" placeholder="그룹 이름">
+												<c:choose>
+													<c:when test="${not empty param.groupName}" >
+														<input type="text" name="groupName" id="groupName" value="${param.groupName }" placeholder="그룹 이름" required>
+													</c:when>
+													<c:otherwise>
+														<input type="text" name="groupName" id="groupName" placeholder="그룹 이름" required>
+													</c:otherwise>
+												</c:choose>
 												<p id="groupText" style="display: none"></p>
 											</td>
 											<td>
@@ -69,11 +87,11 @@ padding:  0 0.75em 0.2em 0 ;
 										</tr>
 										<tr>
 											<td width="600px" >
-												<input type="text" name="className" id="className" placeholder="클래스 이름">
+												<input type="text" name="className" id="className" placeholder="클래스 이름" required>
 												<p id="classText" style="display: none"></p>
 											</td>
 											<td><!-- 그룹과 클래스명이 같이 중복되지 않으면 된다. -->
-												<input type="button" onclick="groupclassSelectOne()"  id="selectGroup" value="중복확인">
+												<input type="button" onclick="groupclassSelectOne();personCheck(0)"  id="selectGroup" value="중복확인">
 											</td>
 										</tr>
 										<tr>
@@ -88,29 +106,30 @@ padding:  0 0.75em 0.2em 0 ;
        											<option>오피스 활용</option>
        											<option>웹사이트</option>
        											<option>인터넷 비즈니스</option>
-       											<option>컴퓨터 공학</option>
+       											<option>OS/데이터베이스</option>
        											<option>컴퓨터 수험서</option>
        											<option>컴퓨터 입문/활용</option>
        											<option>프로그래밍 언어</option>
-       											<option>OS/데이터베이스</option>
+       											<option>기타</option>
        											</select>
 											</td>
 											<td></td>
 										</tr>
 										<tr>
-											<td>
+											<td id="pe">
 											<h3>권한 주기</h3>
 											<%
 												memberDAO mdao = new memberDAO();
 												MemberVO mvo = mdao.emailselect((String)session.getAttribute("email"));
 											%>
 											<input type="hidden" name="person" value="<%=mvo.getNickname()%>">
-											<input type="text" name="person" id="person" value="" placeholder="사람 추가(닉네임)" onfocusout="personCheck()"/>
-												<p id="personText" style="display: none"></p>
+											<!-- ajax로 클래스가 속한 그룹의 일원중에 1명인지 파악 안되면 경고창띄우고 안넘어가게 만든다. -->
+											<input type="text" name="person" id="person0" placeholder="사람 추가(닉네임)" onfocusout="personCheck(0)" >
+											<p id="personText0" style="height: 4px;"></p>
 											</td>
 											<td>
 												<h3>&nbsp;</h3>
-												<input type="button" onclick="insertPerson()" id="personInsert" value="추가">
+												<input type="button" id="personInsert" value="추가">
 											</td>
 										</tr>
 									</table>
@@ -119,8 +138,8 @@ padding:  0 0.75em 0.2em 0 ;
 									<script>
 										CKEDITOR.replace('editor1');
 									</script>
-									<input type="submit" value="클래스만들기" id="createClass"/>
-									<input type="button" onclick="createC()" id="createClass2" value="클래스추가">
+									<input type="submit" value="클래스생성" id="createClass"/>
+									<input type="button" onclick="createC()" id="createClass2" value="클래스생성">
 								</form>	
 								</section>
 
@@ -131,7 +150,6 @@ padding:  0 0.75em 0.2em 0 ;
 	<div id="sidebar">
 		<div class="inner">
 
-			<!-- Menu -->
 			<nav id="menu"> <header class="major">
 			<h2>클래스란?</h2>
 			</header>
@@ -165,17 +183,20 @@ padding:  0 0.75em 0.2em 0 ;
 			<script type="text/javascript">
 			var groupbool = false;
 			var classbool = false;
+			var boo = false;
 			var createClass = document.getElementById("createClass");
 			var createClass2 = document.getElementById("createClass2");
 			createClass.style.display="none"
 			
 			function createC(){
-				if(groupbool && classbool){
+				if(groupbool && classbool && boo){
 				}else{
 					if(!(groupbool)){
 						alert("그룹을 확인해주세요")	
 					}else if(!(classbool)){
 						alert("클래스를 확인해주세요")	
+					}else if(!(boo)){
+						alert("사용자를 확인해주세요")	
 					}
 				}
 			}
@@ -192,7 +213,7 @@ padding:  0 0.75em 0.2em 0 ;
           				new_groupp.style.display="inline"
                				if(result=="사용 가능한 그룹 입니다."){
                					new_groupp.innerHTML = result
-               					new_groupp.style.color = "blue"
+               					new_groupp.style.color = "#20C0FF"
                					groupbool = true;
                				}else{
                					var r = result
@@ -201,11 +222,11 @@ padding:  0 0.75em 0.2em 0 ;
                					new_groupp.innerHTML = ""
                					new_a.appendChild(new_txt)
                					new_a.href = "class_group_insert.jsp"
-               					new_a.style.color = "red"
+               					new_a.style.color = "#f56a6a"
                					new_groupp.appendChild(new_a)
                					groupbool = false;
                				}
-          				if(groupbool && classbool){
+          				if(groupbool && classbool && boo){
         					createClass.style.display="inline"	
         					createClass2.style.display="none"
         				}else{
@@ -229,13 +250,13 @@ padding:  0 0.75em 0.2em 0 ;
           				new_classp.style.display="inline"
           				new_classp.innerHTML = result
                				if(result=="사용 가능 한 class입니다."){
-               					new_classp.style.color = "blue"
+               					new_classp.style.color = "#20C0FF"
                					classbool = true;
                				}else{
-               					new_classp.style.color = "red"
+               					new_classp.style.color = "#f56a6a"
                					classbool = false;
                				}
-          				if(groupbool && classbool){
+          				if(groupbool && classbool && boo){
         					createClass.style.display="inline"	
         					createClass2.style.display="none"
         				}else{
@@ -246,11 +267,8 @@ padding:  0 0.75em 0.2em 0 ;
          			 });
 			}
 			
-			var tableTag = document.getElementById("classtable")
-			var new_p = document.getElementById("personText")
-			var new_input = document.getElementById("person")
-			var buttonTag = document.getElementById("personInsert")
 			
+/* 			
 			function insertPerson(){
 				var new_td1 = document.createElement("td")
 				var new_td2 = document.createElement("td")
@@ -270,7 +288,64 @@ padding:  0 0.75em 0.2em 0 ;
 				new_tr.appendChild(new_td1)
 				new_tr.appendChild(new_td2)
 				tableTag.appendChild(new_tr)
-			}
+			} */
+			var num = 1;
+			
+			$(document).ready(function(){
+				$("#personInsert").click(function(){
+					$("#pe").append("<input type='text' placeholder='사람추가(닉네임)' name='person' id='person"+num+"' onfocusout='personCheck("+num+")'>");
+					$("#pe").append("<p id='personText"+num+"' style='height: 4px;'></p>");
+					num+=1
+				})
+			})
+			
+			function personCheck(number){
+					var new_p = document.getElementById("personText"+number)
+					var new_input = document.getElementById("person"+number)
+					var new_groupInput = document.getElementById("groupInput");
+					
+					//그룹이름를 알 수 있다.
+					var new_groupInput = document.getElementById("groupName");
+					
+					//사람추가 부분 전부다 확인
+  					boo = true;
+					$.ajax({
+	          			url:"SerachClassPerson",
+	          			data : "nickname="+new_input.value+"&groupname="+new_groupInput.value,
+	          			success : function(result){
+	          					new_p.innerHTML = result
+	               				if(result=="비어있습니다."){
+	               					new_p.innerHTML = ""
+	               				}else if(result=="그룹에 존재하지 않는 사용자입니다."){
+	               					new_p.style.color = "#f56a6a"
+	               				}else{
+	               					new_p.style.color = "#20C0FF"
+	               				} 
+	          					
+	          					
+	          					for(var i=0 ; i<num ; i++){
+	          						//input태그에 값이 있는지 확인
+	          						var new_chickInput = document.getElementById("person"+i)
+	          						var new_chickP = document.getElementById("personText"+i)
+	          						//값이 있는것 중에서만 확인 후에 전부다 가능한 사람일 경우만 버튼 체인지
+	          						if(new_chickInput.value!=""){
+	          							if(new_chickP.style.color=="#f56a6a"){
+	          								boo = false;
+	          							}
+	          						}
+	          					}
+	          					if(!(boo)){
+	          						createClass.style.display="none"
+	          						createClass2.style.display="inline-block"
+          						}else{
+          							createClass.style.display="inline-block"
+          							createClass2.style.display="none"
+          						}
+	          					
+	               			}	
+	         		 });
+				}
+			
 			</script>
 
 	</body>

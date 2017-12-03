@@ -19,6 +19,10 @@ td{
 table tbody tr{
 	border:0px !important;
 }
+header#header{
+
+padding-top: 2em !important;
+}
 </style>
 		<title>class 만들기</title>
 		<meta charset="EUC-KR" />
@@ -55,7 +59,7 @@ request.setCharacterEncoding("EUC-KR");
 													<p id="groupText"></p>
 												</td>
 												<td>
-													<input type="button" onclick="groupSelectOne()" id="selectGroup" value="중복확인">
+													<input type="button" onclick="groupSelectOne();personCheck(0);" id="selectGroup" value="중복확인">
 												</td>
 											</tr>
 											<tr>
@@ -65,21 +69,25 @@ request.setCharacterEncoding("EUC-KR");
 												</td>
 											</tr>
 											<tr>
-												<td>
+												<td id="pe">
 												<%
 													memberDAO mdao = new memberDAO();
 													MemberVO mvo = mdao.emailselect((String)session.getAttribute("email"));
+													if(mvo==null){
+														response.sendRedirect("main_index.jsp");
+													}
 												%>
 													<input type="hidden" name="person" value="<%=mvo.getNickname()%>">
-													<input type="text" name="person" id="person" value="" placeholder="사람 추가(닉네임)" onfocusout="personCheck()"/>
-													<p id="personText"></p>
+													<input type="text" name="person" id="person0" value="" placeholder="사람 추가(닉네임)" onfocusout="personCheck(0)"/>
+													<p id="personText0" style="height: 4px;"></p>
 												</td>
-												<td>
-													<input type="button" onclick="insertPerson()" id="personInsert" value="추가">
+												<td id="pe2">
+													<input type="button"  id="personInsert" value="추가">
 												</td>
 											</tr>
 										</table>
-										<input type="submit" value="그룹만들기">
+										<input type="submit" value="그룹만들기" id="groupInput">
+										<input type="button" value="그룹만들기" id="groupInputB" onclick="alert('추가할 사용자를 다시 한번더 확인해 주세요')">
 									</form>
 								</section>
 
@@ -101,7 +109,7 @@ request.setCharacterEncoding("EUC-KR");
 			- 그룹의 이름과 설명을 쓰신 후<br>&nbsp; &nbsp;그룹 만들기 버튼을  클릭하면 &nbsp; &nbsp;<br>&nbsp; &nbsp;그룹이 생성됩니다.
 			<hr style="border:1;">
 			<h3>그룹원 초대하기</h3>
-			- 초대하고자 하는 사람의 ID를 입력하면<br>&nbsp;&nbsp;그 사람이 구성원에 추가됩니다.
+			- 초대하고자 하는 사람의 닉네임를 입력하면<br>&nbsp;&nbsp;그 사람이 구성원에 추가됩니다.
 			<hr>
 			<h3>유의사항</h3>
 			- 모든 클래스는 구성원들과 공유됩니다.<br>
@@ -122,14 +130,21 @@ request.setCharacterEncoding("EUC-KR");
 			<script src="class_assets/js/main.js"></script>
 			<script type="text/javascript">
 				var tableTag = document.getElementById("grouptable")
+				
+				//input submit 타입 안보이게
 				var buttonTag = document.getElementById("personInsert")
 				
 				var new_p = document.getElementById("personText")
 				var new_input = document.getElementById("person")
 				var num = 1;
 				
-				function insertPerson(){
-					var new_td1 = document.createElement("td")
+				var new_groupInput = document.getElementById("groupInput")
+				new_groupInput.style.display="none"
+				var new_groupInputB = document.getElementById("groupInputB");
+				
+				
+				/* function insertPerson(){
+					var new_td1 = document.getElementById("pe2")
 					var new_td2 = document.createElement("td")
 					var new_tr = document.createElement("tr")
 					new_input = document.createElement("input")
@@ -145,34 +160,61 @@ request.setCharacterEncoding("EUC-KR");
 			
 					new_td1.appendChild(new_input)
 					new_td1.appendChild(new_p)
-					new_td2.appendChild(buttonTag)
+					new_td1.appendChild(buttonTag)
 					new_tr.appendChild(new_td1)
-					new_tr.appendChild(new_td2)
+					new_tr.appendChild(new_td1)
 					tableTag.appendChild(new_tr)
-					
-					num+=1
-				}
+				} */
 				
-				/* $(document).ready(function(){
+				$(document).ready(function(){
 					$("#personInsert").click(function(){
-						$("form").append("<input type='text' placeholder='사람추가' id='person"+num+"' onfocusout='personCheck("num")'>");
+						$("#pe").append("<input type='text' placeholder='사람추가(닉네임)' name='person' id='person"+num+"' onfocusout='personCheck("+num+")'>");
+						$("#pe").append("<p id='personText"+num+"' style='height: 4px;'></p>");
+						num+=1
 					})
-				}) */
+				})
 				
-				function personCheck(){
-					var new_p = document.getElementById("personText")
-					var new_input = document.getElementById("person")
+				function personCheck(number){
+					var new_p = document.getElementById("personText"+number)
+					var new_input = document.getElementById("person"+number)
+					var new_groupInput = document.getElementById("groupInput");
 					
+					//사람추가 부분 전부다 확인
+  					var boo = true;
 					$.ajax({
 	          			url:"SerachPerson",
 	          			data : "nickname="+new_input.value,
 	          			success : function(result){
 	          					new_p.innerHTML = result
-	               				if(result=="존재하지 않는 사용자입니다."){
+	               				if(result=="비어있습니다."){
+	               					new_p.innerHTML = ""
+	               				}else if(result=="존재하지 않는 사용자입니다."){
 	               					new_p.style.color = "red"
 	               				}else{
 	               					new_p.style.color = "blue"
 	               				} 
+	          					
+	          					
+	          					for(var i=0 ; i<num ; i++){
+	          						//input태그에 값이 있는지 확인
+	          						var new_chickInput = document.getElementById("person"+i)
+	          						var new_chickP = document.getElementById("personText"+i)
+	          						//값이 있는것 중에서만 확인 후에 전부다 가능한 사람일 경우만 버튼 체인지
+	          						if(new_chickInput.value!=""){
+	          							if(new_chickP.style.color=="red"){
+	          								boo = false;
+	          							}
+	          						}
+	          					}
+	          					
+	          					if(!(boo)){
+	          						new_groupInput.style.display="none"
+	              					new_groupInputB.style.display="inline-block"
+          						}else{
+          							new_groupInput.style.display="inline-block"
+    	              				new_groupInputB.style.display="none"
+          						}
+	          					
 	               			}	
 	         		 });
 				}
@@ -180,6 +222,7 @@ request.setCharacterEncoding("EUC-KR");
 				function groupSelectOne(){
 					var new_groupInput = document.getElementById("groupName");
 					var new_groupp = document.getElementById("groupText");
+					
 					$.ajax({
 	          			url:"SerachGroup",
 	          			data : "name="+new_groupInput.value,
@@ -187,6 +230,7 @@ request.setCharacterEncoding("EUC-KR");
 	          					new_groupp.innerHTML = result
 	               				if(result=="그룹이 존재합니다."){
 	               					new_groupp.style.color = "red"
+	    
 	               				}else{
 	               					new_groupp.style.color = "blue"
 	               				} 

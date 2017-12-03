@@ -13,14 +13,26 @@
 -->
 <html>
 <head>
-<title>Editorial by HTML5 UP</title>
-<meta charset="utf-8" />
+<title>MyPage</title>
+<meta charset="euc-kr" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="class_assets/css/main.css" />
+<link rel="stylesheet" href="class_assets/css/main.css?var=1" />
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+<style type="text/css">
+header#header{
+
+padding-top: 2em !important;
+}
+	article{
+		width: 45% !important;
+	}
+	#wsection{
+		width: 100% !important;
+	}
+</style>
 </head>
 <body>
 <%
@@ -29,17 +41,18 @@
 	MemberVO mvo = mdao.emailselect(email);
 	request.setAttribute("mvo", mvo);
 	
-	//그룹테이블에서 멤버 번호가 있는 그룹 가지고오기
-	ClassDAO cdao = new ClassDAO();
-	ArrayList<String> list = new ArrayList<String>();
-	list = cdao.selectNameGroup(email);
-	request.setAttribute("list", list);
-	
+			
 	//관심 분야 가져오기
 	String selectFavorite = mdao.selectFavoriteOnt(email);
-	String[] favorite = selectFavorite.split("_");
-	for(int i=0 ; i<favorite.length ; i++){
-		System.out.println("내가 선택한 분야 : "+favorite[i]);
+	String[] favorite = null;
+	if(mvo == null){
+		System.out.println("MyPage.jsp에서  mvo가 null 입니다.");
+		response.sendRedirect("main_index.jsp");
+	}else if(selectFavorite != null){
+		favorite = selectFavorite.split("_");
+		for(int i=0 ; i<favorite.length ; i++){
+			System.out.println("내가 선택한 분야 : "+favorite[i]);
+		}
 	}
 %>
 
@@ -54,7 +67,7 @@
 
 				<!-- Banner -->
 
-				<section id="banner"> <!-- Section --> <section>
+				<section id="banner"> <!-- Section --> <section id="wsection">
 
 				<h1 style="display: block; margin-bottom: 1.5em">My page</h1>
 				</span> <section>
@@ -66,44 +79,35 @@
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Description</th>
-								<th></th>
+								<th>impormation</th>
 							</tr>
 						</thead>
 						<tbody>
+							<form action="nicknameUpdate.do">
 							<tr>
 								<td>닉네임</td>
-								<td>${mvo.nickname }</td>
-								<td><button>수정</button></td>
+								<td>
+									<span id="nicknamespan">${mvo.nickname }</span>
+								</td>
 							</tr>
+							</form>	
 							<tr>
-								<td>나이</td>
+								<td>노트수</td>
 								<td>선택하게 만듬</td>
-								<td><button>수정</button></td>
 							</tr>
 							<tr>
-								<td>성별</td>
+								<td>노트 기여도</td>
 								<td>선택하게 만든</td>
-								<td><button>수정</button></td>
 							</tr>
-
 						</tbody>
 					</table>
 					</article>
 
-					<article style="display : inline;"> <header class="major">
-					<h3>내가 속한 그룹</h3>
-					</header>
-					<h3>Lists</h3>
-					<div class="row">
-						<div class="6u 12u$(small)">
-							<ul>
-								<c:forEach items="${list }" var="i">								
-									<h4><li>${i }</li></h4>
-								</c:forEach>
-							</ul>
-						</div>
-					</div>
+					<article style="display : inline;"> 
+						<header class="major">
+							<h3>내가 속한 그룹</h3>
+						</header>
+						<iframe scrolling="auto" src="MyPage_groupList.jsp" style="height: 300px; width: 100%"></iframe>
 					</article>
 				</div>
 				</section> 
@@ -171,7 +175,7 @@
 
 					<article id="fa5"> <span class="icon fa-book"></span>
 					<div class="content">
-						<h3 id="co5">컴퓨터 수험서</h3>
+						<h3 id="co5">기타</h3>
 						<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
 							dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
 							lorem feugiat tempus aliquam.</p>
@@ -180,7 +184,7 @@
 
 					<article id="fa6"> <span class="icon fa-tablet"></span>
 					<div class="content">
-						<h3 id="co6">모바일/테블릿/SNS</h3>
+						<h3 id="co6">모바일/태블릿/SNS</h3>
 						 <p>안드로이드 프로그래밍을 이용하여 모바일, 즉 스마트폰에서 구동되는 것과 관련된 분야입니다.
                  		 <br>해당 클래스 : 아키덱쳐, 네트워크, 전산학 등 </p>
 					</div>
@@ -250,6 +254,7 @@
 							lorem feugiat tempus aliquam.</p>
 					</div>
 					</article>
+					
 				</div>
 				</section> <!-- my페이지 구성을위한 Sample Section 추가 --> </section>
 				
@@ -260,7 +265,6 @@
 				<script src="class_assets/js/main.js"></script>
 				<script type="text/javascript">
 				
-				
 					for(var i=1 ; i<=13 ; i++){
 						var new_article = document.getElementById("fa"+i)
 						new_article.style.display="none"
@@ -268,20 +272,20 @@
 				
 					for(var i=1 ; i<=13 ; i++){
 						var new_h3 = document.getElementById("co"+(i));
-						<% for(int k=0 ; k < favorite.length ; k++){ %> 
+						<%
+						if(favorite!=null){	
+							for(int k=0 ; k < favorite.length ; k++){ %> 
 							if(new_h3.innerHTML == "<%=favorite[k] %>"){ 
 								var new_article = document.getElementById("fa"+i);
 								new_article.style.display="flex";
 								var new_fa0 = document.getElementById("fa0")
 								new_fa0.style.display ="none"
 							}
-						<%}%>
+						<%	}
+						}%>
 					}	
-				
-					
-				
-				
 				</script>
+				
 				
 </body>
 </html>

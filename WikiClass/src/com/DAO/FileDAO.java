@@ -115,24 +115,23 @@ public class FileDAO {
 			rs = pst.executeQuery();
 			if(rs.next()) {
 				class_num = rs.getInt(3);
-			}
 			
-			//닉네임을 넣고 번호를 가지고 온다.
-			for(int i=0 ; i<person.length ; i++) {
-				sql = "select * from member where nickname=?";
-				pst = conn.prepareStatement(sql);
-				pst.setString(1, person[i]);
-				rs = pst.executeQuery();
+				//닉네임을 넣고 번호를 가지고 온다.
+				for(int i=0 ; i<person.length ; i++) {
+					sql = "select * from member where nickname=?";
+					pst = conn.prepareStatement(sql);
+					pst.setString(1, person[i]);
+					rs = pst.executeQuery();
 					
-				if(rs.next()) {
-					mem_num = rs.getInt(1);
+					if(rs.next()) {
+						mem_num = rs.getInt(1);
+						sql = "insert into class_grant values(?,?)";
+						pst = conn.prepareStatement(sql);
+						pst.setInt(1, class_num);
+						pst.setInt(2, mem_num);
+						cnt = pst.executeUpdate();
+					}
 				}
-				
-				sql = "insert into class_grant values(?,?)";
-				pst = conn.prepareStatement(sql);
-				pst.setInt(1, class_num);
-				pst.setInt(2, mem_num);
-				cnt = pst.executeUpdate();
 			}
 			
 			close();
@@ -142,6 +141,50 @@ public class FileDAO {
 		}
 		
 		return cnt;
+	}
+
+	public int selectClassNumOne(String groupName, String className) {
+		getConn();
+		int classNum = 0;
+		try {//그룹이름과 클래스 이름은 겹치는게 없으므로 클래스 번호를 가지고온다.
+			System.out.println("selectClassNumOne에 넘어온 그룹이름, 클래스 이름 :"+groupName+"//"+className);
+			String sql = "select num from wikiclass where name=? and group_num=(select num from wikigroup where name=?)";
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, className);
+			pst.setString(2, groupName);
+			rs = pst.executeQuery();
+			if(rs.next()) {
+				classNum = rs.getInt(1);
+			}
+			close();
+		} catch (SQLException e) {
+			System.out.println("FileDAO selectClassNumOne error");
+			e.printStackTrace();
+		}
+		
+		return classNum;
+	}
+
+	public int classUploadImg(String email, int classNum, String favortie, String img, String editor1) {
+		getConn();
+		try {
+			String sql = "update wikiclass set imgpath=?,favorite=?,classpath=? where num=?";
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, img);
+			pst.setString(2, favortie);
+			pst.setString(3, editor1);
+			pst.setInt(4, classNum);
+			int cnt = pst.executeUpdate();
+			if(cnt>0) {
+				return 1;
+			}
+			close();
+		} catch (SQLException e) {
+			System.out.println("FileDAO classUploadImg error");
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 

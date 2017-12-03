@@ -106,13 +106,26 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons'
 	rel='stylesheet' type='text/css'>
+<<<<<<< HEAD
 <!-- 차트생성을 위한 스크립트 -->
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="../assets/js/Chart.min.js"></script>
 <script src="../assets/js/Chart.StackedBar.js"></script>
 <script src="../assets/js/Chart.LlineBar.js"></script>
+=======
+	<!-- 차트생성을 위한 스크립트 -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="../assets/js/Chart.min.js"></script>
+    <script src="../assets/js/Chart.StackedBar.js"></script>
+    <script src="../assets/js/Chart.LlineBar.js"></script>
+<style type="text/css">
+#canvas2{
+	color:white !important; 
+}
+>>>>>>> branch 'master' of https://github.com/coldMater/WikiClass.git
 
+</style>
 </head>
 
 <body>

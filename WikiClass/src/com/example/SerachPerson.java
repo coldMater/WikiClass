@@ -24,7 +24,10 @@ public class SerachPerson extends HttpServlet {
 		response.setContentType("text/html; charset=euc-kr");
 		PrintWriter out = response.getWriter();
 		
-		if(mvo == null) {
+		System.out.println("넘어온 닉네임 값 : "+nickname);
+		if(nickname=="") {
+			out.print("비어있습니다.");
+		}else if(mvo == null) {
 			out.print("존재하지 않는 사용자입니다.");
 		}else {
 			out.print("추가가 가능한 사용자 입니다.");

@@ -96,6 +96,3 @@ public void setGender(int gender) {
 
 
 }
-
-
-
