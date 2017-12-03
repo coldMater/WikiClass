@@ -4007,7 +4007,6 @@
 		list-style: none;
 		margin-bottom: 0;
 		padding: 0;
-		text-transform: uppercase;
 	}
 
 		#menu ul a, #menu ul span {
@@ -4015,7 +4014,7 @@
 			color: inherit;
 			cursor: pointer;
 			display: block;
-			font-size: 0.9em;
+			font-size: 1.2em;
 			padding: 0.625em 0;
 		}
 

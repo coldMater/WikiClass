@@ -36,16 +36,12 @@ public class NoteLoadingService extends HttpServlet {
 		response.setContentType("text/html;charset=euc-kr");
 		
 		classID = (String)request.getAttribute("classIDnow");
-		System.out.println("여기는 로딩서비스, 아이디가 나오는지 : "+classID);
 		if(request.getAttribute("classIDnow")==null) {
 			classID = request.getParameter("classNum");
 		}
 		if(classID==null) {
 			classID = request.getParameter("classID");
 		}
-
-		
-		System.out.println("현재의 classID: "+classID);
 		nodeList = nodeDAO.select(classID);
 		noteList = noteDAO.selectNotesByClassID(classID);
 		
@@ -104,12 +100,16 @@ public class NoteLoadingService extends HttpServlet {
 		}
 		String noteID = (String) request.getAttribute("noteID");
 		if(noteID==null) {
+			
 			noteID=(String)request.getParameter("noteID");
 		}
 		String menuList = tag;
 		request.setAttribute("list", menuList);
 		request.setAttribute("classID", classID);
 		request.setAttribute("noteID", noteID);
+		
+		System.out.println("classID : "+classID);
+		System.out.println("noteID : "+noteID);
 		
 		System.out.println("Final @@ com.Service/NoteLoadingService.java");
 		RequestDispatcher dispatcher = null;
@@ -127,7 +127,6 @@ public class NoteLoadingService extends HttpServlet {
 
 	int depth = 0;
 	String tag = "";
-
 	public String getNextGroup(ArrayList<NodeVO> groupBefore) {
 		//아래 부분에서 실제 목차의 HTML 구조가 만들어진다. 
 		
@@ -136,15 +135,28 @@ public class NoteLoadingService extends HttpServlet {
 			String id = node.getNoteID();
 			String pid = node.getParentID();
 			String sid = node.getSiblingID();
+			ArrayList<NodeVO> groupNext = groupHash.get(id);
 			
-			tag += "<li id = "+id+" value = "+"{'NID'="+id+",'PID'="+pid+",'SID'="+sid+",'depth'="+depth+"}"+">";
+			tag += "<li id = "+id+" data-nid ="+id+" data-pid="+pid+" data-sid="+sid+" data-depth="+depth+" style='border-top:0px;'>";
 			if(depth==0) {
-				tag+="<span class = 'opener'>";
+				if(groupNext == null) {
+					tag+="<span style='padding-bottom:0px;padding-top:0px;'>";
+				} else {
+					tag+="<span class='opener' style='padding-bottom:0px;padding-top:0px;'>";
+				}
+				
 			}
-			
+
+			;
+
 			getNoteVO(id);
-			tag += "<a href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"'>";
-			tag += getNoteVO(id).getTitle() + ("{'NID'="+id+",'PID'="+pid+",'SID'="+sid+",'depth'="+depth+"}");
+			tag += "<a style='padding-bottom:0px;' href = "+"'NoteLoadingService?classID="+classID+"&noteID="+id+"' title = '"+("[N:"+id+", P:"+pid+", S:"+sid+", D:"+depth+"]")+"'>";
+			tag += 							((depth<=1)?"<B>":"")
+																						
+											+ ((depth>=2)?"└ ":"") +getNoteVO(id).getTitle()
+											
+											+ "</font>"
+											+((depth<=1)?"</B>":"");
 			tag += "</a>";
 			if(depth==0) {
 				tag+="</span>";
@@ -152,7 +164,7 @@ public class NoteLoadingService extends HttpServlet {
 				tag+="</li>";
 			}
 
-			ArrayList<NodeVO> groupNext = groupHash.get(id);
+
 			if (groupNext == null)
 				continue;
 

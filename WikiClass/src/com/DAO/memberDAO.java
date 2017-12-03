@@ -255,4 +255,7 @@ public class memberDAO {
 		return 0;
 	}
 	
+	public boolean isRightMember(String userNum, String userEmail) {
+		return (emailselect(userEmail).getNum()+"").equals(userNum); 
+	}
 }
