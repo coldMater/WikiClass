@@ -130,17 +130,14 @@ h4{
 										</tr>
 										<tr class="tr1">
 											<td colspan = "2" class="td1">
-												<input type="button" value="단어빈도 분석">
 											</td>
 										</tr>
 									</table>
 
-									 <iframe src="python1.jsp" style="width: 40%; height: 320px;display:inline;"></iframe>
+									 <iframe src="python1.jsp" style="width: 40%; height: 370px;display:inline;"></iframe>
+									<p style="text-align: left;"><%=cvo.getClassPath() %></p>
 
-									<p><%=cvo.getClassPath() %></p>
 								</section>
-								
-
 						</div>
 					</div>
 				<%@ include file="class_sidebar.jsp" %>
