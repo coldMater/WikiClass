@@ -85,18 +85,18 @@ padding-top: 2em !important;
 						<tbody>
 							<form action="nicknameUpdate.do">
 							<tr>
-								<td>닉네임</td>
+								<td>&nbsp;<i class="fa fa-user" aria-hidden="true" style="color:#20C0FF" ></i>&nbsp;&nbsp;닉네임</td>
 								<td>
 									<span id="nicknamespan">${mvo.nickname }</span>
 								</td>
 							</tr>
 							</form>	
 							<tr>
-								<td>노트수</td>
-								<td>선택하게 만듬</td>
+								<td><i class="fa fa-sticky-note-o" aria-hidden="true" style="color:#20C0FF"><i class="fa fa-question" aria-hidden="true"></i></i>&nbsp;노트수</td>
+								<td>0</td>
 							</tr>
 							<tr>
-								<td>노트 기여도</td>
+								<td><i class="fa fa-sticky-note-o" aria-hidden="true" style="color:#20C0FF"><i class="fa fa-exclamation" aria-hidden="true" ></i></i>&nbsp;&nbsp;노트 기여도</td>
 								<td>선택하게 만든</td>
 							</tr>
 						</tbody>

@@ -207,7 +207,7 @@ transform: rotate(45deg);
 								<section id="banner" style="padding-top:30px;padding-bottom:15px;" >
 									<div class="content">
 										<header>
-										<h1>Find your Class,<br/>Join your Group</h1>
+										<h1>Find your Class, Join your Group</h1>
 										</header>
 									</div>
 									</span>
