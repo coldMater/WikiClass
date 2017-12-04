@@ -46,6 +46,7 @@ h3,h2{
 	NoteVO noteVO = noteDAO.getNote(noteNum);
 	String title = "제목을 정상적으로 불러오지 못하였습니다.";
 	String content ="내용을 정상적으로 불러오지 못하였습니다.";
+	
 	if(noteVO!=null){
 		title = noteVO.getTitle();
 		content = noteVO.getContent();
