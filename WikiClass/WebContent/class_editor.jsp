@@ -48,13 +48,7 @@ img{
 									</header>
 									<form action="class_generic.jsp" method="get">
 										<textarea name="editor1" id="editor1" rows="10" cols="80">
-	    		        		    		편집을 해보세요ㅋㅋㅋㅋ
-	    		        		    		<h1>This is my textarea to be replaced with CKEditor.</h1>
-	    		        		    		         <script type="text/javascript">
-            											CKEDITOR.replace( 'editor1' );            
-            											CKEDITOR.add
-            											CKEDITOR.config.contentsCss = 'class_assets/css/main.css' ;            
-         											 </script>    
+
 	    		        				</textarea>
 										<input type="submit" value="텍스트 전송" />
 										<script>

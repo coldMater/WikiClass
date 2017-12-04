@@ -105,8 +105,6 @@ background-color:  !important;
 			<header class="major">
 			<h2>노트 편집하기</h2>
 			</header>
-			<input type="text" value="" id="nid" placeholder="nid"/>
-			<input type="text" value="" id="pid" placeholder="pid"/>
 			
 			<form action="class_note_edit.jsp">
 			<input type="text" name = "noteID" style="width:30%;display:inline;"/>

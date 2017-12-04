@@ -191,7 +191,7 @@ h4{
 										</tr>
 									</table></div>
 									<div class="6u 12u$(small)"><i class="fa fa-search fa-2x" style="width:45px; height:45px"></i><h2 style="display:inline !important">ClassÀÇ ´Ü¾î</h2> 
-									 <iframe src="python1.jsp" style="width: 100%; height: 1000px;display:inline;"></iframe></div>
+									 <iframe src="python1.jsp" style="width: 100%; height: 470px;display:inline;"></iframe></div>
 									</div>
 									
 								
