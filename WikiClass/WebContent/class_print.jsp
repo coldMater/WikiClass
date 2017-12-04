@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -78,6 +77,22 @@ font-weight:bold;
 border-bottom:solid 1.5px rgba(210, 215, 217, 0.75);
 }
 
+.td1{
+	background-color: white;
+}
+.table1, .tr1, .td1{
+	border:0px solid black !important;
+}
+img{
+/* 	margin-left: 1em;
+	background-position: 260 left;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+*/	
+}		
+h4{
+	display: inline;
+}
 	</style>
 	</head>
 	<body>
@@ -107,11 +122,7 @@ border-bottom:solid 1.5px rgba(210, 215, 217, 0.75);
 	session.setAttribute("pyClassID", classNum);
 	session.setAttribute("pyNoteID", noteNum);
 	session.setAttribute("pyGroupID", groupNum);
-	
-	
 
-	
-	
 %>
 		<!-- 수정 실패 -->
 		<c:if test="${requestScope.classUpdate==2 }">
@@ -147,18 +158,18 @@ border-bottom:solid 1.5px rgba(210, 215, 217, 0.75);
 									<% 	}}	%> 
 										<h1><%=cvo.getName() %></h1>
 									</header>
-
-
-									<table class="table1" style="float: left">
+									
+									<div class="row"> 
+									<div class="6u 12u$(small)"><table class="table1" style="float: left; width:100% !important">
 
 										<tr class="tr1">
 											<td class="td1" rowspan="4" width="300px" style="text-align:right;">
 													<c:choose>
 														<c:when test="<%=cvo.getImgPath()==null %>">
-															<img src="classImage/Webvengers.jpg" alt="" style="width: 100%; height: 300px; vertical-align:top; border:1px solid black;"/>
+															<img src="classImage/Webvengers.jpg" alt="" style="width: 80%; height: 300px; vertical-align:top; border:1px solid black;"/>
 														</c:when>
 														<c:otherwise>
-															<img src="classImage/<%=cvo.getImgPath() %>" alt="" style="width: 100%; height: 300px; vertical-align:top; border:1px solid black;"/>
+															<img src="classImage/<%=cvo.getImgPath() %>" alt="" style="width: 80%; height: 300px; vertical-align:top; border:1px solid black;"/>
 														</c:otherwise>
 													</c:choose>
 												
@@ -178,9 +189,14 @@ border-bottom:solid 1.5px rgba(210, 215, 217, 0.75);
 											<td colspan = "2" class="td1">
 											</td>
 										</tr>
-									</table>
-
-									 <iframe src="python1.jsp" style="width: 40%; height: 370px;display:inline;"></iframe>
+									</table></div>
+									<div class="6u 12u$(small)"><i class="fa fa-search fa-2x" style="width:45px; height:45px"></i><h2 style="display:inline !important">Class의 단어</h2> 
+									 <iframe src="python1.jsp" style="width: 100%; height: 1000px;display:inline;"></iframe></div>
+									</div>
+									
+								
+									
+									
 									<p style="text-align: left;"><%=cvo.getClassPath() %></p>
 
 								</section>

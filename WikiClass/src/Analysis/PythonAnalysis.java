@@ -62,8 +62,23 @@ public class PythonAnalysis {
 				System.out.println(result_list.get(i));
 				
 			}
-				result += "<tr><td>순 위</td><td>단 어</td><td>나온 횟수</td></tr>";
+				result += "<th>순 위</th><th>단 어</th><th>횟 수</th><th>비 율</th>";
+				
+				
+				
+			int sum = 0;
 			
+			
+			for (int i = 0; i < result_list.size(); i++) {
+				
+				sum+= Integer.parseInt(result_list.get(i).split(" ")[1]);
+				
+			}
+				
+				
+				
+				
+				
 			for (int i = 0; i < result_list.size(); i++) {
 				result += "<tr>";
 				result += "<td>";
@@ -75,6 +90,11 @@ public class PythonAnalysis {
 				result += "<td>";
 				
 				result += result_list.get(i).split(" ")[1];
+				result +="</td>";
+				
+				result +="<td>";
+				result += (int)((float)Integer.parseInt(result_list.get(i).split(" ")[1])/sum*100)+"%";
+				
 				result +="</td>";
 				
 				result += "</tr>";
